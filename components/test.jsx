@@ -1,4 +1,4 @@
 import { createElement, render } from "@/core"
-import EchartsDemo from '@/components/echarts-demo.ztc'
+import EchartsDemo from '@/components/echarts-demo/index.ztc'
 
-render(document.getElementById('app'), <EchartsDemo style="width: 200px; height: 200px;" />)
+render(document.getElementById('app'), <EchartsDemo style="width: 500px; height: 500px;" />)

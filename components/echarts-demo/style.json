@@ -1,0 +1,71 @@
+[
+  {
+    "name": "",
+    "nameCN": "柱子样式",
+    "fieldset": [
+      { "name": "border-width", "nameCN": "柱子宽度", "type": "Slider" },
+      { "name": "border-color", "nameCN": "柱子圆角度", "type": "Slider" },
+      { "name": "border-color", "nameCN": "系列间距", "type": "Slider" }
+    ]
+  },
+  {
+    "name": "",
+    "nameCN": "边距",
+    "fieldset": [
+      { "name": "border-width", "nameCN": "顶部", "type": "Integer" },
+      { "name": "border-width", "nameCN": "底部", "type": "Integer" },
+      { "name": "border-width", "nameCN": "左侧", "type": "Integer" },
+      { "name": "border-width", "nameCN": "右侧", "type": "Integer" }
+    ]
+  },
+  {
+    "name": "",
+    "nameCN": "x 轴",
+    "fieldset": [
+      {
+        "name": "border-width",
+        "nameCN": "坐标轴颜色",
+        "type": "Color",
+        "open": true
+      },
+      {
+        "name": "border-width",
+        "nameCN": "网格线颜色",
+        "type": "Color",
+        "open": true
+      }
+    ]
+  },
+  {
+    "name": "",
+    "nameCN": "x 轴标签",
+    "fieldset": [
+      {
+        "name": "border-width",
+        "nameCN": "轴标签字号",
+        "type": "Integer"
+      },
+      {
+        "name": "border-width",
+        "nameCN": "轴标签颜色",
+        "type": "Color"
+      },
+      {
+        "name": "border-width",
+        "nameCN": "字体粗细",
+        "type": "Select",
+        "enum": [
+          { "key": "Normal", "value": "Normal" },
+          { "key": "Bold", "value": "Bold" },
+          { "key": "Bolder", "value": "Bolder" },
+          { "key": "Lighter", "value": "Lighter" }
+        ]
+      },
+      {
+        "name": "border-width",
+        "nameCN": "角度",
+        "type": "Integer"
+      }
+    ]
+  }
+]

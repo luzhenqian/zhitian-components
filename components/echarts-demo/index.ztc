@@ -1,0 +1,86 @@
+<component name="ZTEchartsDemo">
+  <div id="main"></div>
+</component>
+
+<script>
+  import { init } from "echarts";
+  import { onMounted } from "@/core";
+
+  const defaultData = [
+    {
+      x: "衬衫",
+      y: 5,
+      s: "bar",
+      sc: "销量",
+    },
+    {
+      x: "羊毛衫",
+      y: 20,
+      s: "bar",
+      sc: "销量",
+    },
+    {
+      x: "雪纺衫",
+      y: 36,
+      s: "bar",
+      sc: "销量",
+    },
+    {
+      x: "裤子",
+      y: 10,
+      s: "bar",
+      sc: "销量",
+    },
+    {
+      x: "高跟鞋",
+      y: 10,
+      s: "bar",
+      sc: "销量",
+    },
+    {
+      x: "袜子",
+      y: 20,
+      s: "bar",
+      sc: "销量",
+    },
+  ];
+
+  const xAxisData = [],
+    series = [];
+
+  defaultData.forEach((data) => {
+    xAxisData.push(data.x);
+    const item = {
+      name: data.sc,
+      type: data.s,
+      data: [data.y],
+    };
+    const currentSeriesData = series.find((s) => s.name === data.sc);
+    if (currentSeriesData) {
+      currentSeriesData.data.push(data.y);
+    } else {
+      series.push(item);
+    }
+  });
+
+  var option = {
+    title: {
+      text: "ECharts 入门示例",
+    },
+    tooltip: {},
+    legend: {
+      data: series.map(s=>s.name),
+    },
+    xAxis: {
+      data: xAxisData,
+    },
+    yAxis: {},
+    series: series,
+  };
+
+  onMounted(() => {
+    var myChart = init(document.getElementById("main"));
+
+    myChart.setOption(option);
+  });
+</script>
