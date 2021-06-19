@@ -1,1 +1,1 @@
-import "./components/test.jsx"
+import "@/components/test.jsx"

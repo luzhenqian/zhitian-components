@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   entry: "./main.js",
   module: {
@@ -32,5 +34,10 @@ module.exports = {
   mode: 'development',
   optimization: {
     minimize: false
+  },
+  resolve:{
+    alias:{
+      '@': path.resolve(__dirname, ''),
+    }
   }
 }
