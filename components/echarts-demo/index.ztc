@@ -58,10 +58,15 @@
     },
   };
 
-  nextTick(() => {
-    const myChart = init(this.el);
+  let myChart;
 
+  onMounted(this, () => {
+    myChart = init(this.el);
     myChart.setOption(option);
+  });
+
+  nextTick(() => {
+    myChart.resize();
   });
 </script>
 

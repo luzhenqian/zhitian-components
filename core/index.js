@@ -42,6 +42,8 @@ export class ZTC {
 
 // TODO: inject this
 export function onMounted(that, cbFn) {
+  // FIXME: this is undefined
+  console.log('onMounted:', this);
   that.mounted = cbFn.bind(null, that.el)
 }
 
