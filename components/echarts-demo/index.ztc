@@ -58,7 +58,7 @@
     },
   };
 
-  nextTick(this, () => {
+  nextTick(() => {
     const myChart = init(this.el);
 
     myChart.setOption(option);

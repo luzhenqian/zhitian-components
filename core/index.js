@@ -40,6 +40,7 @@ export class ZTC {
   }
 }
 
+// TODO: inject this
 export function onMounted(that, cbFn) {
   that.mounted = cbFn.bind(null, that.el)
 }
@@ -53,6 +54,6 @@ export function render(rootEl, rootComponent) {
 }
 
 let cbFns = []
-export function nextTick(that, cbFn) {
+export function nextTick(cbFn) {
   cbFns.push(cbFn)
 }
