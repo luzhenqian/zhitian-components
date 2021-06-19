@@ -26,7 +26,7 @@ function createNativeNode(type, props, ...children) {
 export class ZTC {
   constructor(props) {
     this.el = this.render(props)
-    this.mounted && this.mounted()
+    this.mounted && this.mounted(props)
   }
 }
 

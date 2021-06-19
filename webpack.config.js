@@ -35,8 +35,8 @@ module.exports = {
   optimization: {
     minimize: false
   },
-  resolve:{
-    alias:{
+  resolve: {
+    alias: {
       '@': path.resolve(__dirname, ''),
     }
   }

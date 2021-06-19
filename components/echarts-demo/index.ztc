@@ -6,49 +6,10 @@
   import { init } from "echarts";
   import { onMounted } from "@/core";
 
-  const defaultData = [
-    {
-      x: "衬衫",
-      y: 5,
-      s: "bar",
-      sc: "销量",
-    },
-    {
-      x: "羊毛衫",
-      y: 20,
-      s: "bar",
-      sc: "销量",
-    },
-    {
-      x: "雪纺衫",
-      y: 36,
-      s: "bar",
-      sc: "销量",
-    },
-    {
-      x: "裤子",
-      y: 10,
-      s: "bar",
-      sc: "销量",
-    },
-    {
-      x: "高跟鞋",
-      y: 10,
-      s: "bar",
-      sc: "销量",
-    },
-    {
-      x: "袜子",
-      y: 20,
-      s: "bar",
-      sc: "销量",
-    },
-  ];
-
   const xAxisData = [],
     series = [];
 
-  defaultData.forEach((data) => {
+  props.defaultData.forEach((data) => {
     xAxisData.push(data.x);
     const item = {
       name: data.sc,
