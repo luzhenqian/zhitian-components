@@ -9,16 +9,24 @@
   const xAxisData = [],
     series = [];
 
-  props.defaultData.forEach((data) => {
-    xAxisData.push(data.x);
+  console.log(props);
+  const { style, data } = props;
+
+  data.forEach((d) => {
+    xAxisData.push(d.x);
     const item = {
-      name: data.sc,
-      type: data.s,
-      data: [data.y],
+      name: d.sc,
+      type: d.t,
+      data: [d.y],
+      barWidth: props.style.bar.width,
+      itemStyle: {
+        color: style.bar.color,
+        borderRadius: style.bar.radius,
+      },
     };
-    const currentSeriesData = series.find((s) => s.name === data.sc);
+    const currentSeriesData = series.find((s) => s.name === d.sc);
     if (currentSeriesData) {
-      currentSeriesData.data.push(data.y);
+      currentSeriesData.data.push(d.y);
     } else {
       series.push(item);
     }
@@ -26,18 +34,32 @@
 
   var option = {
     title: {
-      text: "ECharts 入门示例",
+      text: "柱状图 Demo",
     },
     tooltip: {},
     legend: {
-      data: series.map(s=>s.name),
+      data: series.map((s) => s.name),
     },
     xAxis: {
       data: xAxisData,
+      show: style.xAxis.show,
+      axisLine: {
+        lineStyle: {
+          color: style.xAxis.color,
+        },
+      },
     },
     yAxis: {},
     series: series,
+    grid: {
+      left: style.padding.left,
+      right: style.padding.right,
+      top: style.padding.top,
+      bottom: style.padding.bottom,
+    },
   };
+
+  console.log(option);
 
   onMounted(() => {
     var myChart = init(document.getElementById("main"));

@@ -1,35 +1,35 @@
 [
   {
-    "name": "",
+    "name": "barStyle",
     "nameCN": "柱子样式",
     "fieldset": [
-      { "name": "border-width", "nameCN": "柱子宽度", "type": "Slider" },
-      { "name": "border-color", "nameCN": "柱子圆角度", "type": "Slider" },
-      { "name": "border-color", "nameCN": "系列间距", "type": "Slider" }
+      { "name": "width", "nameCN": "柱子宽度", "type": "Slider" },
+      { "name": "radius", "nameCN": "柱子圆角度", "type": "Slider" }
     ]
   },
   {
-    "name": "",
+    "name": "padding",
     "nameCN": "边距",
     "fieldset": [
-      { "name": "border-width", "nameCN": "顶部", "type": "Integer" },
-      { "name": "border-width", "nameCN": "底部", "type": "Integer" },
-      { "name": "border-width", "nameCN": "左侧", "type": "Integer" },
-      { "name": "border-width", "nameCN": "右侧", "type": "Integer" }
+      { "name": "top", "nameCN": "顶部", "type": "Integer" },
+      { "name": "bottom", "nameCN": "底部", "type": "Integer" },
+      { "name": "left", "nameCN": "左侧", "type": "Integer" },
+      { "name": "right", "nameCN": "右侧", "type": "Integer" }
     ]
   },
   {
-    "name": "",
+    "name": "xAxis",
     "nameCN": "x 轴",
+    "show": true,
     "fieldset": [
       {
-        "name": "border-width",
+        "name": "color",
         "nameCN": "坐标轴颜色",
         "type": "Color",
         "open": true
       },
       {
-        "name": "border-width",
+        "name": "gridColor",
         "nameCN": "网格线颜色",
         "type": "Color",
         "open": true

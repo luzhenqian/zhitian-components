@@ -1,1 +1,17 @@
-{}
+{
+  "bar": {
+    "width": 40,
+    "color": "rgba(211, 90, 90, 1)",
+    "radius": 4
+  },
+  "padding": {
+    "left": 40,
+    "right": 40,
+    "top": 40,
+    "bottom": 40
+  },
+  "xAxis": {
+    "show": true,
+    "color": "rgba(211, 90, 90, 1)"
+  }
+}
