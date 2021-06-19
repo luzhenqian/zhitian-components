@@ -77,7 +77,7 @@ function peelOffImps(scriptData) {
 function insertProps(html) {
   const idx = html.indexOf('>')
   if (idx === -1) return html
-  return html.slice(0, idx) + 'style="width: 100%; height: 100%;" {...props} ' + html.slice(idx);
+  return html.slice(0, idx) + ' style="width: 100%; height: 100%;" {...props} ' + html.slice(idx);
 }
 
 function getPath(resourcePath) {
