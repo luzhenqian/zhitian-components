@@ -1,10 +1,1 @@
-console.log('hello')
-function create() {
-
-}
-
-class MyComponent {
-
-}
-
-const com = <MyComponent />
+import "./components/test.jsx"
