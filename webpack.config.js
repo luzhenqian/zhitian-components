@@ -28,6 +28,14 @@ module.exports = {
             loader: require.resolve("./loader/ztc-loader.js")
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'css-loader',
+          }
+        ]
       }
     ]
   },

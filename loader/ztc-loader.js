@@ -6,17 +6,17 @@ module.exports = function (source) {
 
   let [scriptData, imps] = peelOffImps($('script').contents()[0].data)
 
-  const component = $('component')
-  const componentName = component[0].attribs.name
-  const rawComponentData = component.html()
+  const component = $('component')[0]
+  const componentName = component.attribs.name
 
-  // const data = $('data')
-  // const style = $('style')
-  // const interaction = $('interaction')
+  const styleData = $('style').html()
+
+  const rawComponentData = $(component).html()
+  console.log('s:', styleData);
 
   const componentData = insertProps(rawComponentData)
 
-  const code = generateCode(imps, componentName, componentData, scriptData, this.resourcePath)
+  const code = generateCode(imps, componentName, componentData, scriptData, styleData, this.resourcePath)
 
   return code
 }
@@ -31,7 +31,7 @@ module.exports = function (source) {
  * 
  * @returns {string} define component class
  */
-function generateCode(imps, componentName, componentData, scriptData, resourcePath) {
+function generateCode(imps, componentName, componentData, scriptData, styleData, resourcePath) {
   return `
   import { createElement, ZTC } from "@/core"
   import defaultStyle from "${getDefaultStylePath(resourcePath)}"
@@ -45,10 +45,14 @@ function generateCode(imps, componentName, componentData, scriptData, resourcePa
     render(props) {
       return ${componentData.trim()}
     }
-    mounted(props) {
+    beforeMount(props) {
       props === null && (props = {});
       (props.style && typeof props.style === "object") || (props.style = __ztDefaultStyle__)
       props.data || (props.data = __ztDefaultData__)
+      const styleShell = document.createElement('style')
+      styleShell.content = \`${styleData}\`
+      // console.log(this.el.parent)
+      // this.el.parentElement.appendChild(styleShell)
       ${scriptData}
     }
   }`

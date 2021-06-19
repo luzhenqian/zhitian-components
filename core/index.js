@@ -1,7 +1,10 @@
 export function createElement(type, props, ...children) {
+  console.log(type, children);
   const t = (typeof type)
   let el
   if (t === "function") {
+    if (props === null) props = {}
+    props.children = children
     el = new type(props).el
     // TODO: props children
   } else if (t === "string") {
@@ -26,17 +29,30 @@ function createNativeNode(type, props, ...children) {
 export class ZTC {
   constructor(props) {
     this.el = this.render(props)
+    this.props = props
+    this.beforeMount && this.beforeMount(props)
+    this.mount()
     this.mounted && this.mounted(props)
+  }
+  mount() {
+    this.el.append(...this.props.children)
+    delete this.props.children
   }
 }
 
-let cbFns = []
-
-export function onMounted(fn) {
-  cbFns.push(fn)
+export function onMounted(that, cbFn) {
+  that.mounted = cbFn.bind(null, that.el)
 }
 
 export function render(rootEl, rootComponent) {
   rootEl.append(rootComponent)
-  cbFns.forEach(cbFn => cbFn())
+  cbFns.forEach(cbFn => {
+    cbFn();
+    // TODO: remove cbFn
+  })
+}
+
+let cbFns = []
+export function nextTick(that, cbFn) {
+  cbFns.push(cbFn)
 }
