@@ -67,3 +67,5 @@
     myChart.setOption(option);
   });
 </script>
+
+<style></style>

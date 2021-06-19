@@ -46,6 +46,7 @@ function generateCode(imps, componentName, componentData, scriptData, resourcePa
       return ${componentData.trim()}
     }
     mounted(props) {
+      props === null && (props = {});
       (props.style && typeof props.style === "object") || (props.style = __ztDefaultStyle__)
       props.data || (props.data = __ztDefaultData__)
       ${scriptData}
