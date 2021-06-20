@@ -21,7 +21,7 @@ class Nav extends ZTC {
 }
 
 class Example extends ZTC {
-  static active = "counter"
+  active = "counter"
   constructor(props) {
     super(props)
   }

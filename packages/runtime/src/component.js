@@ -5,16 +5,20 @@ export class ZTC {
     this.props = props
     this.name = this.constructor.name
 
-    const initialState = {}
-    for (let key in this.constructor) {
-      const value = this.constructor[key]
-      if (typeof value !== 'function') {
-        initialState[key] = value
-      }
-    }
-
+    const initialState = Object.create(null)
     const reactive = new Reactive(this.update.bind(this))
     this.state = reactive.reactive(initialState)
+
+    setTimeout((function () {
+      for (let key in this) {
+        const value = this[key]
+        if (typeof value !== 'function' &&
+          key !== 'el' && key !== 'name' && key !== "state" && key !== 'props'
+        ) {
+          this.state[key] = value
+        }
+      }
+    }).bind(this))
 
     this.el = this.render(props, this.state)
 
