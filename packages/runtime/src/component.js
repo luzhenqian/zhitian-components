@@ -1,7 +1,5 @@
 import Reactive from "@/packages/reactivity/src"
 
-const stateMap = new Map()
-
 export class ZTC {
   constructor(props) {
     this.props = props
@@ -15,16 +13,8 @@ export class ZTC {
       }
     }
 
-    let state
-    // FIXME: when the parent component is updated
-    // all self-components cannot be updated at the same time
-    if (stateMap.has(this)) { state = stateMap.get(this) } else {
-      state = Object.create(initialState)
-      stateMap.set(this, state)
-    }
-
     const reactive = new Reactive(this.update.bind(this))
-    this.state = reactive.reactive(state)
+    this.state = reactive.reactive(initialState)
 
     this.el = this.render(props, this.state)
 

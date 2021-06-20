@@ -14,8 +14,6 @@ class Nav extends ZTC {
     return <ul class={props.class}>
     <li class={`examples-nav-item ${props.active === "counter" ? "active" : ""}`}
       onClick={() => select('counter')}>计数器</li>
-      <li class={`examples-nav-item ${props.active === "counter2" ? "active" : ""}`}
-        onClick={() => select('counter2')}>计数器2</li>
       <li class={`examples-nav-item ${props.active === "barChart" ? "active" : ""}`}
         onClick={() => select('barChart')}>柱状图</li>
     </ul>
@@ -33,7 +31,6 @@ class Example extends ZTC {
     }
     const exampleMap = {
       counter: <Counter />,
-      counter2: <Counter />,
       barChart: <div style="width:400px; height: 400px">
         <BarChart />
       </div>
