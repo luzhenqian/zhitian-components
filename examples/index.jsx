@@ -11,10 +11,11 @@ class List extends ZTC {
     const select = (exampleID) => {
       this.emit('changeActive', exampleID);
     }
-    console.log(props);
     return <ul class={props.class}>
-      <li class={`examples-nav-item ${props.active === "counter" ? "active" : ""}`} onClick={() => select('counter')}>计数器</li>
-      <li class={`examples-nav-item ${props.active === "barChart" ? "active" : ""}`} onClick={() => select('barChart')}>柱状图</li>
+      <li class={`examples-nav-item ${props.active === "counter" ? "active" : ""}`}
+        onClick={() => select('counter')}>计数器</li>
+      <li class={`examples-nav-item ${props.active === "barChart" ? "active" : ""}`}
+        onClick={() => select('barChart')}>柱状图</li>
     </ul>
   }
 }
