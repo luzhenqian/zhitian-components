@@ -3,15 +3,19 @@ export { ZTC } from "./ZTC"
 
 export function render(rootEl, rootComponent) {
   rootEl.append(rootComponent)
-  cbFns.forEach(cbFn => {
-    cbFn();
-    // TODO: remove cbFn
-  })
+  doNextTickCbFn()
 }
 
 let cbFns = []
 export function nextTick(cbFn) {
   cbFns.push(cbFn)
+}
+
+export function doNextTickCbFn() {
+  cbFns.forEach((cbFn,i) => {
+    cbFn();
+  })
+  cbFns = []
 }
 
 let state = []

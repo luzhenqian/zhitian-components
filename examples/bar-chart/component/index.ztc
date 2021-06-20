@@ -1,4 +1,4 @@
-<component name="ZTEchartsDemo">
+<component name="BarChart">
   <div id="main" class="red"></div>
 </component>
 
