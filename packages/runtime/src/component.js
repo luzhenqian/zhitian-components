@@ -16,10 +16,13 @@ export class ZTC {
     }
 
     let state
-    if (stateMap.has(this.name)) { state = stateMap.get(this.name) } else {
+    // FIXME: when the parent component is updated
+    // all self-components cannot be updated at the same time
+    if (stateMap.has(this)) { state = stateMap.get(this) } else {
       state = Object.create(initialState)
-      stateMap.set(this.name, state)
+      stateMap.set(this, state)
     }
+
     const reactive = new Reactive(this.update.bind(this))
     this.state = reactive.reactive(state)
 
