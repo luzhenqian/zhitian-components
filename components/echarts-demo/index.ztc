@@ -4,7 +4,7 @@
 
 <script>
   import { init } from "echarts";
-  import { onMounted, nextTick } from "@/core";
+  import { nextTick } from "@/core";
 
   const xAxisData = [],
     series = [];
@@ -60,10 +60,10 @@
 
   let myChart;
 
-  onMounted(this, () => {
+  this.mounted =  () => {
     myChart = init(this.el);
     myChart.setOption(option);
-  });
+  }
 
   nextTick(() => {
     myChart.resize();
