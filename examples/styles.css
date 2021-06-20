@@ -35,6 +35,8 @@ body {
   outline: none;
   list-style: none;
   cursor: pointer;
+  display: block;
+  padding: 4px 12px;
 }
 
 .active {
