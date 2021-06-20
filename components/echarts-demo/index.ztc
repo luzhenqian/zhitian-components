@@ -1,5 +1,5 @@
 <component name="ZTEchartsDemo">
-  <div id="main" className="{Styles.red}"></div>
+  <div id="main" class="red"></div>
 </component>
 
 <script>
