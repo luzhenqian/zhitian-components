@@ -1,4 +1,4 @@
-import { createElement, render, ZTC } from "@/core"
+import { createElement,render, ZTC } from "@/packages/runtime/src/index"
 import BarChart from './component'
 
 render(document.getElementById('app'),

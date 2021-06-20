@@ -1,6 +1,5 @@
 const path = require('path');
 
-console.log('++++++++++');
 /**
  * generateCode
  * @param {string} imps import module string
@@ -13,7 +12,7 @@ console.log('++++++++++');
  */
 function generateCode(imps, componentName, componentData, scriptData, styleData, resourcePath) {
   return `
-  import { createElement, ZTC } from "@/core"
+  import { createElement, ZTC } from "@/packages/runtime/src"
   import defaultStyle from "${getDefaultStylePath(resourcePath)}"
   import defaultData from "${getDefaultDataPath(resourcePath)}"
   ${imps}

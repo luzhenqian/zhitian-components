@@ -1,5 +1,4 @@
-import { doNextTickCbFn } from "."
-import Reactive from "./reactive"
+import Reactive from "@/packages/reactivity/src/index"
 
 export class ZTC {
   constructor(props) {
@@ -40,3 +39,26 @@ export class ZTC {
     evnet(...args)
   }
 }
+
+export function render(rootEl, rootComponent) {
+  rootEl.append(rootComponent)
+  doNextTickCbFn()
+}
+
+let cbFns = []
+export function nextTick(cbFn) {
+  cbFns.push(cbFn)
+}
+
+export function doNextTickCbFn() {
+  cbFns.forEach((cbFn, i) => {
+    cbFn();
+  })
+  cbFns = []
+}
+
+ZTC.render = render
+ZTC.nextTick = doNextTickCbFn
+ZTC.doNextTickCbFn = doNextTickCbFn
+
+export default ZTC

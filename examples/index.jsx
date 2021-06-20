@@ -1,4 +1,4 @@
-import { createElement, render, ZTC } from "@/core"
+import { ZTC, render, createElement } from "@/packages/runtime/src"
 import Counter from './counter/component'
 import BarChart from './bar-chart/component'
 import "./styles.css"

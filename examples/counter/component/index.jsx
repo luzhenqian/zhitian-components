@@ -1,4 +1,4 @@
-import { createElement, ZTC } from "@/core"
+import { ZTC, createElement } from "@/packages/runtime/src/index"
 import "./styles.css"
 
 export default class Counter extends ZTC {
