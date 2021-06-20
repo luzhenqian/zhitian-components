@@ -1,1 +1,2 @@
-import "@/components/test.jsx"
+// import "@/examples/counter"
+import "@/examples/bar-chart"
