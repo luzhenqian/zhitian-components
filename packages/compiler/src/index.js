@@ -1,26 +1,6 @@
-const cheerio = require('cheerio');
 const path = require('path');
 
-module.exports = function (source) {
-  const $ = cheerio.load(source)
-
-  let [scriptData, imps] = peelOffImps($('script').contents()[0].data)
-
-  const component = $('component')[0]
-  const componentName = component.attribs.name
-
-  const styleData = $('style').html()
-
-  const rawComponentData = $(component).html()
-  console.log('s:', styleData);
-
-  const componentData = insertProps(rawComponentData)
-
-  const code = generateCode(imps, componentName, componentData, scriptData, styleData, this.resourcePath)
-
-  return code
-}
-
+console.log('++++++++++');
 /**
  * generateCode
  * @param {string} imps import module string
@@ -95,4 +75,10 @@ function getDefaultDataPath(resourcePath) {
 
 function getDefaultStylePath(resourcePath) {
   return getPath(resourcePath) + "style.default.json"
+}
+
+module.exports = {
+  generateCode,
+  peelOffImps,
+  insertProps,
 }

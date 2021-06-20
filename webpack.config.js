@@ -25,7 +25,7 @@ module.exports = {
             }
           },
           {
-            loader: require.resolve("./loader/ztc-loader.js")
+            loader: require.resolve("./packages/compiler/src/ztc-loader.js")
           }
         ]
       },

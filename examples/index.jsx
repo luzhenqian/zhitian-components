@@ -30,8 +30,8 @@ class Example extends ZTC {
       this.state.active = exampleID
     }
     const exampleMap = {
-      'counter': <Counter />,
-      'barChart': <div style="width:400px; height: 400px">
+      counter: <Counter />,
+      barChart: <div style="width:400px; height: 400px">
         <BarChart />
       </div>
     }
