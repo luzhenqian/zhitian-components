@@ -3,7 +3,7 @@
   "itemType": {
     "x": "string",
     "y": "number",
-    "t": "number",
+    "t": "string",
     "sc": "string"
   }
 }

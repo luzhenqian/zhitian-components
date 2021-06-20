@@ -26,45 +26,57 @@
         "name": "color",
         "nameCN": "坐标轴颜色",
         "type": "Color",
-        "open": true
+        "show": true
       },
       {
         "name": "gridColor",
         "nameCN": "网格线颜色",
         "type": "Color",
-        "open": true
+        "show": true
       }
     ]
   },
   {
-    "name": "",
+    "name": "xAxisLabel",
     "nameCN": "x 轴标签",
+    "show": true,
     "fieldset": [
       {
-        "name": "border-width",
+        "name": "fontSize",
         "nameCN": "轴标签字号",
         "type": "Integer"
       },
       {
-        "name": "border-width",
+        "name": "fontColor",
         "nameCN": "轴标签颜色",
         "type": "Color"
       },
       {
-        "name": "border-width",
+        "name": "fontWeight",
         "nameCN": "字体粗细",
-        "type": "Select",
-        "enum": [
-          { "key": "Normal", "value": "Normal" },
-          { "key": "Bold", "value": "Bold" },
-          { "key": "Bolder", "value": "Bolder" },
-          { "key": "Lighter", "value": "Lighter" }
+        "type": [
+          {
+            "type": "Select",
+            "options": [
+              { "label": "Normal", "value": "常规" },
+              { "label": "Bold", "value": "加粗" },
+              { "label": "Bolder", "value": "极粗" },
+              { "label": "Lighter", "value": "极细" }
+            ]
+          },
+          {
+            "type": "Integer",
+            "min": 100,
+            "max": 1000
+          }
         ]
       },
       {
-        "name": "border-width",
+        "name": "rotate",
         "nameCN": "角度",
-        "type": "Integer"
+        "type": "Integer",
+        "min": -90,
+        "max": 90
       }
     ]
   }

@@ -43,8 +43,22 @@
       data: xAxisData,
       show: style.xAxis.show,
       axisLine: {
+        show: style.xAxis["color.show"],
         lineStyle: {
           color: style.xAxis.color,
+        },
+      },
+      axisLabel: {
+        show: style.xAxisLabel.show,
+        fontSize: style.xAxisLabel.fontSize,
+        fontWeight: style.xAxisLabel.fontWeight,
+        color: style.xAxisLabel.color,
+        rotate: style.xAxisLabel.rotate,
+      },
+      splitLine: {
+        show: style.xAxis["gridColor.show"],
+        lineStyle: {
+          color: style.xAxis.gridColor,
         },
       },
     },
@@ -60,10 +74,10 @@
 
   let myChart;
 
-  this.mounted =  () => {
+  this.mounted = () => {
     myChart = init(this.el);
     myChart.setOption(option);
-  }
+  };
 
   nextTick(() => {
     myChart.resize();
