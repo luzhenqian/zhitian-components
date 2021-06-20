@@ -1,11 +1,27 @@
-import Reactive from "@/packages/reactivity/src/index"
+import Reactive from "@/packages/reactivity/src"
+
+const stateMap = new Map()
 
 export class ZTC {
   constructor(props) {
     this.props = props
     this.name = this.constructor.name
+
+    const initialState = {}
+    for (let key in this.constructor) {
+      const value = this.constructor[key]
+      if (typeof value !== 'function') {
+        initialState[key] = value
+      }
+    }
+
+    let state
+    if (stateMap.has(this.name)) { state = stateMap.get(this.name) } else {
+      state = Object.create(initialState)
+      stateMap.set(this.name, state)
+    }
     const reactive = new Reactive(this.update.bind(this))
-    this.state = reactive.reactive({})
+    this.state = reactive.reactive(state)
 
     this.el = this.render(props, this.state)
 
@@ -26,7 +42,7 @@ export class ZTC {
     if (!this.el) return
     const parent = this.el.parentElement
     this.unMount()
-    this.el = this.render(this.props, this.state)
+    this.el = this.render(this.props)
     this.mount(parent)
     doNextTickCbFn()
   }

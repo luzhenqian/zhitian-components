@@ -1,10 +1,10 @@
-import { ZTC, createElement } from "@/packages/runtime/src/index"
+import { ZTC, createElement } from "@/packages/runtime/src"
 import "./styles.css"
 
 export default class Counter extends ZTC {
+  static count = 0
   constructor(props) {
     super(props)
-    this.state.count = 0
   }
 
   render() {

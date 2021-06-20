@@ -21,9 +21,9 @@ class List extends ZTC {
 }
 
 class Example extends ZTC {
+  static active = "counter"
   constructor(props) {
     super(props)
-    this.state.active = "counter"
   }
   render() {
     const changeActive = (exampleID) => {

@@ -19,7 +19,7 @@ export default class Reactive {
           result = Reflect.set(target, propertyKey, value, receiver)
         }
         callback()
-        return (result)
+        return result
       },
       deleteProperty(target, propertyKey) {
         const hadKey = Object.prototype.hasOwnProperty.call(target, propertyKey)
