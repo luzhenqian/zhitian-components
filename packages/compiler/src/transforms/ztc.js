@@ -21,7 +21,6 @@ function codeGen(
   resourcePath
 ) {
   const script = analysisScript(scriptData);
-  console.log(script);
   if (typeof script === "string") {
     return statelessCodeGen(
       imps,
