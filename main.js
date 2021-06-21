@@ -1,6 +1,7 @@
-// import "@/examples/counter"
-// import "@/examples/bar-chart"
+// ztc
 // import "@/examples/ztc/bar-chart"
-import "@/examples/ztc/counter"
-// import "@/examples/vue"
+// import "@/examples/ztc/counter"
+
+// ztc jsx
+import "@/examples/ztc-jsx/bar-chart"
 // import "@/examples/ztc-vue"

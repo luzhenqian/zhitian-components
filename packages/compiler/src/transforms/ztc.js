@@ -117,7 +117,6 @@ function statelessCodeGen(
     _styleMount() {
       const styleShell = document.createElement('style')
       styleShell.textContent = \`${styleData}\`
-      console.log(\`${styleData}\`, this.el.parentElement, styleShell)
       if(this.el.parentElement) {
         this.el.parentElement.appendChild(styleShell)
         this._styleMounted = true
