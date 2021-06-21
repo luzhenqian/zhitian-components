@@ -1,4 +1,5 @@
 // import "@/examples/counter"
 // import "@/examples/bar-chart"
-// import "@/examples"
-import "@/examples/vue"
+import "@/examples/ztc/bar-chart"
+// import "@/examples/vue"
+// import "@/examples/ztc-vue"

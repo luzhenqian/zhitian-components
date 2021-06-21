@@ -9,7 +9,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "create": "npx plop"
+    "create": "npx plop",
+    "dev":"npx webpack-dev-server --config ./config/webpack.config.ztc.js",
+    "dev:vue":"npx webpack --config ./config/webpack.config.vue.js"
   },
   "keywords": [],
   "author": "",

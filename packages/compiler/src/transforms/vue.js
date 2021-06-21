@@ -23,7 +23,7 @@ function codeGen(
 ) {
   return `
 <template>
-  <div ref="containerRef"></div>
+  <div style="width: 100%; height: 100%" ref="containerRef"></div>
 </template>
 
 <script>
@@ -37,11 +37,27 @@ ${content}
 export default defineComponent({
   name: "${componentName}",
   emits: ["loaded"],
+  props: {
+    style: {
+      type: Object,
+      default() {
+        return defaultStyle
+      } 
+    },
+    data: {
+      type: Object,
+      default() {
+        return defaultData
+      }
+    },
+    interaction: Object
+  },
   setup(props, ctx) {
     const containerRef = ref();
     onMounted(() => {
+      console.log('props:', props, createElement(${componentName}, props))
       if (containerRef.value) {
-        render(containerRef.value, createElement(${componentName}));
+        render(containerRef.value, createElement(${componentName}, props));
         ctx.emit("loaded");
       }
     });
