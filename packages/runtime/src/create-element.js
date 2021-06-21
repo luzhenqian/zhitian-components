@@ -1,33 +1,41 @@
+let ctx = {};
+
 export function createElement(type, props, ...children) {
   // console.log('type:', type);
   // console.log('props:', props);
   // console.log('children:', children);
 
-  const t = (typeof type)
-  let el
+  const t = typeof type;
+  let el;
   if (t === "function") {
-    if (props === null) props = {}
-    el = new type(props, ...children).el
+    if (props === null) props = {};
+    ctx = new type(props, ...children);
+    el = ctx.el;
     // TODO: props children
   } else if (t === "string") {
-    el = createNativeNode(type, props, ...children)
+    el = createNativeNode(type, props, ctx, ...children);
   }
-  return el
+  return el;
 }
 
-function createNativeNode(type, props, ...children) {
-  let el = document.createElement(type)
+function createNativeNode(type, props, ctx, ...children) {
+  let el = document.createElement(type);
   if (props) {
     Object.keys(props).forEach((key) => {
       if (key.slice(0, 2) === "on") {
-        el.addEventListener(key.slice(2).toLowerCase(), props[key])
+        if (ctx.methods) {
+          el.addEventListener(
+            key.slice(2).toLowerCase(),
+            ctx.methods[props[key]].bind(ctx)
+          );
+        }
       } else {
-        el.setAttribute(key, props[key])
+        el.setAttribute(key, props[key]);
       }
-    })
+    });
   }
   if (children.length > 0) {
-    el.append(...children)
+    el.append(...children);
   }
-  return el
+  return el;
 }

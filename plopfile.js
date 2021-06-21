@@ -12,7 +12,7 @@ module.exports = function (/** @type {import('plop').NodePlopAPI} */ plop) {
     actions: [
       {
         type: "addMany",
-        destination: "components/{{name}}",
+        destination: "./examples/ztc/{{name}}",
         templateFiles: [
           "templates/index.ztc.hbs",
           "templates/data.config.json.hbs",

@@ -27,6 +27,9 @@ function peelOffImps(scriptData) {
   );
   const impsArr = scriptData.match(pattern);
   let imps = "";
+  if (!Array.isArray(impsArr)) {
+    return [scriptData, ""];
+  }
   impsArr.forEach((imp) => {
     scriptData = scriptData.replace(imp, "");
     imps += imp + `\n`;

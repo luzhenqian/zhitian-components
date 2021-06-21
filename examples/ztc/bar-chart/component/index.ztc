@@ -77,7 +77,6 @@
   this.mounted = () => {
     myChart = init(this.el);
     this.el.style.height = "1000px";
-    console.log("parentElement:", this.el.parentElement);
     myChart.setOption(option);
   };
 

@@ -1,0 +1,24 @@
+<component name="counter">
+  <div id="counter" class="counter-contaienr">
+    <div>当前累计：<span class="counter-num">{this.state.count}</span></div>
+    {/* <button class="counter-btn" onClick="{increase}">点击+1</button> */}
+    
+    <button class="counter-btn" onClick="increase">点击+1</button>
+  </div>
+</component>
+
+<script>
+  export default {
+    state: { count: 0 },
+    methods: {
+      increase() {
+        this.state.count += 1;
+      },
+    },
+    run() {
+      console.log("i'm run", 1);
+    },
+  };
+</script>
+
+<style></style>

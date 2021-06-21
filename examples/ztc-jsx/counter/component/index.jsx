@@ -5,7 +5,6 @@ export default class Counter extends ZTC {
   count = 0
   constructor(props) {
     super(props)
-    console.log('counter:',this);
   }
 
   render() {

@@ -55,7 +55,6 @@ export default defineComponent({
   setup(props, ctx) {
     const containerRef = ref();
     onMounted(() => {
-      console.log('props:', props, createElement(${componentName}, props))
       if (containerRef.value) {
         render(containerRef.value, createElement(${componentName}, props));
         ctx.emit("loaded");
