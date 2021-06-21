@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Counter from "@/examples/ztc/counter";
+import Counter from "@/examples/ztc/counter/component";
 import { render, createElement } from "@/packages/runtime/src";
 import { ref, defineComponent, onMounted } from "vue";
 

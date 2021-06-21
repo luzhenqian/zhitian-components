@@ -16,11 +16,6 @@ export default defineComponent({
     const containerRef = ref();
     onMounted(() => {
       if (containerRef.value) {
-        console.log(
-          "containerRef.value",
-          containerRef.value,
-          createElement(BarChart, { data: defaultData, style: defaultStyle })
-        );
         render(
           containerRef.value,
           createElement(BarChart, { data: defaultData, style: defaultStyle })
