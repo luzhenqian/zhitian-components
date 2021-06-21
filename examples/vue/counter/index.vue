@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Counter from "./counter.vue";
+import Counter from "./component/counter";
 import { defineComponent } from "vue";
 
 export default defineComponent({

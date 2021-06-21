@@ -1,4 +1,5 @@
 const path = require("path");
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   entry: "./main.js",
@@ -48,6 +49,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+      },
     ],
   },
   mode: "development",
@@ -58,6 +63,7 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname, "../"),
     },
-    extensions: ["", ".js", ".jsx", ".ztc"],
+    extensions: ["", ".js", ".jsx", ".ztc", ".vue"],
   },
+  plugins: [new VueLoaderPlugin()],
 };

@@ -33,7 +33,7 @@ module.exports = function (content) {
     styleData,
     this.resourcePath
   );
-
+console.log('vue code:',code);
   return code;
 };
 

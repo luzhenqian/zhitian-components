@@ -69,7 +69,7 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname, "../"),
     },
-    extensions: ["", ".js", ".jsx", ".ztc"],
+    extensions: ["", ".js", ".jsx", ".ztc", ".vue"],
   },
   plugins: [new VueLoaderPlugin()],
 };

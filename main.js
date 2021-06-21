@@ -4,6 +4,16 @@
 
 // ztc jsx
 // import "@/examples/ztc-jsx/bar-chart"
-import "@/examples/ztc-jsx/counter"
+// import "@/examples/ztc-jsx/counter"
 
-// import "@/examples/ztc-vue"
+// vue
+// FIXME
+// import "@/examples/vue/bar-chart" 
+// FIXME
+// import "@/examples/vue/counter"
+
+// ztc vue
+// FIXME
+import "@/examples/ztc-vue/bar-chart"
+// FIXME
+// import "@/examples/ztc-vue/counter" 

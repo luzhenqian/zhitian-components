@@ -111,7 +111,7 @@ function statelessCodeGen(
       (this.props.style && typeof this.props.style === "object") ||
       (this.props.style = __ztDefaultStyle__)
       this.props.data || (this.props.data = __ztDefaultData__)
-      this.run()
+      this.run && this.run()
     }
 
     _styleMount() {

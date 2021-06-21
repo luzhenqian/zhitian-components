@@ -1,4 +1,4 @@
-import { render, createElement } from "@/packages/runtime/src/index";
+import { render, createElement } from "@/packages/runtime/src";
 import BarChart from "./component";
 
 render(
