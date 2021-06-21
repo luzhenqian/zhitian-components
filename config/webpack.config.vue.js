@@ -24,6 +24,12 @@ module.exports = {
         test: /\.ztc$/,
         use: [
           {
+            loader: "vue-loader",
+          },
+          {
+            loader: require.resolve("../packages/compiler/src/loader/vue.js"),
+          },
+          {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
@@ -36,7 +42,7 @@ module.exports = {
             },
           },
           {
-            loader: require.resolve("../packages/compiler/src/ztc-loader.js"),
+            loader: require.resolve("../packages/compiler/src/loader/ztc.js"),
           },
         ],
       },

@@ -6,7 +6,7 @@
 import Counter from "@/examples/counter/component";
 import { render, createElement } from "@/packages/runtime/src";
 import { ref, defineComponent, onMounted } from "vue";
-
+console.log("Counter vue:", createElement(Counter));
 export default defineComponent({
   name: Counter.name,
   emits: ["loaded"],
