@@ -9,11 +9,13 @@ import { ref, defineComponent, onMounted } from "vue";
 
 export default defineComponent({
   name: Counter.name,
-  setup() {
+  emits: ["loaded"],
+  setup(props, ctx) {
     const containerRef = ref();
     onMounted(() => {
       if (containerRef.value) {
         render(containerRef.value, createElement(Counter));
+        ctx.emit("loaded");
       }
     });
     return { containerRef };

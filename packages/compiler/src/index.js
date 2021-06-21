@@ -32,7 +32,7 @@ function generateCode(
       return ${componentData.trim()}
     }
     beforeMount(props) {
-      props === null && (props = {});
+      !props && (props = {});
       (props.style && typeof props.style === "object") || (props.style = __ztDefaultStyle__)
       props.data || (props.data = __ztDefaultData__)
       const styleShell = document.createElement('style')
