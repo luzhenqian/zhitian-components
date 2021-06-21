@@ -7,13 +7,12 @@
 // import "@/examples/ztc-jsx/counter"
 
 // vue
-// FIXME
 // import "@/examples/vue/bar-chart" 
 // FIXME
 // import "@/examples/vue/counter"
 
 // ztc vue
 // FIXME
-import "@/examples/ztc-vue/bar-chart"
+// import "@/examples/ztc-vue/bar-chart"
 // FIXME
-// import "@/examples/ztc-vue/counter" 
+import "@/examples/ztc-vue/counter" 

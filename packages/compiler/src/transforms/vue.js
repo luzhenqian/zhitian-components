@@ -31,6 +31,7 @@ import { ref, defineComponent, onMounted } from "vue";
 import { render, createElement, ZTC } from "@/packages/runtime/src"
 import defaultStyle from "${getDefaultStylePath(resourcePath)}"
 import defaultData from "${getDefaultDataPath(resourcePath)}"
+${imps}
 ${content}
 
 export default defineComponent({

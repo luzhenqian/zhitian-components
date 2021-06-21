@@ -1,4 +1,4 @@
-import BarChartVue from "./component/bar-chart";
+import BarChartVue from "./component";
 import { createApp } from "vue";
 
 const app = createApp(BarChartVue);
