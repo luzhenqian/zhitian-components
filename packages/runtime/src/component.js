@@ -42,6 +42,9 @@ export class ZTC {
   mount(container) {
     this.beforeMount && this.beforeMount(this.props);
     if (container) container.appendChild(this.el);
+    if (!this._styleMounted && this._styleMount) {
+      this._styleMount()
+    }
     this.mounted && this.mounted(this.props);
   }
 

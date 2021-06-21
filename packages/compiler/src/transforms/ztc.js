@@ -104,17 +104,24 @@ function statelessCodeGen(
     render(props) {
       return ${componentData.trim()}
     }
+
     ${scriptData.run}
     beforeMount(props) {
       !this.props && (this.props = {});
       (this.props.style && typeof this.props.style === "object") ||
       (this.props.style = __ztDefaultStyle__)
       this.props.data || (this.props.data = __ztDefaultData__)
-      const styleShell = document.createElement('style')
-      styleShell.content = \`${styleData}\`
-      // console.log(this.el.parent)
-      // this.el.parentElement.appendChild(styleShell)
       this.run()
+    }
+
+    _styleMount() {
+      const styleShell = document.createElement('style')
+      styleShell.textContent = \`${styleData}\`
+      console.log(\`${styleData}\`, this.el.parentElement, styleShell)
+      if(this.el.parentElement) {
+        this.el.parentElement.appendChild(styleShell)
+        this._styleMounted = true
+      }
     }
   }`;
 }
