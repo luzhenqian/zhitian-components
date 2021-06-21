@@ -23,11 +23,18 @@ function createNativeNode(type, props, ctx, ...children) {
   if (props) {
     Object.keys(props).forEach((key) => {
       if (key.slice(0, 2) === "on") {
-        if (ctx.methods) {
+        if (typeof props[key] === "function") {
           el.addEventListener(
             key.slice(2).toLowerCase(),
-            ctx.methods[props[key]].bind(ctx)
+            props[key]
           );
+        } else {
+          if (ctx.methods) {
+            el.addEventListener(
+              key.slice(2).toLowerCase(),
+              ctx.methods[props[key]].bind(ctx)
+            );
+          }
         }
       } else {
         el.setAttribute(key, props[key]);
