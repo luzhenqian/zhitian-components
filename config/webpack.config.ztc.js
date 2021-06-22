@@ -1,8 +1,9 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
-  entry: "./main.js",
+  entry: "./examples/main.js",
   module: {
     rules: [
       {
@@ -66,4 +67,12 @@ module.exports = {
     extensions: ["", ".js", ".jsx", ".ztc", ".vue"],
   },
   plugins: [new VueLoaderPlugin()],
+  /** @type {import('webpack-dev-server').Configuration} */
+  devServer: {
+    open: "chrome",
+    contentBase: "./examples/",
+    port: 9000,
+    inline: true,
+    hot: true,
+  },
 };

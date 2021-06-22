@@ -1,15 +1,20 @@
-// ztc
+/**
+ * use ztc loader
+ */
+// ztc to vanilla
 // import "@/examples/ztc/bar-chart"
 // import "@/examples/ztc/counter"
 
-// ztc jsx
+// ztc jsx to vanilla
 // import "@/examples/ztc-jsx/bar-chart"
 // import "@/examples/ztc-jsx/counter"
 
-// vue
-// import "@/examples/vue/bar-chart" 
+import "@/examples/vue/bar-chart";
 // import "@/examples/vue/counter"
 
-// ztc vue
+/**
+ * use vue loader
+ */
+// ztc to vue
 // import "@/examples/ztc-vue/bar-chart"
-import "@/examples/ztc-vue/counter" 
+// import "@/examples/ztc-vue/counter"
