@@ -9,7 +9,7 @@
 // import "@/examples/ztc-jsx/bar-chart"
 // import "@/examples/ztc-jsx/counter"
 
-import "@/examples/vue/bar-chart";
+// import "@/examples/vue/bar-chart";
 // import "@/examples/vue/counter"
 
 /**
@@ -17,4 +17,4 @@ import "@/examples/vue/bar-chart";
  */
 // ztc to vue
 // import "@/examples/ztc-vue/bar-chart"
-// import "@/examples/ztc-vue/counter"
+import "@/examples/ztc-vue/counter"

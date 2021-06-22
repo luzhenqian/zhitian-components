@@ -28,7 +28,7 @@ module.exports = {
             loader: "vue-loader",
           },
           {
-            loader: require.resolve("../packages/compiler/src/loader/vue.js"),
+            loader: require.resolve("./packages/compiler/src/loader/vue.js"),
           },
           {
             loader: "babel-loader",
@@ -43,7 +43,7 @@ module.exports = {
             },
           },
           {
-            loader: require.resolve("../packages/compiler/src/loader/ztc.js"),
+            loader: require.resolve("./packages/compiler/src/loader/ztc.js"),
           },
         ],
       },
@@ -68,7 +68,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "../"),
+      "@": path.resolve(__dirname),
     },
     extensions: ["", ".js", ".jsx", ".ztc", ".vue"],
   },
