@@ -51,7 +51,7 @@ function statelessCodeGen(
   resourcePath
 ) {
   return `
-  import { createElement, ZTC } from "@/packages/runtime/src"
+  import { createElement, ZTC } from "@ztc/runtime"
   import defaultStyle from "${getDefaultStylePath(resourcePath)}"
   import defaultData from "${getDefaultDataPath(resourcePath)}"
   ${imps}
@@ -86,7 +86,7 @@ function stateCodeGen(
   resourcePath
 ) {
   return `
-  import { createElement, ZTC } from "@/packages/runtime/src"
+  import { createElement, ZTC } from "@ztc/runtime"
   import defaultStyle from "${getDefaultStylePath(resourcePath)}"
   import defaultData from "${getDefaultDataPath(resourcePath)}"
   ${imps}

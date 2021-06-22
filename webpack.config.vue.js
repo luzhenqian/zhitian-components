@@ -28,7 +28,7 @@ module.exports = {
             loader: "vue-loader",
           },
           {
-            loader: require.resolve("./packages/compiler/src/loader/vue.js"),
+            loader: "@ztc/vue-loader",
           },
           {
             loader: "babel-loader",
@@ -43,7 +43,7 @@ module.exports = {
             },
           },
           {
-            loader: require.resolve("./packages/compiler/src/loader/ztc.js"),
+            loader: "@ztc/ztc-loader",
           },
         ],
       },
