@@ -1,0 +1,13 @@
+{
+  "name": "@ztc/vue-loader",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/vue-loader.cjs.js",
+  "module": "dist/vue-loader.esm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "luzhenqian",
+  "license": "MIT"
+}

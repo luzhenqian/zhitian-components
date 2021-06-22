@@ -1,6 +1,6 @@
-const VueLoader = require("./src/loader/vue");
-const ZTCLoader = require("./src/loader/ztc");
+const VueCodeGen = require("./src/transforms/vue");
+const ZTCCodeGen = require("./src/transforms/ztc");
 module.exports = {
-  VueLoader,
-  ZTCLoader,
+  VueCodeGen,
+  ZTCCodeGen,
 };

@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
-const utils = require("../transforms/utils");
-const codeGen = require("../transforms/vue");
+const utils = require("@/packages/compiler/src/transforms/utils");
+const codeGen = require("@/packages/compiler/src/transforms/vue.js");
 const fs = require("fs");
 
 const { peelOffImps, insertProps } = utils;
