@@ -2,8 +2,8 @@
   "name": "@ztc/reactivity",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/runtime.cjs.js",
-  "module": "dist/runtime.esm.js",
+  "main": "dist/reactivity.cjs.js",
+  "module": "dist/reactivity.esm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

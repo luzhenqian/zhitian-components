@@ -3,6 +3,8 @@ import path from "path";
 import { terser } from "rollup-plugin-terser";
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
 
 const rootPath = path.resolve(__dirname, "packages");
 
@@ -11,6 +13,9 @@ module.exports = fs
   .readdirSync(rootPath)
   .filter((dir) => fs.statSync(path.resolve(rootPath, dir)).isDirectory())
   .map((pkgPath) => {
+    if (fs.existsSync(path.resolve(rootPath, pkgPath, "./rollup.config.js"))) {
+      return require(path.resolve(rootPath, pkgPath, "./rollup.config.js"));
+    }
     const pkg = require(path.resolve(rootPath, pkgPath, "package.json"));
     return {
       input: path.resolve(rootPath, pkgPath, "index.js"),
@@ -27,7 +32,11 @@ module.exports = fs
         },
       ],
       plugins: [
-        alias({ "@": path.resolve(__dirname, "./") }),
+        commonjs(),
+        resolve(),
+        alias({
+          entries: [{ find: "@", replacement: path.resolve(__dirname, ".") }],
+        }),
         terser(),
         json(),
       ],

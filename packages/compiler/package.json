@@ -2,8 +2,8 @@
   "name": "@ztc/compiler",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/runtime.cjs.js",
-  "module": "dist/runtime.esm.js",
+  "main": "dist/compiler.cjs.js",
+  "module": "dist/compiler.esm.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
