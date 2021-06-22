@@ -42,7 +42,9 @@
     "vue-loader": "^16.2.0",
     "webpack": "^5.39.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "dependencies": {}
+    "webpack-dev-server": "^3.11.2",
+    "@ztc/compiler": "0.0.1",
+    "@ztc/reactivity": "0.0.1",
+    "@ztc/runtime": "0.0.1"
+  }
 }

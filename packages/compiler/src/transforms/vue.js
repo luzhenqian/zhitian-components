@@ -28,7 +28,7 @@ function codeGen(
 
 <script>
 import { ref, defineComponent, onMounted } from "vue";
-import { render, createElement, ZTC } from "@/packages/runtime/src"
+import { render, createElement, ZTC } from "@ztc/runtime"
 import defaultStyle from "${getDefaultStylePath(resourcePath)}"
 import defaultData from "${getDefaultDataPath(resourcePath)}"
 ${imps}

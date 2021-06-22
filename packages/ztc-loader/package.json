@@ -1,0 +1,13 @@
+{
+  "name": "@ztc/ztc-loader",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/ztc-loader.cjs.js",
+  "module": "dist/ztc-loader.esm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "luzhenqian",
+  "license": "MIT"
+}
