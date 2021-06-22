@@ -11,8 +11,9 @@
     "create": "npx plop",
     "dev": "npx webpack-dev-server --config ./webpack.config.ztc.js",
     "dev:vue": "npx webpack-dev-server --config ./webpack.config.vue.js",
-    "learn": "learn publish",
-    "build": "rollup -c"
+    "lerna": "lerna publish",
+    "build": "rollup -c",
+    "clean": "lerna clean"
   },
   "keywords": [],
   "author": "luzhenqian",
