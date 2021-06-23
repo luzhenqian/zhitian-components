@@ -1,6 +1,6 @@
 {
   "name": "@ztc/ztc-loader",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "",
   "main": "dist/ztc-loader.cjs.js",
   "module": "dist/ztc-loader.esm.js",
