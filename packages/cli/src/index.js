@@ -2,26 +2,29 @@ const { program } = require("commander");
 const path = require("path");
 
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
+const version = pkgConfig.version;
+program.option("-v, --version", "output the version number").action(() => {
+  console.log(`${pkgConfig.name} ${version}`);
+});
 
-program.version(pkgConfig.version);
+program
+  .command("init <component-lib-name>")
+  .description("create a new component lib")
+  .action((componentLibName) => {
+    require("./init")(componentLibName);
+  });
 
-// program.parse(process.argv);
-var argv = process.argv.slice(2);
-var mainCmd = argv[0];
-var args = argv.slice(1);
-// const options = program.opts();
-// console.log(mainCmd);
-if (mainCmd === "init") {
-  const projectName = args[0];
-  require("./commands/init")(projectName);
-}
+program
+  .command("create <component-name>")
+  .description("create a new component")
+  .action((componentName) => {
+    require("./create")(componentName);
+  });
 
-// init
+program.parse(process.argv);
 
 // 模板放在 github 组织中
 // 把项目代码下载下来
 // 项目中有问题配置
 // 根据配置询问一些问题
 // 项目名 作者（读取npm） git用户名（读取git）
-
-// version
