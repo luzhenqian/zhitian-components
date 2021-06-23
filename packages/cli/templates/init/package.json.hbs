@@ -3,26 +3,26 @@
   "workspaces": [
     "packages/*"
   ],
-  "name": "@<%= companyName %>/<%= componentLibName %>",
+  "name": "@{{ companyName }}/{{ componentLibName }}",
   "version": "0.0.0",
-  "description": "<%= description %>",
+  "description": "{{ description }}",
   "main": "index.js",
   "scripts": {
     "create": "@ztc/cli create",
     "dev": "@ztc/cli dev",
     "dev:vue": "@ztc/cli dev --framework vue",
     "build": "@ztc/cli build",
-    "build:vue": "@ztc/cli build --f vue"
+    "build:vue": "@ztc/cli build -f vue"
   },
   "keywords": [
     "zhitian"
   ],
-  "author": "",
+  "author": "{{ author }}",
   "license": "ISC",
   "dependencies": {
-    "@ztc/runtime": "^4.1.1"
+    "@ztc/runtime": "^0.0.1"
   },
   "devDependencies": {
-    "@ztc/cli": "^4.1.1"
+    "@ztc/cli": "^0.0.1"
   }
 }

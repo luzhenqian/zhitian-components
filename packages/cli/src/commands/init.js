@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
-const ejs = require("ejs");
+const hbs = require("handlebars");
 const chalk = require("chalk");
 const logSymbols = require("log-symbols");
 
@@ -60,10 +60,14 @@ function copy(tmplDir, targetDir, data) {
         fs.mkdirSync(cTargetDir);
         copy(dir, cTargetDir, data);
       } else {
-        ejs.renderFile(path.join(tmplDir, file), data, (err, result) => {
-          if (err) throw err;
-          fs.writeFileSync(path.join(targetDir, file), result);
-        });
+        const template = hbs.compile(
+          fs.readFileSync(path.join(tmplDir, file)).toString()
+        );
+        const result = template(data);
+        fs.writeFileSync(
+          path.join(targetDir, file.replace(".hbs", "")),
+          result
+        );
       }
     });
   });
