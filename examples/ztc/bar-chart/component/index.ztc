@@ -4,7 +4,7 @@
 
 <script>
   import { init } from "echarts";
-  import { nextTick } from "@/packages/runtime/src";
+  import { nextTick } from "@ztc/runtime";
 
   const xAxisData = [],
     series = [];
@@ -81,6 +81,7 @@
   };
 
   const that = this;
+
   nextTick(() => {
     if (this.el.parentElement) {
       const height = `${

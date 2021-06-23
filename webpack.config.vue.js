@@ -28,7 +28,7 @@ module.exports = {
             loader: "vue-loader",
           },
           {
-            loader: "@ztc/vue-loader",
+            loader: './packages/vue-loader/index.js',
           },
           {
             loader: "babel-loader",

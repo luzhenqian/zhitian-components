@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
-const utils = require("@/packages/compiler/src/transforms/utils");
-const codeGen = require("@/packages/compiler/src/transforms/ztc.js");
+const utils = require("../../compiler/src/transforms/utils");
+const codeGen = require("../../compiler/src/transforms/ztc.js");
 
 const { peelOffImps, insertProps } = utils;
 
