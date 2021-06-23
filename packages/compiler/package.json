@@ -1,6 +1,6 @@
 {
   "name": "@ztc/compiler",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "dist/compiler.cjs.js",
   "module": "dist/compiler.esm.js",
