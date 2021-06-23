@@ -1,6 +1,6 @@
 {
   "name": "@ztc/cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
@@ -22,12 +22,12 @@
     "@ztc/ztc-loader": "^0.0.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
+    "echarts": "^5.1.2",
     "log-symbols": "4.1.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.40.0",
     "webpack-cli": "3",
-    "webpack-dev-server": "^3.11.2",
-    "echarts": "^5.1.2"
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "chalk": "^4.1.1",
