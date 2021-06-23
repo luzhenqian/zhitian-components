@@ -1,9 +1,9 @@
-import path from "path";
-import { terser } from "rollup-plugin-terser";
-import resolve from "@rollup/plugin-node-resolve";
-import { preserveShebangs } from "rollup-plugin-preserve-shebangs";
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
+const path = require("path");
+const  { terser } = require("rollup-plugin-terser");
+const resolve = require("@rollup/plugin-node-resolve");
+const { preserveShebangs } = require("rollup-plugin-preserve-shebangs");
+const commonjs = require("@rollup/plugin-commonjs");
+const json = require("@rollup/plugin-json");
 
 /** @type {import('rollup').RollupOptions} */
 module.exports = {
@@ -15,5 +15,5 @@ module.exports = {
       format: "cjs",
     },
   ],
-  plugins: [commonjs(), resolve(), terser(), preserveShebangs(), json()],
+  plugins: [commonjs(), resolve.default(), terser(), preserveShebangs(), json()],
 };
