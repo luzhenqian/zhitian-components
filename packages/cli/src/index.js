@@ -1,8 +1,9 @@
 const { program } = require("commander");
 const path = require("path");
-
+const dev = require("../src/dev/index");
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
 const version = pkgConfig.version;
+
 program.option("-v, --version", "output the version number").action(() => {
   console.log(`${pkgConfig.name} ${version}`);
 });
@@ -19,6 +20,18 @@ program
   .description("create a new component")
   .action((componentName) => {
     require("./create")(componentName);
+  });
+
+program
+  .command("dev [framework]")
+  .description(
+    "serve a .ztc, .jsx or .vue file in development mode with zero config"
+  )
+  .action((framework = "") => {
+    console.log("framework:", framework);
+    if (framework === "") {
+      dev();
+    }
   });
 
 program.parse(process.argv);
