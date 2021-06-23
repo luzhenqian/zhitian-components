@@ -1,6 +1,7 @@
-module.exports = function (/** @type {import('plop').NodePlopAPI} */ plop) {
+const path = require("path");
 
-  plop.setGenerator("createComponent", {
+module.exports = function (/** @type {import('plop').NodePlopAPI} */ plop) {
+  plop.setGenerator("create", {
     description: "create zhitian component",
     prompts: [
       {
@@ -12,7 +13,7 @@ module.exports = function (/** @type {import('plop').NodePlopAPI} */ plop) {
     actions: [
       {
         type: "addMany",
-        destination: "./examples/ztc/{{name}}",
+        destination: path.resolve(process.cwd(), "./packages/src/{{name}}"),
         templateFiles: [
           "templates/index.ztc.hbs",
           "templates/data.config.json.hbs",
@@ -21,7 +22,7 @@ module.exports = function (/** @type {import('plop').NodePlopAPI} */ plop) {
           "templates/style.default.json.hbs",
           "templates/interaction.config.json.hbs",
           "templates/interaction.default.json.hbs",
-        ]
+        ],
       },
     ],
   });
