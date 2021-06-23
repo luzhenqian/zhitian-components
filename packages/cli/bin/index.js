@@ -1,6 +1,10 @@
+#!/usr/bin/env node
+
 const { program } = require("commander");
 const path = require("path");
-const dev = require("../src/dev/index");
+const init = require("../lib/init")
+const create = require("../lib/create")
+const dev = require("../lib/dev/index");
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
 const version = pkgConfig.version;
 
@@ -12,14 +16,14 @@ program
   .command("init <component-lib-name>")
   .description("create a new component lib")
   .action((componentLibName) => {
-    require("./init")(componentLibName);
+    init(componentLibName);
   });
 
 program
   .command("create <component-name>")
   .description("create a new component")
   .action((componentName) => {
-    require("./create")(componentName);
+    create(componentName);
   });
 
 program

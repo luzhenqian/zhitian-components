@@ -8,10 +8,13 @@ import resolve from "@rollup/plugin-node-resolve";
 
 const rootPath = path.resolve(__dirname, "packages");
 
+const notBuild = ['cli']
+
 /** @type {import('rollup').RollupOptions} */
 module.exports = fs
   .readdirSync(rootPath)
   .filter((dir) => fs.statSync(path.resolve(rootPath, dir)).isDirectory())
+  .filter(dir => !notBuild(dir))
   .map((pkgPath) => {
     if (fs.existsSync(path.resolve(rootPath, pkgPath, "./rollup.config.js"))) {
       return require(path.resolve(rootPath, pkgPath, "./rollup.config.js"));

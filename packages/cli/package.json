@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
-  "bin": "./src/index.js",
+  "bin": {
+    "ztc": "./src/index.js"
+  },
   "scripts": {
     "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -37,5 +39,6 @@
   },
   "devDependencies": {
     "rollup-plugin-preserve-shebangs": "^0.2.0"
-  }
+  },
+  "gitHead": "9a9a2976b4dd72bc1379017b6fea6ae33d8a7c59"
 }

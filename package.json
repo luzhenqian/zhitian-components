@@ -13,8 +13,7 @@
     "dev:vue": "npx webpack-dev-server --config ./webpack.config.vue.js",
     "lerna": "lerna publish",
     "build": "rollup -c",
-    "clean": "lerna clean",
-    "publish": "npm run build||npm run learn"
+    "clean": "lerna clean"
   },
   "keywords": [],
   "author": "luzhenqian",
