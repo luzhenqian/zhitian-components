@@ -1,0 +1,102 @@
+<component name="BarChart">
+  <div></div>
+</component>
+
+<script>
+  import { init } from "echarts";
+  import { nextTick } from "@ztc/runtime";
+
+  const xAxisData = [],
+    series = [];
+
+  const { style, data } = this.props;
+
+  data.forEach((d) => {
+    xAxisData.push(d.x);
+    const item = {
+      name: d.sc,
+      type: d.t,
+      data: [d.y],
+      barWidth: style.bar.width,
+      itemStyle: {
+        color: style.bar.color,
+        borderRadius: style.bar.radius,
+      },
+    };
+    const currentSeriesData = series.find((s) => s.name === d.sc);
+    if (currentSeriesData) {
+      currentSeriesData.data.push(d.y);
+    } else {
+      series.push(item);
+    }
+  });
+
+  const option = {
+    title: {
+      text: "柱状图 Demo",
+    },
+    tooltip: {},
+    legend: {
+      data: series.map((s) => s.name),
+    },
+    xAxis: {
+      data: xAxisData,
+      show: style.xAxis.show,
+      axisLine: {
+        show: style.xAxis["color.show"],
+        lineStyle: {
+          color: style.xAxis.color,
+        },
+      },
+      axisLabel: {
+        show: style.xAxisLabel.show,
+        fontSize: style.xAxisLabel.fontSize,
+        fontWeight: style.xAxisLabel.fontWeight,
+        color: style.xAxisLabel.color,
+        rotate: style.xAxisLabel.rotate,
+      },
+      splitLine: {
+        show: style.xAxis["gridColor.show"],
+        lineStyle: {
+          color: style.xAxis.gridColor,
+        },
+      },
+    },
+    yAxis: {},
+    series: series,
+    grid: {
+      left: style.padding.left,
+      right: style.padding.right,
+      top: style.padding.top,
+      bottom: style.padding.bottom,
+    },
+  };
+
+  let myChart;
+
+  this.mounted = () => {
+    myChart = init(this.el);
+    this.el.style.height = "1000px";
+    myChart.setOption(option);
+  };
+
+  const that = this;
+
+  nextTick(() => {
+    if (this.el.parentElement) {
+      const height = `${
+        this.el.parentElement.getBoundingClientRect().height
+      }px`;
+      const width = `${this.el.parentElement.getBoundingClientRect().width}px`;
+      this.el.style.height = height;
+      this.el.style.width = width;
+    }
+    myChart.resize();
+  });
+</script>
+
+<style>
+  .red {
+    background-color: red;
+  }
+</style>

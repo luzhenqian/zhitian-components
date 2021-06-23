@@ -17,7 +17,7 @@ module.exports = (componentLibName) => {
     return;
   }
 
-  const pkgConfig = require(path.resolve(targetDir, "../../package.json"));
+  const pkgConfig = require(path.resolve(__dirname, "../package.json"));
   const version = pkgConfig.version;
   console.log(chalk.blue(`ZTC CLI ${version}`));
 
