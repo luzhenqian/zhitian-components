@@ -23,8 +23,11 @@ module.exports = (componentName) => {
   fs.mkdirSync(targetDir);
   const tmplDir = path.join(__dirname, "../templates/component");
 
+  const componentLibPkgConfig = require(path.resolve(process.cwd(), "./package.json"));
+  const componentLibName = componentLibPkgConfig.name
+
   copyFileWithHBS(tmplDir, targetDir, {
-    componentName: genComponentName(pkgConfig.name, componentName),
+    componentName: genComponentName(componentLibName, componentName),
   });
 
   console.log(

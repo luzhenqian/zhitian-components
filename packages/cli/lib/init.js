@@ -45,6 +45,7 @@ module.exports = (componentLibName) => {
       },
     ])
     .then((anwsers) => {
+      anwsers.version = version
       console.log(`✨  Creating component lib in ${targetDir}`);
 
       fs.mkdirSync(targetDir);

@@ -76,18 +76,14 @@
 
   this.mounted = () => {
     myChart = init(this.el);
-    this.el.style.height = "1000px";
     myChart.setOption(option);
   };
 
-  const that = this;
-
   nextTick(() => {
     if (this.el.parentElement) {
-      const height = `${
-        this.el.parentElement.getBoundingClientRect().height
-      }px`;
-      const width = `${this.el.parentElement.getBoundingClientRect().width}px`;
+      const rect = this.el.parentElement.getBoundingClientRect();
+      const height = `${rect.height}px`;
+      const width = `${rect.width}px`;
       this.el.style.height = height;
       this.el.style.width = width;
     }

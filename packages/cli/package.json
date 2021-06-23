@@ -14,9 +14,6 @@
   "keywords": [],
   "author": "luzhenqian",
   "license": "MIT",
-  "peerDependencies": {
-    "echarts": "^5.1.2"
-  },
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@babel/plugin-transform-react-jsx": "^7.14.5",
@@ -37,9 +34,6 @@
     "webpack": "^5.40.0",
     "webpack-cli": "3",
     "webpack-dev-server": "^3.11.2"
-  },
-  "devDependencies": {
-    "rollup-plugin-preserve-shebangs": "^0.2.0"
   },
   "gitHead": "9a9a2976b4dd72bc1379017b6fea6ae33d8a7c59"
 }
