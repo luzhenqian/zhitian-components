@@ -1,9 +1,9 @@
 let ctx = {};
 
 export function createElement(type, props, ...children) {
-  // console.log('type:', type);
-  // console.log('props:', props);
-  // console.log('children:', children);
+  console.log("type:", type);
+  console.log("props:", props);
+  console.log("children:", children);
 
   const t = typeof type;
   let el;
@@ -24,16 +24,15 @@ function createNativeNode(type, props, ctx, ...children) {
     Object.keys(props).forEach((key) => {
       if (key.slice(0, 2) === "on") {
         if (typeof props[key] === "function") {
-          el.addEventListener(
-            key.slice(2).toLowerCase(),
-            props[key]
-          );
+          el.addEventListener(key.slice(2).toLowerCase(), props[key]);
         } else {
           if (ctx.methods) {
-            el.addEventListener(
-              key.slice(2).toLowerCase(),
-              ctx.methods[props[key]].bind(ctx)
-            );
+            if (props[key] in methods && typeof methods[props[key]] === "function") {
+              el.addEventListener(
+                key.slice(2).toLowerCase(),
+                ctx.methods[props[key]].bind(ctx)
+              );
+            }
           }
         }
       } else {

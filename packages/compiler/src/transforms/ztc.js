@@ -135,11 +135,11 @@ function analysisScript(scriptData) {
     let state = "";
     for (let key in config.state) {
       const value = config.state[key];
-      state += `${key} = ${value}\n`;
+      state += `${key} = ${value};\n`;
     }
     let methods = "";
     for (let key in config.methods) {
-      methods += config.methods[key] + "\n";
+      methods += `${config.methods[key]} ,\n`;
     }
     return { methods, run, state };
   }
