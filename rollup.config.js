@@ -14,7 +14,7 @@ const notBuild = ['cli']
 module.exports = fs
   .readdirSync(rootPath)
   .filter((dir) => fs.statSync(path.resolve(rootPath, dir)).isDirectory())
-  .filter(dir => !notBuild(dir))
+  .filter(dir => !notBuild.includes(dir))
   .map((pkgPath) => {
     if (fs.existsSync(path.resolve(rootPath, pkgPath, "./rollup.config.js"))) {
       return require(path.resolve(rootPath, pkgPath, "./rollup.config.js"));
