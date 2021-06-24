@@ -1,13 +1,12 @@
-import { ZTC, createElement } from "@/packages/runtime/src"
+import { ZTC, createElement, nextTick } from "@/packages/runtime/src";
 import { init } from "echarts";
-import { nextTick } from "@/packages/runtime/src";
 import defaultStyle from "./style.default.json";
 import defaultData from "./data.default.json";
-import "./styles.css"
+import "./styles.css";
 
 export default class BarChart extends ZTC {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -15,8 +14,8 @@ export default class BarChart extends ZTC {
       series = [];
 
     let { style, data } = this.props;
-    if (!style) style = defaultStyle
-    if (!data) data = defaultData
+    if (!style) style = defaultStyle;
+    if (!data) data = defaultData;
 
     data.forEach((d) => {
       xAxisData.push(d.x);
@@ -81,21 +80,24 @@ export default class BarChart extends ZTC {
 
     nextTick(() => {
       if (this.el.parentElement) {
-        const height = `${this.el.parentElement.getBoundingClientRect().height
-          }px`;
-        const width = `${this.el.parentElement.getBoundingClientRect().width}px`;
+        const height = `${
+          this.el.parentElement.getBoundingClientRect().height
+        }px`;
+        const width = `${
+          this.el.parentElement.getBoundingClientRect().width
+        }px`;
         this.el.style.height = height;
         this.el.style.width = width;
       }
       this.myChart.resize();
     });
 
-    return <div></div>
+    return <div></div>;
   }
 
   mounted() {
     this.myChart = init(this.el);
     this.el.style.height = "1000px";
     this.myChart.setOption(this.option);
-  };
+  }
 }

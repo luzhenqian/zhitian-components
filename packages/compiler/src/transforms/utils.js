@@ -51,10 +51,28 @@ function getDefaultStylePath(resourcePath) {
   return getPath(resourcePath) + "style.default.json".replace(/\\/g, "/");
 }
 
+function getDefaultInteractionPath(resourcePath) {
+  return getPath(resourcePath) + "interaction.default.json".replace(/\\/g, "/");
+}
+
+function getStyleConfigPath(resourcePath) {
+  return getPath(resourcePath) + "data.config.json".replace(/\\/g, "/");
+}
+function getDataConfigPath(resourcePath) {
+  return getPath(resourcePath) + "style.config.json".replace(/\\/g, "/");
+}
+function getInteractionConfigPath(resourcePath) {
+  return getPath(resourcePath) + "interaction.config.json".replace(/\\/g, "/");
+}
+
 module.exports = {
   insertProps,
   peelOffImps,
   getPath,
   getDefaultDataPath,
   getDefaultStylePath,
+  getDefaultInteractionPath,
+  getStyleConfigPath,
+  getDataConfigPath,
+  getInteractionConfigPath,
 };

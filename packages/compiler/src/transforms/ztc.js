@@ -1,6 +1,10 @@
 const utils = require("./utils");
 const getDefaultStylePath = utils.getDefaultStylePath;
 const getDefaultDataPath = utils.getDefaultDataPath;
+const getDefaultInteractionPath = utils.getDefaultInteractionPath;
+const getStyleConfigPath = utils.getStyleConfigPath;
+const getDataConfigPath = utils.getDataConfigPath;
+const getInteractionConfigPath = utils.getInteractionConfigPath;
 
 /**
  * codeGen
@@ -54,12 +58,20 @@ function statelessCodeGen(
   import { createElement, ZTC } from "@ztc/runtime"
   import defaultStyle from "${getDefaultStylePath(resourcePath)}"
   import defaultData from "${getDefaultDataPath(resourcePath)}"
+  import defaultInteraction from "${getDefaultInteractionPath(resourcePath)}"
+  import styleConfig from "${getStyleConfigPath(resourcePath)}"
+  import dataConfig from "${getDataConfigPath(resourcePath)}"
+  import interactionConfig from "${getInteractionConfigPath(resourcePath)}"
   ${imps}
 
   const __ztDefaultData__ = defaultData
   const __ztDefaultStyle__ = defaultStyle
 
   export default class ${componentName} extends ZTC {
+    static styleConfig = styleConfig
+    static dataConfig = dataConfig
+    static interactionConfig = interactionConfig
+
     render(props) {
       return ${componentData.trim()}
     }
@@ -89,12 +101,20 @@ function stateCodeGen(
   import { createElement, ZTC } from "@ztc/runtime"
   import defaultStyle from "${getDefaultStylePath(resourcePath)}"
   import defaultData from "${getDefaultDataPath(resourcePath)}"
+  import defaultInteraction from "${getDefaultInteractionPath(resourcePath)}"
+  import styleConfig from "${getStyleConfigPath(resourcePath)}"
+  import dataConfig from "${getDataConfigPath(resourcePath)}"
+  import interactionConfig from "${getInteractionConfigPath(resourcePath)}"
   ${imps}
 
   const __ztDefaultData__ = defaultData
   const __ztDefaultStyle__ = defaultStyle
 
   export default class ${componentName} extends ZTC {
+    static styleConfig = styleConfig
+    static dataConfig = dataConfig
+    static interactionConfig = interactionConfig
+
     ${scriptData.state}
 
     methods = {
