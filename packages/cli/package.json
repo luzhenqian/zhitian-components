@@ -1,6 +1,6 @@
 {
   "name": "@ztc/cli",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
