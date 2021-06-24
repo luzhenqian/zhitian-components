@@ -155,7 +155,10 @@ function analysisScript(scriptData) {
     let state = "";
     for (let key in config.state) {
       const value = config.state[key];
-      state += `${key} = "${value}";\n`;
+      if(typeof value === "string"){
+        value = `"value"`
+      }
+      state += `${key} = ${value};\n`;
     }
     let methods = "";
     for (let key in config.methods) {
