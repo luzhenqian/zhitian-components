@@ -3,7 +3,7 @@ const path = require("path");
 const chalk = require("chalk");
 const logSymbols = require("log-symbols");
 const copyFileWithHBS = require("./helper").copyFileWithHBS;
-const fristUpperCase = require("./helper").fristUpperCase;
+const toBigHump = require("./helper").toBigHump;
 const toLowerLine = require("./helper").toLowerLine;
 
 module.exports = (componentName) => {
@@ -31,7 +31,7 @@ module.exports = (componentName) => {
   const componentLibName = componentLibPkgConfig.name;
 
   copyFileWithHBS(tmplDir, targetDir, {
-    pkgName: genPkgName,
+    pkgName: genPkgName(componentLibName, componentName),
     componentName: genComponentName(componentLibName, componentName),
   });
 
@@ -48,5 +48,5 @@ function genPkgName(name, componentName) {
 
 function genComponentName(name, componentName) {
   const prefix = name.slice(name.lastIndexOf("/") + 1, name.length);
-  return prefix + fristUpperCase(componentName);
+  return prefix + toBigHump(componentName);
 }

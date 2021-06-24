@@ -43,4 +43,12 @@ function toLowerLine(str) {
   return temp;
 }
 
-module.exports = { copyFileWithHBS, fristUpperCase, toLowerLine };
+function toBigHump(str) {
+  if (str === "") return str;
+  let temp = str.replace(/\b(-\w)|(_\w)/g, function (match) {
+    return match.substring(1).toUpperCase();
+  });
+  return fristUpperCase(temp);
+}
+
+module.exports = { copyFileWithHBS, fristUpperCase, toLowerLine, toBigHump };
