@@ -23,10 +23,14 @@ module.exports = (componentName) => {
   fs.mkdirSync(targetDir);
   const tmplDir = path.join(__dirname, "../templates/component");
 
-  const componentLibPkgConfig = require(path.resolve(process.cwd(), "./package.json"));
-  const componentLibName = componentLibPkgConfig.name
+  const componentLibPkgConfig = require(path.resolve(
+    process.cwd(),
+    "./package.json"
+  ));
+  const componentLibName = componentLibPkgConfig.name;
 
   copyFileWithHBS(tmplDir, targetDir, {
+    pkgName: genPkgName,
     componentName: genComponentName(componentLibName, componentName),
   });
 
@@ -35,6 +39,11 @@ module.exports = (componentName) => {
     chalk.green(`create component ${componentName} success!`)
   );
 };
+
+function genPkgName(name, componentName) {
+  const prefix = name.slice(name.lastIndexOf("/") + 1, name.length);
+  return `${prefix}/${fristUpperCase(componentName)}`;
+}
 
 function genComponentName(name, componentName) {
   const prefix = name.slice(name.lastIndexOf("/") + 1, name.length);
