@@ -2282,41 +2282,6 @@
   resolved "http://39.98.250.155:17021/@xtuc%2flong/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@ztc/compiler@^0.0.3":
-  version "0.0.3"
-  resolved "http://39.98.250.155:17021/@ztc%2fcompiler/-/compiler-0.0.3.tgz#ee1f18716ce3e39888c964d1871b64b4f345bd9b"
-  integrity sha512-V0f44hK4DPM/sEA56YTzxItL+jIeW69T29uGTdZrepZtjlJmb1WJIZr9cxpcpAs+anw0xFMq5cacRVXOQMZkyg==
-
-"@ztc/reactivity@^0.0.3":
-  version "0.0.3"
-  resolved "http://39.98.250.155:17021/@ztc%2freactivity/-/reactivity-0.0.3.tgz#8879cbbf3aa5cd2c18072c5619d155d5b26a1299"
-  integrity sha512-mHE5yajmM+ACHxs2H69lWe8xnJmVMyZSK0nZnRYpAdcOaDiJt9PDH6gjnI/TuXDHHb+9esJQKyCPTuJv+I+97Q==
-
-"@ztc/runtime@^0.0.3":
-  version "0.0.3"
-  resolved "http://39.98.250.155:17021/@ztc%2fruntime/-/runtime-0.0.3.tgz#b71007fe233f08298db34bd52027f7885b6cea46"
-  integrity sha512-lQflO56S8iKZGyNDp+0LvR7mIOL7UWcJX2c7N7oKseVzzuHxoGV/tFOjNw6U99kraYlaBQbETj8A+bUBCcWmwg==
-
-"@ztc/vue-loader@^0.0.4":
-  version "0.0.4"
-  resolved "http://39.98.250.155:17021/@ztc%2fvue-loader/-/vue-loader-0.0.4.tgz#b3d607db9c40a7c318e8f1534fb58870dca1f434"
-  integrity sha512-ZWBwjE93cienSYd7iGyEo1HxqCo8UiGFCgnAL/huVTNYdiW97wlSFo7veFHLEvGyR6DT6PB8hm5qek4ITWjOlQ==
-
-"@ztc/vue-loader@^0.0.5":
-  version "0.0.5"
-  resolved "http://39.98.250.155:17021/@ztc%2fvue-loader/-/vue-loader-0.0.5.tgz#bb66f9e5b00414d29d9bd3cf2d5ea892a8ffea9b"
-  integrity sha512-IwICo6VOxaf96w9kzdZHD4bkpXb79WMIjYHLF5pJYKA2M9IrMW67b+0H5jc0zPlVdJe9tfYu6QYnua8H1jOlVw==
-
-"@ztc/ztc-loader@^0.0.3":
-  version "0.0.3"
-  resolved "http://39.98.250.155:17021/@ztc%2fztc-loader/-/ztc-loader-0.0.3.tgz#1eff6759fa61105407c52978570d74cdff27683d"
-  integrity sha512-k7uvzVgd6DlGEGzv0voRmnJYSGMTUNrhnm3tevg9xCfd8V2qJ+ZL9sGsYSShp8WnE79Wh67v0R58vcRzw8anUg==
-
-"@ztc/ztc-loader@^0.0.5":
-  version "0.0.5"
-  resolved "http://39.98.250.155:17021/@ztc%2fztc-loader/-/ztc-loader-0.0.5.tgz#66a39b920c629fc75c1b4db0bb0d3e81eae2179d"
-  integrity sha512-D3Vld60/RqklRa588y1mLo6QNJkcin0+iySB7oK4vHrGEF1sjOFdBtXbs7zCkL2VcqEGhuKPwc9WAWqEnHQszg==
-
 JSONStream@^1.0.4, JSONStream@^1.2.1, JSONStream@^1.3.5:
   version "1.3.5"
   resolved "http://39.98.250.155:17021/JSONStream/-/JSONStream-1.3.5.tgz#3208c1f08d3a4d99261ab64f92302bc15e111ca0"
