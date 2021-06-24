@@ -1,6 +1,6 @@
 {
   "name": "@ztc/runtime",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "",
   "main": "dist/runtime.cjs.js",
   "module": "dist/runtime.esm.js",
