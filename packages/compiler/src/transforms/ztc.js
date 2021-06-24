@@ -154,9 +154,9 @@ function analysisScript(scriptData) {
     const run = config.run + "";
     let state = "";
     for (let key in config.state) {
-      const value = config.state[key];
+      let value = config.state[key];
       if(typeof value === "string"){
-        value = `"value"`
+        value = `"${value}"`
       }
       state += `${key} = ${value};\n`;
     }
@@ -166,6 +166,7 @@ function analysisScript(scriptData) {
     }
     return { methods, run, state };
   }
+  console.log('data:',scriptData);
   return scriptData;
 }
 

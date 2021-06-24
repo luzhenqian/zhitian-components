@@ -39,6 +39,7 @@ module.exports = (() => {
             },
             {
               loader: "@ztc/ztc-loader",
+              // loader: path.resolve(__dirname, "../../../../ztc-loader/src/index.js"),
             },
           ],
         },
