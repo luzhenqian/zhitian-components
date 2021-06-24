@@ -4,6 +4,7 @@ const chalk = require("chalk");
 const logSymbols = require("log-symbols");
 const copyFileWithHBS = require("./helper").copyFileWithHBS;
 const fristUpperCase = require("./helper").fristUpperCase;
+const toLowerLine = require("./helper").toLowerLine;
 
 module.exports = (componentName) => {
   const destDir = process.cwd();
@@ -42,7 +43,7 @@ module.exports = (componentName) => {
 
 function genPkgName(name, componentName) {
   const prefix = name.slice(name.lastIndexOf("/") + 1, name.length);
-  return `${prefix}/${fristUpperCase(componentName)}`;
+  return `${prefix}/${toLowerLine(componentName)}`;
 }
 
 function genComponentName(name, componentName) {

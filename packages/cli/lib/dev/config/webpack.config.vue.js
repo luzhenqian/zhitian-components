@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 /** @type {import('webpack').Configuration} */
 module.exports = (() => {
   return {
-    entry: "./examples/main.js",
+    entry: path.resolve(process.cwd(), "./main.js"),
     module: {
       rules: [
         {
@@ -29,7 +29,8 @@ module.exports = (() => {
               loader: "vue-loader",
             },
             {
-              loader: "./packages/vue-loader/index.js",
+              loader: "@ztc/vue-loader",
+              // loader: path.resolve(__dirname, "../../../../vue-loader/src/index.js"),
             },
             {
               loader: "babel-loader",
@@ -45,6 +46,7 @@ module.exports = (() => {
             },
             {
               loader: "@ztc/ztc-loader",
+              // loader: path.resolve(__dirname, "../../../../ztc-loader/src/index.js"),
             },
           ],
         },
@@ -77,7 +79,7 @@ module.exports = (() => {
     /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
       open: "chrome",
-      contentBase: "./examples/",
+      contentBase: path.resolve(process.cwd(), "./"),
       port: 9000,
       inline: true,
       hot: true,

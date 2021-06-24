@@ -17,5 +17,5 @@
  * use vue loader
  */
 // ztc to vue
-import "@/examples/ztc-vue/bar-chart"
-// import "@/examples/ztc-vue/counter"
+// import "@/examples/ztc-vue/bar-chart"
+import "@/examples/ztc-vue/counter"

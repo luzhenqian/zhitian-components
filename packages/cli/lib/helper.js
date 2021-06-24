@@ -25,11 +25,22 @@ function copyFileWithHBS(tmplDir, targetDir, data) {
   });
 }
 
-const fristUpperCase = (str) => {
+function fristUpperCase(str) {
   if (str === "") return str;
   return (([first, ...rest]) => first.toUpperCase() + rest.join(""))(
     str.split("")
   );
-};
+}
 
-module.exports = { copyFileWithHBS, fristUpperCase };
+function toLowerLine(str) {
+  if (str === "") return str;
+  let temp = str.replace(/[A-Z]/g, function (match) {
+    return "-" + match.toLowerCase();
+  });
+  if (temp.slice(0, 1) === "-") {
+    temp = temp.slice(1);
+  }
+  return temp;
+}
+
+module.exports = { copyFileWithHBS, fristUpperCase, toLowerLine };

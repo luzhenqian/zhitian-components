@@ -1,6 +1,10 @@
 const utils = require("./utils");
 const getDefaultStylePath = utils.getDefaultStylePath;
 const getDefaultDataPath = utils.getDefaultDataPath;
+const getDefaultInteractionPath = utils.getDefaultInteractionPath;
+const getStyleConfigPath = utils.getStyleConfigPath;
+const getDataConfigPath = utils.getDataConfigPath;
+const getInteractionConfigPath = utils.getInteractionConfigPath;
 
 /**
  * codeGen
@@ -31,9 +35,12 @@ import { ref, defineComponent, onMounted } from "vue";
 import { render, createElement, ZTC } from "@ztc/runtime"
 import defaultStyle from "${getDefaultStylePath(resourcePath)}"
 import defaultData from "${getDefaultDataPath(resourcePath)}"
+import defaultInteraction from "${getDefaultInteractionPath(resourcePath)}"
+import styleConfig from "${getStyleConfigPath(resourcePath)}"
+import dataConfig from "${getDataConfigPath(resourcePath)}"
+import interactionConfig from "${getInteractionConfigPath(resourcePath)}"
 ${imps}
 ${content}
-
 export default defineComponent({
   name: "${componentName}",
   emits: ["loaded"],

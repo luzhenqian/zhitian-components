@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-
 const { program } = require("commander");
 const path = require("path");
-const init = require("../lib/init")
-const create = require("../lib/create")
+const init = require("../lib/init");
+const create = require("../lib/create");
 const dev = require("../lib/dev/index");
+const chalk = require("chalk");
+const logSymbols = require("log-symbols");
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
 const version = pkgConfig.version;
 
@@ -26,16 +27,43 @@ program
     create(componentName);
   });
 
+const framework = {
+  vanilla: {
+    name: "vanilla",
+    color: chalk.bold,
+  },
+  vue: {
+    name: "vue",
+    color: chalk.green,
+  },
+  react: {
+    name: "react",
+    color: chalk.blue,
+  },
+};
+
 program
   .command("dev [framework]")
   .description(
     "serve a .ztc, .jsx or .vue file in development mode with zero config"
   )
-  .action((framework = "") => {
-    console.log("framework:", framework);
-    if (framework === "") {
-      dev();
+  .action((frameworkName = framework.vanilla.name) => {
+    if (!(frameworkName in framework)) {
+      console.log(
+        logSymbols.error,
+        chalk.red(
+          `unsupported framework, currently only supports ${Object.keys(
+            framework
+          ).join(", ")}`
+        )
+      );
+      return;
     }
+    console.log(
+      chalk.bold("🚀  run framework: "),
+      framework[frameworkName].color(frameworkName)
+    );
+    dev(frameworkName);
   });
 
 program.parse(process.argv);
