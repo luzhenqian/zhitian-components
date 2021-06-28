@@ -21,9 +21,11 @@ enum FieldType {
 }
 
 import Integer from "./src/integer";
+import Decimal from "./src/decimal";
 import DebugPanel from "./src/debug-panel";
 
 export default {
   Integer,
+  Decimal,
   DebugPanel,
 };
