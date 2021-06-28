@@ -11,10 +11,11 @@ export default class DebugPanel extends LitElement {
   @query("input", true) _input!: HTMLInputElement;
 
   render() {
-    return html`<button @click=${this._getValue} />`;
+    return html`<div @change="${this._change}"></div>
+      <slot></slot>`;
   }
-  private _getValue() {
-    const value = this._input.value.trim();
-    console.log(this._input, value);
+
+  private _change(e: CustomEvent) {
+    console.log("e:", e);
   }
 }

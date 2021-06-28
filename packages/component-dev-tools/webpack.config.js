@@ -4,13 +4,19 @@ const path = require("path");
 module.exports = {
   entry: "./index.ts",
   output: {
-    filename: "./.temp/index.js",
+    filename: "temp/index.js",
   },
+  watch: true,
   module: {
     rules: [
       {
         test: /\.ts$/,
-        use: "ts-loader"
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
       },
     ],
   },
@@ -22,12 +28,11 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname),
     },
-    extensions: ["", ".js", ".jsx", ".ts"],
+    extensions: [".js", ".ts"],
   },
   /** @type {import('webpack-dev-server').Configuration} */
   devServer: {
-    open: "chrome",
-    contentBase: "./",
+    contentBase: path.resolve(__dirname, "."),
     port: 9000,
     inline: true,
     hot: true,
