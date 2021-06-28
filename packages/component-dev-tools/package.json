@@ -1,0 +1,25 @@
+{
+  "name": "@ztc/component-dev-tools",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/component-dev-tools.cjs.js",
+  "module": "dist/component-dev-tools.esm.js",
+  "browser": "dist/component-dev-tools.umd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "serve": "npx webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "luzhenqian",
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^2.0.0-rc.2",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-typescript": "^1.0.1",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.4"
+  }
+}
