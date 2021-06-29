@@ -22,6 +22,7 @@ import Integer from "./src/integer";
 import Decimal from "./src/decimal";
 import Text from "./src/text";
 import TextArea from "./src/text-area";
+import Select from "./src/select";
 import DebugPanel from "./src/debug-panel";
 
 export default {
@@ -29,5 +30,6 @@ export default {
   Decimal,
   Text,
   TextArea,
+  Select,
   DebugPanel,
 };

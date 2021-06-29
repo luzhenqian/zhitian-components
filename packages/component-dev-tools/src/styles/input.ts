@@ -31,3 +31,11 @@ export const textAreaStyles = css`
     border: 2px solid var(--ztcdt-primary-color);
   }
 `;
+
+export const iconStyles = css`
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    fill: var(--ztcdt-primary-color);
+  }
+`;
