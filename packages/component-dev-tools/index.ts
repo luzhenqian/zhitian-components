@@ -1,8 +1,6 @@
 enum FieldType {
   Integer, // 整数
   Decimal, // 浮点数
-  Percent, // 百分比
-  Money, // 金额
   Text, // 文本
   TextArea, // 长文本
   Select, // 选择器
@@ -23,11 +21,13 @@ enum FieldType {
 import Integer from "./src/integer";
 import Decimal from "./src/decimal";
 import Text from "./src/text";
+import TextArea from "./src/text-area";
 import DebugPanel from "./src/debug-panel";
 
 export default {
   Integer,
   Decimal,
   Text,
+  TextArea,
   DebugPanel,
 };

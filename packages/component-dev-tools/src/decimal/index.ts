@@ -12,6 +12,7 @@ export default class Decimal extends LitElement {
   @property({ type: Number }) value = 0;
   @property({ type: Number }) min = 0;
   @property({ type: Number }) max = 999999999;
+  @property({ type: String }) placeholder = "";
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
@@ -19,16 +20,53 @@ export default class Decimal extends LitElement {
     return html`<input
       ${ref(this.inputRef)}
       value=${this.value}
+      placeholder=${this.placeholder}
       @input=${this._input}
     />`;
   }
   private _input(e: any) {
-    let value = Number(e?.target?.value.replace(/^[\d+?]\.[\d+?]+/g, ""));
+    const reg = /[^\.\d](\d+)[^\.\d]/g;
+    let value = Number(e?.target?.value.replace(reg, ""));
+    console.log(e?.target?.value, value);
 
     if (value < this.min) value = this.min;
-    if (value > this.max) value = this.max;
+    if (value > this.max) {
+      if (this.inputRef.value) {
+        this.inputRef.value.value = String(Math.floor(value / 10));
+      }
+      return;
+    }
     if (this.inputRef.value) {
       this.inputRef.value.value = "" + value;
     }
   }
 }
+
+// special single character
+var isNumber = /\d/;
+var isNotNumber = /\D/;
+var isAlphanumericUnderscore = /\w/;
+var isNotAlphanumericUnderscore = /\W/;
+var isWhitespace = /\s/;
+var isNotWhitespace = /\S/;
+
+// white space
+var isEnter = /\r/;
+var isWrap = /\n/;
+var isPageChange = /\t/;
+var isTab = /\v/;
+var isAnyWhitespace = /\s/;
+
+// quantifier
+var zoreToMany = /\d*/;
+var onceMore = /\d+/;
+var zoreToOne = /\d?/;
+var fixed = /\d{10}/;
+var min = /\d{10,}/;
+var range = /\d{10,20}/;
+
+// range
+var pipe = /ab|cd/; // 满足任意一个
+var manySelectOne = /[abcde]/; // 多选一
+var manySelectOneRange = /[a-z]]/; // 多选一，范围
+var manyNotContainerOneRange = /[^a-z]]/; // 不可包含任意一个，范围

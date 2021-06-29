@@ -12,6 +12,7 @@ export default class Integer extends LitElement {
   @property({ type: Number }) value = 0;
   @property({ type: Number }) min = 0;
   @property({ type: Number }) max = 999999999;
+  @property({ type: String }) placeholder = "";
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
@@ -19,6 +20,7 @@ export default class Integer extends LitElement {
     return html`<input
       ${ref(this.inputRef)}
       value=${this.value}
+      placeholder=${this.placeholder}
       @input=${this._input}
     />`;
   }
