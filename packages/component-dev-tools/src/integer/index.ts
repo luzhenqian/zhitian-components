@@ -23,9 +23,14 @@ export default class Integer extends LitElement {
     />`;
   }
   private _input(e: any) {
-    let value = Number(e?.target?.value.replace(/[^\d]/g, ""));
+    let value = Number(e?.target?.value.replace(/[^\d*]/g, ""));
     if (value < this.min) value = this.min;
-    if (value > this.max) value = this.max;
+    if (value > this.max) {
+      if (this.inputRef.value) {
+        this.inputRef.value.value = String(Math.floor(value / 10));
+      }
+      return;
+    }
     if (this.inputRef.value) {
       this.inputRef.value.value = "" + value;
     }
