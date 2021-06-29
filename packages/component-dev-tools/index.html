@@ -9,6 +9,7 @@
     <style>
       body {
         background-color: #121212;
+        color: var(--ztcdt-hight-text-color);
       }
       :root {
         --ztcdt-primary-color: #bb86fc;
@@ -23,7 +24,8 @@
   <body>
     <script type="module" src="./dist/temp/index.js"></script>
 
-    <ztcdt-integer></ztcdt-integer>
-    <ztcdt-decimal></ztcdt-decimal>
+    <div><span>整数：</span><ztcdt-integer></ztcdt-integer></div>
+    <div><span>浮点数：</span><ztcdt-decimal></ztcdt-decimal></div>
+    <div><span>文本：</span><ztcdt-text></ztcdt-text></div>
   </body>
 </html>
