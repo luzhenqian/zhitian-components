@@ -136,11 +136,12 @@ export default class Color extends LitElement {
       </div>
 
       <div class="zt-colors">
+        <!-- FIXME: grammatical problem -->
         ${this.colors.map(
           (color: string) =>
             html`<span
               class="zt-colors-item"
-              style="background-color: ${color}"
+              style="background-color: red;"
             />`
         )}
       </div>

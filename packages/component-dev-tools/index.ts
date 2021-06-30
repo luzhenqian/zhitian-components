@@ -24,6 +24,7 @@ import Text from "./src/text";
 import TextArea from "./src/text-area";
 import Select from "./src/select";
 import Color from "./src/color";
+import Radio from "./src/radio";
 import DebugPanel from "./src/debug-panel";
 
 export default {
@@ -33,5 +34,6 @@ export default {
   TextArea,
   Select,
   Color,
+  Radio,
   DebugPanel,
 };
