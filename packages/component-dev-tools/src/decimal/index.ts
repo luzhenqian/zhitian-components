@@ -13,6 +13,7 @@ export default class Decimal extends LitElement {
   @property({ type: Number }) min = 0;
   @property({ type: Number }) max = 999999999;
   @property({ type: String }) placeholder = "";
+  @property({ type: Number }) fixed = 5;
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
@@ -25,14 +26,20 @@ export default class Decimal extends LitElement {
     />`;
   }
   private _input(e: any) {
-    const reg = /[^\.\d](\d+)[^\.\d]/g;
-    let value = Number(e?.target?.value.replace(reg, ""));
-    console.log(e?.target?.value, value);
+    // TODO: fixed not work
+    const reg = new RegExp(`[^\\d+\\.?\\d{0, ${this.fixed}}]`, "g");
+    // const reg = /[^\d+\.?\d*]/g;
+    console.log("reg:", reg);
 
-    if (value < this.min) value = this.min;
-    if (value > this.max) {
+    let value = (e?.target?.value as string).replace(reg, "");
+    const tmpl = value.split(".");
+    if (tmpl.length > 2) {
+      value = tmpl[0] + "." + tmpl[1];
+    }
+    if (Number(value) < this.min) value = "" + this.min;
+    if (Number(value) > this.max) {
       if (this.inputRef.value) {
-        this.inputRef.value.value = String(Math.floor(value / 10));
+        this.inputRef.value.value = String(Math.floor(Number(value) / 10));
       }
       return;
     }

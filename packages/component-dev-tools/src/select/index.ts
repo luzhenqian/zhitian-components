@@ -47,6 +47,7 @@ export default class Select extends LitElement {
       box-sizing: border-box;
       border: 2px solid var(--ztcdt-primary-color);
       border-radius: var(--ztcdt-radius);
+      z-index: 1000;
     }
 
     .zt-option-item {
