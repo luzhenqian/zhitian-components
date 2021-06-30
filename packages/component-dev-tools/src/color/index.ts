@@ -3,7 +3,10 @@ import {
   customElement,
   property,
   query,
+  state,
 } from "../../../../node_modules/lit/decorators";
+import { styleMap } from "../../../../node_modules/lit/directives/style-map";
+import { inputStyles } from "../styles/input";
 
 @customElement("ztcdt-color")
 export default class Color extends LitElement {
@@ -17,7 +20,7 @@ export default class Color extends LitElement {
       width: 200px;
       padding: 8px;
       border-radius: 3px;
-      background-color: #ffffff;
+      background-color: var(--ztcdt-disable-text-color);
       position: relative;
     }
     .zt-color-area-wrap {
@@ -42,8 +45,8 @@ export default class Color extends LitElement {
     }
     .zt-point {
       display: inline-block;
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background-color: transparent;
       border: 1px solid #ffffff;
@@ -53,10 +56,12 @@ export default class Color extends LitElement {
       left: 0;
     }
 
-    .zt-color-bar {
-      position: absolute;
-      height: 20px;
-      width: var(--width);
+    .zt-color-bar,
+    .zt-transparence-bar {
+      margin: 2px;
+      position: relative;
+      height: 8px;
+      width: 100%;
       background: linear-gradient(
         to right,
         rgb(255, 0, 0) 0%,
@@ -69,6 +74,7 @@ export default class Color extends LitElement {
       );
     }
     .zt-color-slider {
+      position: absolute;
       display: inline-block;
       height: 100%;
       width: 1rem;
@@ -78,7 +84,7 @@ export default class Color extends LitElement {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      color: var(--ztcdt-primary-color);
+      color: var(--ztcdt-height-text-color);
     }
     .zt-color-input-item {
       display: inline-flex;
@@ -100,35 +106,79 @@ export default class Color extends LitElement {
     .zt-colors-item {
       width: 16px;
       height: 16px;
-      margin: 6px 10px;
+      margin: 6px 10.4px;
+      cursor: pointer;
     }
   `;
 
-  @property() colors = ["", "", "", "", "", "", "", "", ""];
+  @property() colors = [
+    "rgb(238, 235, 255)",
+    "rgb(218, 213, 243)",
+    "rgb(199, 192, 230)",
+    "rgb(181, 172, 218)",
+    "rgb(164, 154, 205)",
+    "rgb(135, 122, 180)",
+  ];
+  @state() currentColor = "";
 
   render() {
     return html`<div class="zt-color-container">
       <div class="zt-color-area-wrap">
         <div class="zt-color-area">
           <div class="zt-color-area-child"></div>
-          <span class="zt-point" draggable @drag=${this.drag}></span>
+          <span class="zt-point" draggable></span>
         </div>
       </div>
 
       <div>
         <div>
-          <div class="zt-color-bar">
-            <span class="zt-color-slider"></span>
+          <div style="position: relative; height: 10px; overflow: hidden;">
+            <div
+              style="position: absolute; inset: 0px; background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
+            >
+              <div style="margin: 0px 2px; position: relative; height: 100%;">
+                <div style="position: absolute; left: 7.73196%;">
+                  <div
+                    style="margin-top: 1px; width: 4px; border-radius: 1px; height: 8px; box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px; background: rgb(255, 255, 255); transform: translateX(-2px);"
+                  ></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="zt-transparence-bar">
-            <span class="zt-color-slider"></span>
+
+          <div
+            style="position: relative; height: 10px; margin-top: 4px; overflow: hidden;"
+          >
+            <div style="position: absolute; inset: 0px;">
+              <div style="position: absolute; inset: 0px; overflow: hidden;">
+                <div
+                  style='position: absolute; inset: 0px; background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") left center;'
+                ></div>
+              </div>
+              <div
+                style="position: absolute; inset: 0px; background: linear-gradient(to right, rgba(144, 19, 254, 0) 0%, rgb(144, 19, 254) 100%);"
+              ></div>
+              <div style="position: relative; height: 100%; margin: 0px 3px;">
+                <div style="position: absolute; left: 100%;">
+                  <div
+                    style="width: 4px; border-radius: 1px; height: 8px; box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px; background: rgb(255, 255, 255); margin-top: 1px; transform: translateX(-2px);"
+                  ></div>
+                </div>
+              </div>
+            </div>
           </div>
+          <!-- <div class="zt-transparence-bar">
+            <span class="zt-color-slider"></span>
+          </div> -->
         </div>
         <div class="current-color"></div>
       </div>
 
       <div class="zt-color-input-wrap">
-        <div class="zt-color-input-item"><input /><span>Hex</span></div>
+        <div class="zt-color-input-item">
+          <input />
+          <span>Hex</span>
+        </div>
         <div class="zt-color-input-item"><input /><span>R</span></div>
         <div class="zt-color-input-item"><input /><span>G</span></div>
         <div class="zt-color-input-item"><input /><span>B</span></div>
@@ -140,15 +190,19 @@ export default class Color extends LitElement {
         ${this.colors.map(
           (color: string) =>
             html`<span
+              @click=${() => this.selectColor(color)}
               class="zt-colors-item"
-              style="background-color: red;"
+              style="background-color: ${color};
+              box-shadow: ${color === this.currentColor
+                ? color
+                : "rgba(0,0,0,0)"} 0 0 0 1px;"
             />`
         )}
       </div>
     </div>`;
   }
 
-  drag(e: MouseEvent) {
-    console.log("drag:", e.clientX, e.clientY);
+  selectColor(color: string) {
+    this.currentColor = color;
   }
 }

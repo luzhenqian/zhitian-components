@@ -13,6 +13,7 @@ export default class Integer extends LitElement {
   @property({ type: Number }) min = 0;
   @property({ type: Number }) max = 999999999;
   @property({ type: String }) placeholder = "";
+  @property({ type: String }) styles = "";
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
