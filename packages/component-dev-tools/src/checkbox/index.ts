@@ -5,41 +5,39 @@ import {
   state,
 } from "../../../../node_modules/lit/decorators";
 
-interface RadioItem {
+interface CheckItem {
   value: string;
   label: string;
 }
 
-@customElement("ztcdt-radio")
+@customElement("zt-checkbox")
 export default class Radio extends LitElement {
   static styles = css`
-    .zt-radio-group {
+    .zt-checkbox-group {
       display: flex;
       flex-wrap: wrap;
     }
-    .zt-radio-item {
+    .zt-checkbox-item {
       position: relative;
       padding-left: 24px;
       margin-right: 12px;
       cursor: pointer;
     }
-    .zt-radio-item::before {
+    .zt-checkbox-item::before {
       position: absolute;
       left: 0;
       bottom: 0;
       content: " ";
-      border-radius: 50%;
       display: inline-flex;
       width: 16px;
       height: 16px;
       border: 1px solid var(--ztcdt-primary-color);
     }
-    .checked.zt-radio-item::after {
+    .checked.zt-checkbox-item::after {
       position: absolute;
       left: 4.5px;
       top: 8px;
       content: " ";
-      border-radius: 50%;
       display: inline-flex;
       width: 8px;
       height: 8px;
@@ -47,15 +45,17 @@ export default class Radio extends LitElement {
     }
   `;
 
-  @property({ type: Array }) radio: RadioItem[] = [];
-  @state() checkedItem: RadioItem | null = null;
+  @property({ type: Array }) checkOption: CheckItem[] = [];
+  @state() checkedList: CheckItem[] = [];
 
   render() {
-    return html`<div class="zt-radio-group">
-      ${this.radio.map(
+    return html`<div class="zt-checkbox-group">
+      ${this.checkOption.map(
         (item) =>
           html`<div
-            class="zt-radio-item ${item === this.checkedItem ? "checked" : ""}"
+            class="zt-checkbox-item ${this.checkedList.includes(item)
+              ? "checked"
+              : ""}"
             @click=${() => this.clickHandler(item)}
           >
             ${item.label}
@@ -64,7 +64,13 @@ export default class Radio extends LitElement {
     </div>`;
   }
 
-  clickHandler(item: RadioItem) {
-    this.checkedItem = item;
+  clickHandler(item: CheckItem) {
+    const idx = this.checkedList.findIndex((i) => i === item);
+    if (idx > -1) {
+      this.checkedList.splice(idx, 1);
+      this.checkedList = [...this.checkedList];
+      return;
+    }
+    this.checkedList = [...this.checkedList, item];
   }
 }

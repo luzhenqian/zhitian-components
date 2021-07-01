@@ -14,7 +14,7 @@ export default class TextArea extends LitElement {
   @property({ type: Number }) maxlength = 999999999;
   @property({ type: String }) placeholder = "";
   @property({ type: Number }) rows = 3;
-  @property({ type: Number }) cols = 50;
+  @property({ type: Number }) cols = 22;
 
   inputRef: Ref<HTMLInputElement> = createRef();
 

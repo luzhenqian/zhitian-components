@@ -30,7 +30,9 @@
     <div><span>文本域：</span><ztcdt-text-area></ztcdt-text-area></div>
     <div>
       <span>选择器：</span>
-      <ztcdt-select options='[{"key":"1","value":"一"}]'></ztcdt-select>
+      <ztcdt-select
+        options='[{"key":"1","value":"男"},{"key":"2","value":"女"}]'
+      ></ztcdt-select>
     </div>
     <div>
       <span>颜色选择器：</span>
@@ -41,6 +43,12 @@
       <ztcdt-radio
         radio='[{ "value": "1", "label": "A" },{ "value": "2", "label": "B" }]'
       ></ztcdt-radio>
+    </div>
+    <div>
+      <span>多选：</span>
+      <zt-checkbox
+        checkOption='[{ "value": "1", "label": "孙悟空" },{ "value": "2", "label": "猪悟能" },{ "value": "3", "label": "沙悟净" },{ "value": "4", "label": "唐玄奘" }]'
+      ></zt-checkbox>
     </div>
   </body>
 </html>
