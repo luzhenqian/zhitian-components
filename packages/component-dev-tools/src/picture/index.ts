@@ -7,11 +7,6 @@ import {
   state,
 } from "../../../../node_modules/lit/decorators";
 
-interface CheckItem {
-  value: string;
-  label: string;
-}
-
 enum Stat {
   Init,
   Loading,
@@ -66,11 +61,14 @@ export default class Picture extends LitElement {
       top: 0;
       justify-content: center;
       align-items: center;
+      cursor: default;
     }
-    .preview-action > .icon {
-      width: 16px;
-      height: 16px;
+    .preview-action .icon {
+      width: 24px;
+      height: 24px;
       fill: #ffffff;
+      cursor: pointer;
+      margin: 0 6px;
     }
   `;
 
@@ -79,7 +77,7 @@ export default class Picture extends LitElement {
   @property({ type: String }) uploadText: String = "上传图片"; // MB
   @property({ type: String }) uploadingText: String = "上传中"; // MB
   @state() stat: Stat = Stat.Init;
-  @state() preview: HTMLImageElement | null = null;
+  @state() previewEl: HTMLImageElement | null = null;
   @state() pictureURL: string | null = null;
   @state() previewActionVisible = false;
   inputRef = createRef<HTMLInputElement>();
@@ -102,12 +100,13 @@ export default class Picture extends LitElement {
               @mouseenter=${() => (this.previewActionVisible = true)}
               @mouseleave=${() => (this.previewActionVisible = false)}
             >
-              ${this.preview}
+              ${this.previewEl}
               <div
                 class="preview-action"
                 style="display: ${this.previewActionVisible ? "flex" : "none"};"
               >
-                ${preview} ${del}
+                <a @click=${this.preview}>${preview}</a>
+                <a @click=${this.remove}>${del}</a>
               </div>
             </div> `
           : null
@@ -121,7 +120,7 @@ export default class Picture extends LitElement {
     </div>`;
   }
 
-  uploadFile(item: CheckItem) {
+  uploadFile() {
     const fileInput = this.inputRef.value;
     if (fileInput) {
       fileInput.click();
@@ -135,11 +134,11 @@ export default class Picture extends LitElement {
     if (this.validPicture(file)) {
       this.stat = Stat.Loading;
       setTimeout(() => {
-        this.preview = document.createElement("img");
-        this.preview.className = "preview";
-        this.preview.src = URL.createObjectURL(file);
+        this.previewEl = document.createElement("img");
+        this.previewEl.className = "preview";
+        this.previewEl.src = URL.createObjectURL(file);
         this.stat = Stat.Success;
-      }, 2000);
+      }, 500);
       return;
     }
     this.stat = Stat.Failed;
@@ -151,6 +150,19 @@ export default class Picture extends LitElement {
       return false;
     }
     return true;
+  }
+
+  preview() {
+    const modal = document.createElement("zt-modal");
+    if (this.previewEl) {
+      modal.appendChild(this.previewEl.cloneNode());
+      document.body.appendChild(modal);
+    }
+  }
+
+  remove() {
+    this.previewEl = null;
+    this.stat = Stat.Init;
   }
 }
 

@@ -28,6 +28,7 @@ import Radio from "./src/radio";
 import Checkbox from "./src/checkbox";
 import Picture from "./src/picture";
 import Loading from "./src/loading";
+import Modal from "./src/modal";
 import DebugPanel from "./src/debug-panel";
 
 export default {
@@ -41,5 +42,6 @@ export default {
   Checkbox,
   Picture,
   Loading,
+  Modal,
   DebugPanel,
 };
