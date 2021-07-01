@@ -35,6 +35,7 @@ export default class Picture extends LitElement {
       border-radius: 4px;
       border: 2px dashed var(--ztcdt-hight-text-color);
       cursor: pointer;
+      position: relative;
     }
     .add {
       display: flex;
@@ -48,9 +49,28 @@ export default class Picture extends LitElement {
       height: 32px;
       fill: var(--ztcdt-middle-text-color);
     }
+    .preview-wrap {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
     .preview {
       width: 100%;
+    }
+    .preview-action {
+      width: 100%;
       height: 100%;
+      background-color: #000;
+      opacity: 0.4;
+      position: absolute;
+      top: 0;
+      justify-content: center;
+      align-items: center;
+    }
+    .preview-action > .icon {
+      width: 16px;
+      height: 16px;
+      fill: #ffffff;
     }
   `;
 
@@ -61,6 +81,7 @@ export default class Picture extends LitElement {
   @state() stat: Stat = Stat.Init;
   @state() preview: HTMLImageElement | null = null;
   @state() pictureURL: string | null = null;
+  @state() previewActionVisible = false;
   inputRef = createRef<HTMLInputElement>();
 
   render() {
@@ -73,8 +94,22 @@ export default class Picture extends LitElement {
                 <span>${this.uploadText}</span>
               </div>
             `
+          : this.stat === Stat.Loading
+          ? html`<zt-loading />`
           : this.stat === Stat.Success
-          ? html`${this.preview}`
+          ? html`<div
+              class="preview-wrap"
+              @mouseenter=${() => (this.previewActionVisible = true)}
+              @mouseleave=${() => (this.previewActionVisible = false)}
+            >
+              ${this.preview}
+              <div
+                class="preview-action"
+                style="display: ${this.previewActionVisible ? "flex" : "none"};"
+              >
+                ${preview} ${del}
+              </div>
+            </div> `
           : null
       }
         
@@ -130,5 +165,41 @@ const add = html`<svg
   <path
     d="M853.333333 480H544V170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v309.333333H170.666667c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h309.333333V853.333333c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V544H853.333333c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z"
     p-id="3009"
+  ></path>
+</svg>`;
+
+const del = html`<svg
+  t="1625119275683"
+  class="icon"
+  viewBox="0 0 1024 1024"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  p-id="3155"
+>
+  <path
+    d="M874.666667 241.066667h-202.666667V170.666667c0-40.533333-34.133333-74.666667-74.666667-74.666667h-170.666666c-40.533333 0-74.666667 34.133333-74.666667 74.666667v70.4H149.333333c-17.066667 0-32 14.933333-32 32s14.933333 32 32 32h53.333334V853.333333c0 40.533333 34.133333 74.666667 74.666666 74.666667h469.333334c40.533333 0 74.666667-34.133333 74.666666-74.666667V305.066667H874.666667c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32zM416 170.666667c0-6.4 4.266667-10.666667 10.666667-10.666667h170.666666c6.4 0 10.666667 4.266667 10.666667 10.666667v70.4h-192V170.666667z m341.333333 682.666666c0 6.4-4.266667 10.666667-10.666666 10.666667H277.333333c-6.4 0-10.666667-4.266667-10.666666-10.666667V309.333333h490.666666V853.333333z"
+    p-id="3156"
+  ></path>
+  <path
+    d="M426.666667 736c17.066667 0 32-14.933333 32-32V490.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v213.333333c0 17.066667 14.933333 32 32 32zM597.333333 736c17.066667 0 32-14.933333 32-32V490.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v213.333333c0 17.066667 14.933333 32 32 32z"
+    p-id="3157"
+  ></path>
+</svg>`;
+
+const preview = html`<svg
+  t="1625119346296"
+  class="icon"
+  viewBox="0 0 1024 1024"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  p-id="3307"
+>
+  <path
+    d="M512 836.266667C230.4 836.266667 74.666667 533.333333 68.266667 520.533333c-4.266667-8.533333-4.266667-19.2 0-29.866666 6.4-12.8 164.266667-315.733333 443.733333-315.733334 281.6 0 437.333333 305.066667 443.733333 317.866667 4.266667 8.533333 4.266667 19.2 0 29.866667-6.4 10.666667-162.133333 313.6-443.733333 313.6zM132.266667 505.6c34.133333 57.6 170.666667 266.666667 379.733333 266.666667s345.6-209.066667 379.733333-266.666667c-34.133333-57.6-170.666667-266.666667-379.733333-266.666667S166.4 448 132.266667 505.6z"
+    p-id="3308"
+  ></path>
+  <path
+    d="M512 650.666667c-76.8 0-138.666667-61.866667-138.666667-138.666667s61.866667-138.666667 138.666667-138.666667 138.666667 61.866667 138.666667 138.666667-61.866667 138.666667-138.666667 138.666667z m0-213.333334c-40.533333 0-74.666667 34.133333-74.666667 74.666667s34.133333 74.666667 74.666667 74.666667 74.666667-34.133333 74.666667-74.666667-34.133333-74.666667-74.666667-74.666667z"
+    p-id="3309"
   ></path>
 </svg>`;

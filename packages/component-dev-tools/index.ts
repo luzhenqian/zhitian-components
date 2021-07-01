@@ -27,6 +27,7 @@ import Color from "./src/color";
 import Radio from "./src/radio";
 import Checkbox from "./src/checkbox";
 import Picture from "./src/picture";
+import Loading from "./src/loading";
 import DebugPanel from "./src/debug-panel";
 
 export default {
@@ -39,5 +40,6 @@ export default {
   Radio,
   Checkbox,
   Picture,
+  Loading,
   DebugPanel,
 };
