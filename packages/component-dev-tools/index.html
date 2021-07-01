@@ -59,5 +59,11 @@
       <span>图片上传：</span>
       <zt-picture></zt-picture>
     </div>
+
+    <script>
+      const picture = document.getElementsByTagName("zt-picture")[0];
+      picture.url = "http://localhost:9002/upload";
+      picture.headers = { a: 1, b: "xxx" };
+    </script>
   </body>
 </html>

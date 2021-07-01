@@ -3,8 +3,8 @@ import {
   customElement,
   property,
   state,
-} from "../../node_modules/lit/decorators";
-import { createRef, Ref, ref } from "../../node_modules/lit/directives/ref";
+} from "../../../../node_modules/lit/decorators";
+import { createRef, Ref, ref } from "../../../../node_modules/lit/directives/ref";
 import { iconStyles } from "../styles/input";
 
 interface Option {

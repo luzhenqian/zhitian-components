@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { createRef, ref } from "lit/directives/ref";
+import { createRef, ref } from "../../../../node_modules/lit/directives/ref";
 import {
   customElement,
   property,
@@ -70,16 +70,30 @@ export default class Picture extends LitElement {
       cursor: pointer;
       margin: 0 6px;
     }
+    .loading-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .loading-text {
+      color: var(--ztcdt-hight-text-color);
+    }
   `;
 
   @property({ type: Number }) max: Number = 20; // MB
   @property({ type: Array }) accept: FileType[] = [FileType["*"]];
-  @property({ type: String }) uploadText: String = "上传图片"; // MB
-  @property({ type: String }) uploadingText: String = "上传中"; // MB
+  @property({ type: String }) uploadText: string = "上传图片";
+  @property({ type: String }) uploadingText: string = "上传中";
+  @property({ type: String }) url: string = "";
+  @property({ type: Object }) headers: any = {};
+
   @state() stat: Stat = Stat.Init;
   @state() previewEl: HTMLImageElement | null = null;
-  @state() pictureURL: string | null = null;
+  @state() pictureFile: File | null = null;
   @state() previewActionVisible = false;
+  @state() progress = 0;
   inputRef = createRef<HTMLInputElement>();
 
   render() {
@@ -93,7 +107,10 @@ export default class Picture extends LitElement {
               </div>
             `
           : this.stat === Stat.Loading
-          ? html`<zt-loading />`
+          ? html`<div class="loading-wrap">
+              <zt-loading></zt-loading>
+              <span class="loading-text">已上传 ${this.progress} %</span>
+            </div>`
           : this.stat === Stat.Success
           ? html`<div
               class="preview-wrap"
@@ -133,15 +150,21 @@ export default class Picture extends LitElement {
     const file = files[0];
     if (this.validPicture(file)) {
       this.stat = Stat.Loading;
-      setTimeout(() => {
-        this.previewEl = document.createElement("img");
-        this.previewEl.className = "preview";
-        this.previewEl.src = URL.createObjectURL(file);
-        this.stat = Stat.Success;
-      }, 500);
+
+      this.pictureFile = file;
+
+      this.upload();
+
       return;
     }
     this.stat = Stat.Failed;
+  }
+
+  uploadSuccess() {
+    this.previewEl = document.createElement("img");
+    this.previewEl.className = "preview";
+    this.previewEl.src = URL.createObjectURL(this.pictureFile);
+    this.stat = Stat.Success;
   }
 
   validPicture(file: File) {
@@ -163,6 +186,39 @@ export default class Picture extends LitElement {
   remove() {
     this.previewEl = null;
     this.stat = Stat.Init;
+  }
+
+  upload() {
+    if (!this.pictureFile) return;
+
+    const formData = new FormData();
+    formData.append("file", this.pictureFile);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", this.url);
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        this.uploadSuccess();
+        console.log("upload success");
+        return;
+      }
+      this.stat = Stat.Failed;
+      console.log("upload failed");
+    };
+
+    for (let key in this.headers) {
+      // TODO
+      // formData.append(key, this.headers[key]);
+      xhr.setRequestHeader(key, this.headers[key]);
+    }
+
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable) {
+        this.progress = Math.floor((e.loaded / e.total) * 100);
+      }
+    };
+
+    xhr.send(formData);
   }
 }
 
