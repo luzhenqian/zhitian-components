@@ -64,8 +64,9 @@ export default class Modal extends LitElement {
     }
   `;
 
-  @property() title = "aaa";
-  @property({ type: Boolean }) zen = false;
+  @property() title = "";
+  @property({ type: Boolean }) zen = false; // TODO
+
   render() {
     return html`<div class="modal" @click="${this.closeHandler}">
       <div class="modal-content">

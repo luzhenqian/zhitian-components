@@ -94,6 +94,7 @@ export default class Picture extends LitElement {
   @state() pictureFile: File | null = null;
   @state() previewActionVisible = false;
   @state() progress = 0;
+
   inputRef = createRef<HTMLInputElement>();
 
   render() {
@@ -179,6 +180,7 @@ export default class Picture extends LitElement {
     const modal = document.createElement("zt-modal");
     if (this.previewEl) {
       modal.appendChild(this.previewEl.cloneNode());
+      modal.title = this.pictureFile?.name || "";
       document.body.appendChild(modal);
     }
   }

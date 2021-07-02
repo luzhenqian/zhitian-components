@@ -4,7 +4,11 @@ import {
   property,
   state,
 } from "../../../../node_modules/lit/decorators";
-import { createRef, Ref, ref } from "../../../../node_modules/lit/directives/ref";
+import {
+  createRef,
+  Ref,
+  ref,
+} from "../../../../node_modules/lit/directives/ref";
 import { iconStyles } from "../styles/input";
 
 interface Option {
@@ -48,19 +52,22 @@ export default class Select extends LitElement {
       border: 2px solid var(--ztcdt-primary-color);
       border-radius: var(--ztcdt-radius);
       z-index: 1000;
+      background-color: #121212;
     }
 
     .zt-option-item {
       width: 100%;
       height: 1rem;
-      min-height: 1rem;
-      line-height: 1rem;
-      padding: 2px 0;
-      margin: 8px 0;
+      min-height: calc(1rem + 8px);
+      line-height: calc(1rem + 8px);
+      padding: 2px 8px;
+      margin: 8px 0px;
+      box-sizing: border-box;
     }
 
     .zt-option-item:hover {
       background: var(--ztcdt-primary-color);
+      color: var(--ztcdt-hight-text-color);
     }
 
     .arrow-down {
