@@ -3,7 +3,6 @@ import { createRef, ref } from "../../../../node_modules/lit/directives/ref";
 import {
   customElement,
   property,
-  query,
   state,
 } from "../../../../node_modules/lit/decorators";
 
@@ -99,6 +98,7 @@ export default class Picture extends LitElement {
   @property({ type: String }) uploadingText: string = "上传中";
   @property({ type: String }) url: string = "";
   @property({ type: Object }) headers: any = {};
+  @property({ type: String }) fileFieldName: string = "file";
 
   @state() stat: Stat = Stat.Init;
   @state() previewEl: HTMLImageElement | null = null;
@@ -168,6 +168,8 @@ export default class Picture extends LitElement {
     if (this.validPicture(file)) {
       this.stat = Stat.Loading;
 
+      this.dispatchStart(file);
+
       this.pictureFile = file;
 
       this.upload();
@@ -177,11 +179,48 @@ export default class Picture extends LitElement {
     this.stat = Stat.Failed;
   }
 
-  uploadSuccess() {
+  uploadSuccess(resp: any) {
     this.previewEl = document.createElement("img");
     this.previewEl.className = "preview";
     this.previewEl.src = URL.createObjectURL(this.pictureFile);
     this.stat = Stat.Success;
+    this.dispatchSuccess(resp);
+  }
+
+  dispatchStart(file: File) {
+    const event = new CustomEvent("success", {
+      detail: {
+        file,
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
+  dispatchSuccess(response: any) {
+    const event = new CustomEvent("success", {
+      detail: {
+        response,
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
+  dispatchError(error: any) {
+    const event = new CustomEvent("error", {
+      detail: {
+        error,
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
+  dispatchProgress(progress: any) {
+    const event = new CustomEvent("progress", {
+      detail: {
+        progress,
+      },
+    });
+    this.dispatchEvent(event);
   }
 
   validPicture(file: File) {
@@ -211,33 +250,36 @@ export default class Picture extends LitElement {
     if (!this.pictureFile) return;
 
     const formData = new FormData();
-    formData.append("file", this.pictureFile);
+    formData.append(this.fileFieldName, this.pictureFile);
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", this.url);
     xhr.onload = () => {
       if (xhr.status === 200) {
-        this.uploadSuccess();
-        console.log("upload success");
+        this.uploadSuccess(xhr.response);
         return;
       }
       this.stat = Stat.Failed;
-      console.log("upload failed");
+      this.dispatchError(Error(xhr.response));
     };
 
-    xhr.onerror = () => {
+    xhr.onerror = (err) => {
       this.stat = Stat.Failed;
+      this.dispatchError(err);
     };
 
     for (let key in this.headers) {
-      // TODO
-      // formData.append(key, this.headers[key]);
       xhr.setRequestHeader(key, this.headers[key]);
     }
 
     xhr.upload.onprogress = (e) => {
       if (e.lengthComputable) {
         this.progress = Math.floor((e.loaded / e.total) * 100);
+        this.dispatchProgress({
+          progress: this.progress,
+          loaded: e.loaded,
+          total: e.total,
+        });
       }
     };
 

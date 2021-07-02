@@ -21,6 +21,7 @@
         --ztcdt-disable-text-color: #737373;
         --ztcdt-black: rgba(255, 255, 255, 0.1);
         --ztcdt-radius: 4px;
+        --ztcdt-warn: #f54a4c;
       }
     </style>
   </head>
@@ -64,6 +65,9 @@
       const picture = document.getElementsByTagName("zt-picture")[0];
       picture.url = "http://localhost:9002/upload";
       picture.headers = { a: 1, b: "xxx" };
+      picture.addEventListener("success", (e) => {
+        console.log(e.detail.response);
+      });
     </script>
   </body>
 </html>
