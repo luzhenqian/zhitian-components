@@ -17,6 +17,8 @@ enum FileType {
   "*" = "*",
   jpeg = "jpeg",
   png = "png",
+  gif = "gif",
+  webp = "webp",
 }
 
 @customElement("zt-picture")
@@ -91,7 +93,7 @@ export default class Picture extends LitElement {
     }
   `;
 
-  @property({ type: Number }) max: Number = 20; // MB
+  @property({ type: Number }) maxSize: Number = 20; // MB
   @property({ type: Array }) accept: FileType[] = [FileType["*"]];
   @property({ type: String }) uploadText: string = "上传图片";
   @property({ type: String }) uploadFailedText: string = "上传失败，请重新上传";
@@ -225,7 +227,7 @@ export default class Picture extends LitElement {
 
   validPicture(file: File) {
     const sizeMB = file.size / 1024 / 1024;
-    if (!(sizeMB < this.max)) {
+    if (!(sizeMB < this.maxSize)) {
       return false;
     }
     return true;
