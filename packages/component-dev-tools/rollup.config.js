@@ -20,10 +20,6 @@ module.exports = {
       file: path.resolve(__dirname, pkg.module),
       format: "esm",
     },
-    // {
-    //   file: path.resolve(__dirname, pkg.browser),
-    //   format: "umd",
-    // },
   ],
   plugins: [
     resolve.default(),

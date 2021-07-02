@@ -23,12 +23,13 @@ import Decimal from "./src/decimal";
 import Text from "./src/text";
 import TextArea from "./src/text-area";
 import Select from "./src/select";
-import Color from "./src/color";
+import Color from "./src/color-picker";
 import Radio from "./src/radio";
 import Checkbox from "./src/checkbox";
 import Picture from "./src/picture";
 import Loading from "./src/loading";
 import Modal from "./src/modal";
+import CodeEditor from "./src/code-editor";
 import DebugPanel from "./src/debug-panel";
 
 export default {
@@ -43,5 +44,6 @@ export default {
   Picture,
   Loading,
   Modal,
+  CodeEditor,
   DebugPanel,
 };
