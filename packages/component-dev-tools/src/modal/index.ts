@@ -62,6 +62,9 @@ export default class Modal extends LitElement {
       height: 22px;
       cursor: pointer;
     }
+    .zen {
+      border-radius: 0;
+    }
   `;
 
   @property() title = "";
@@ -70,11 +73,13 @@ export default class Modal extends LitElement {
   render() {
     return html`<div class="modal" @click="${this.closeHandler}">
       <div class="modal-content">
-        <div class="header">
-          <span class="title">${this.title}</span>
-          <span @click=${this.close}>${close}</span>
-        </div>
-        <span class="content">
+        ${!this.zen
+          ? html`<div class="header">
+              <span class="title">${this.title}</span>
+              <span @click=${this.close}>${close}</span>
+            </div>`
+          : null}
+        <span class="content ${this.zen ? "zen" : ""}">
           <slot></slot>
         </span>
       </div>
@@ -83,6 +88,7 @@ export default class Modal extends LitElement {
 
   closeHandler(e: Event) {
     if (e.target === this.shadowRoot?.firstElementChild) {
+      e.stopPropagation();
       this.close();
     }
   }
