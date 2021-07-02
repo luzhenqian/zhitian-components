@@ -32,6 +32,9 @@ export default class Picture extends LitElement {
       cursor: pointer;
       position: relative;
     }
+    .container:hover {
+      border-color: var(--ztcdt-primary-color);
+    }
     .add {
       display: flex;
       flex-direction: column;
@@ -43,6 +46,13 @@ export default class Picture extends LitElement {
       width: 32px;
       height: 32px;
       fill: var(--ztcdt-middle-text-color);
+    }
+    .failed {
+      font-size: 12px;
+      fill: var(--ztcdt-warn);
+    }
+    .failed .icon {
+      fill: var(--ztcdt-warn);
     }
     .preview-wrap {
       display: flex;
@@ -85,6 +95,7 @@ export default class Picture extends LitElement {
   @property({ type: Number }) max: Number = 20; // MB
   @property({ type: Array }) accept: FileType[] = [FileType["*"]];
   @property({ type: String }) uploadText: string = "上传图片";
+  @property({ type: String }) uploadFailedText: string = "上传失败，请重新上传";
   @property({ type: String }) uploadingText: string = "上传中";
   @property({ type: String }) url: string = "";
   @property({ type: Object }) headers: any = {};
@@ -127,6 +138,11 @@ export default class Picture extends LitElement {
                 <a @click=${this.remove}>${del}</a>
               </div>
             </div> `
+          : this.stat === Stat.Failed
+          ? html` <div class="add failed" @click="${this.uploadFile}">
+              ${image}
+              <span>${this.uploadFailedText}</span>
+            </div>`
           : null
       }
         
@@ -177,10 +193,11 @@ export default class Picture extends LitElement {
   }
 
   preview() {
-    const modal = document.createElement("zt-modal");
+    const modal: any = document.createElement("zt-modal");
     if (this.previewEl) {
       modal.appendChild(this.previewEl.cloneNode());
       modal.title = this.pictureFile?.name || "";
+      modal.zen = true;
       document.body.appendChild(modal);
     }
   }
@@ -206,6 +223,10 @@ export default class Picture extends LitElement {
       }
       this.stat = Stat.Failed;
       console.log("upload failed");
+    };
+
+    xhr.onerror = () => {
+      this.stat = Stat.Failed;
     };
 
     for (let key in this.headers) {
@@ -271,5 +292,19 @@ const preview = html`<svg
   <path
     d="M512 650.666667c-76.8 0-138.666667-61.866667-138.666667-138.666667s61.866667-138.666667 138.666667-138.666667 138.666667 61.866667 138.666667 138.666667-61.866667 138.666667-138.666667 138.666667z m0-213.333334c-40.533333 0-74.666667 34.133333-74.666667 74.666667s34.133333 74.666667 74.666667 74.666667 74.666667-34.133333 74.666667-74.666667-34.133333-74.666667-74.666667-74.666667z"
     p-id="3309"
+  ></path>
+</svg>`;
+
+const image = html`<svg
+  t="1625188558797"
+  class="icon"
+  viewBox="0 0 1024 1024"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  p-id="3786"
+>
+  <path
+    d="M866.4576 102.4H157.5424C98.816 102.4 51.2 150.016 51.2 208.7424v567.1424c0 58.7264 47.616 106.3424 106.3424 106.3424h708.9152c58.7264 0 106.3424-47.616 106.3424-106.3424V208.7424C972.8 150.016 925.184 102.4 866.4576 102.4zM157.5424 173.312h708.9152c19.5584 0 35.4304 15.872 35.4304 35.4304v339.5584l-181.4528-181.4528-177.9712 182.8864-108.4416-108.4928-311.9104 320.4608v-552.96c0-19.5584 15.872-35.4304 35.4304-35.4304z m546.56 638.0032H172.4416l262.2976-269.3632 269.3632 269.3632z m197.7856-35.4304c0 19.5584-15.872 35.4304-35.4304 35.4304h-62.3616l-212.6848-212.6848 133.2736-130.4064 180.736 180.736-3.5328 126.9248zM263.8848 385.9456a70.912 70.912 0 1 1 0-141.7728 70.912 70.912 0 0 1 0 141.824z"
+    p-id="3787"
   ></path>
 </svg>`;
