@@ -1,6 +1,8 @@
 import { LitElement } from "lit";
 
 export default class ZTComponent extends LitElement {
+  stylesConfig: {} = {};
+
   constructor() {
     super();
     if (!("dataConfig" in this.constructor)) {

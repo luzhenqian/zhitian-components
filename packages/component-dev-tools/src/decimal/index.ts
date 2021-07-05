@@ -3,7 +3,7 @@ import { customElement, property } from "../../../../node_modules/lit/decorators
 import { createRef, Ref, ref } from "../../../../node_modules/lit/directives/ref";
 import { inputStyles } from "../styles/input";
 
-@customElement("ztcdt-decimal")
+@customElement("zt-decimal")
 export default class Decimal extends LitElement {
   static styles = css`
     ${inputStyles}

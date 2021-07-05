@@ -16,7 +16,7 @@ interface Option {
   value: string;
 }
 
-@customElement("ztcdt-select")
+@customElement("zt-select")
 export default class Select extends LitElement {
   static styles = css`
     ${iconStyles}

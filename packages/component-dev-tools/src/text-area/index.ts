@@ -3,7 +3,7 @@ import { customElement, property } from "../../../../node_modules/lit/decorators
 import { createRef, Ref, ref } from "../../../../node_modules/lit/directives/ref";
 import { textAreaStyles } from "../styles/input";
 
-@customElement("ztcdt-text-area")
+@customElement("zt-text-area")
 export default class TextArea extends LitElement {
   static styles = css`
     ${textAreaStyles}

@@ -1,59 +1,59 @@
 export default [
   {
-    name: 'barStyle',
-    nameCN: '柱子样式',
+    code: 'barStyle',
+    name: '柱子样式',
     fieldset: [
-      {name: 'width', nameCN: '柱子宽度', type: 'Slider'},
-      {name: 'radius', nameCN: '柱子圆角度', type: 'Slider'},
+      {code: 'width', name: '柱子宽度', type: 'Slider'},
+      {code: 'radius', name: '柱子圆角度', type: 'Slider'},
     ],
   },
   {
-    name: 'padding',
-    nameCN: '边距',
+    code: 'padding',
+    name: '边距',
     fieldset: [
-      {name: 'top', nameCN: '顶部', type: 'Integer'},
-      {name: 'bottom', nameCN: '底部', type: 'Integer'},
-      {name: 'left', nameCN: '左侧', type: 'Integer'},
-      {name: 'right', nameCN: '右侧', type: 'Integer'},
+      {code: 'top', name: '顶部', type: 'Integer'},
+      {code: 'bottom', name: '底部', type: 'Integer'},
+      {code: 'left', name: '左侧', type: 'Integer'},
+      {code: 'right', name: '右侧', type: 'Integer'},
     ],
   },
   {
-    name: 'xAxis',
-    nameCN: 'x 轴',
+    code: 'xAxis',
+    name: 'x 轴',
     show: true,
     fieldset: [
       {
-        name: 'color',
-        nameCN: '坐标轴颜色',
+        code: 'color',
+        name: '坐标轴颜色',
         type: 'Color',
         show: true,
       },
       {
-        name: 'gridColor',
-        nameCN: '网格线颜色',
+        code: 'gridColor',
+        name: '网格线颜色',
         type: 'Color',
         show: true,
       },
     ],
   },
   {
-    name: 'xAxisLabel',
-    nameCN: 'x 轴标签',
+    code: 'xAxisLabel',
+    name: 'x 轴标签',
     show: true,
     fieldset: [
       {
-        name: 'fontSize',
-        nameCN: '轴标签字号',
+        code: 'fontSize',
+        name: '轴标签字号',
         type: 'Integer',
       },
       {
-        name: 'fontColor',
-        nameCN: '轴标签颜色',
+        code: 'fontColor',
+        name: '轴标签颜色',
         type: 'Color',
       },
       {
-        name: 'fontWeight',
-        nameCN: '字体粗细',
+        code: 'fontWeight',
+        name: '字体粗细',
         type: [
           {
             type: 'Select',
@@ -72,8 +72,8 @@ export default [
         ],
       },
       {
-        name: 'rotate',
-        nameCN: '角度',
+        code: 'rotate',
+        name: '角度',
         type: 'Integer',
         min: -90,
         max: 90,
