@@ -1,6 +1,6 @@
 {
   "name": "@ztc/cli",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
@@ -20,8 +20,8 @@
     "@babel/preset-env": "^7.14.7",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "@vue/compiler-sfc": "^3.1.2",
-    "@ztc/vue-loader": "^0.0.22",
-    "@ztc/ztc-loader": "^0.0.22",
+    "@ztc/vue-loader": "^0.0.23",
+    "@ztc/ztc-loader": "^0.0.23",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.1",
     "commander": "^7.2.0",
