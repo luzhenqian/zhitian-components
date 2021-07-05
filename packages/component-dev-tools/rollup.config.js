@@ -5,7 +5,6 @@ const alias = require("@rollup/plugin-alias");
 const resolve = require("@rollup/plugin-node-resolve");
 const typescript = require("rollup-plugin-typescript");
 const del = require("rollup-plugin-delete");
-const analyze = require("rollup-plugin-analyzer");
 const { visualizer } = require("rollup-plugin-visualizer");
 
 const pkg = require(path.resolve(__dirname, "./package.json"));
@@ -34,7 +33,6 @@ module.exports = {
     terser(),
     typescript(),
     del({ targets: "dist/*" }),
-    analyze(),
     visualizer(),
   ],
 };
