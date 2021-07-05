@@ -106,6 +106,7 @@ export default class Decimal extends LitElement {
     this.dispatchEvent(event);
   }
 
+  // FIXME: mouse and value is not sync
   mousedownHandler(e: DragEvent) {
     e.preventDefault();
     const moveHandler = (moveE: any) => {
@@ -120,4 +121,6 @@ export default class Decimal extends LitElement {
     };
     document.addEventListener("mouseup", upHandler);
   }
+
+  // TODO: adjust value when the left and right keys are pressed
 }
