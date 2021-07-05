@@ -1,6 +1,6 @@
 export default [
   {
-    code: 'barStyle',
+    code: 'bar',
     name: '柱子样式',
     fieldset: [
       {code: 'width', name: '柱子宽度', type: 'Slider'},

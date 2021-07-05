@@ -29,9 +29,10 @@ import Checkbox from "./src/checkbox";
 import Picture from "./src/picture";
 import Loading from "./src/loading";
 import Modal from "./src/modal";
+import Slider from "./src/slider";
 // import CodeEditor from "./src/code-editor";
 import DebugPanel from "./src/debug-panel";
-import BarChart from "./dev/bar-chart/index";
+import BarChart from "./dev/bar-chart";
 
 export default {
   Integer,
@@ -45,6 +46,7 @@ export default {
   Picture,
   Loading,
   Modal,
+  Slider,
   // CodeEditor,
   DebugPanel,
   BarChart,

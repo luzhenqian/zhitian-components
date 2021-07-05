@@ -1,6 +1,13 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "../../../../node_modules/lit/decorators";
-import { createRef, Ref, ref } from "../../../../node_modules/lit/directives/ref";
+import {
+  customElement,
+  property,
+} from "../../../../node_modules/lit/decorators";
+import {
+  createRef,
+  Ref,
+  ref,
+} from "../../../../node_modules/lit/directives/ref";
 import { inputStyles } from "../styles/input";
 
 @customElement("zt-integer")
@@ -25,6 +32,7 @@ export default class Integer extends LitElement {
       @input=${this._input}
     />`;
   }
+
   private _input(e: any) {
     let value = Number(e?.target?.value.replace(/[^\d*]/g, ""));
     if (value < this.min) value = this.min;

@@ -30,24 +30,24 @@
 
     <bar-chart></bar-chart>
 
-    <div><span>整数：</span><ztcdt-integer></ztcdt-integer></div>
-    <div><span>浮点数：</span><ztcdt-decimal></ztcdt-decimal></div>
-    <div><span>文本：</span><ztcdt-text></ztcdt-text></div>
-    <div><span>文本域：</span><ztcdt-text-area></ztcdt-text-area></div>
+    <div><span>整数：</span><zt-integer></ztcdt-integer></div>
+    <div><span>浮点数：</span><zt-decimal></ztcdt-decimal></div>
+    <div><span>文本：</span><zt-text></ztcdt-text></div>
+    <div><span>文本域：</span><zt-text-area></ztcdt-text-area></div>
     <div>
       <span>选择器：</span>
-      <ztcdt-select
+      <zt-select
         options='[{"key":"1","value":"男"},{"key":"2","value":"女"}]'
       ></ztcdt-select>
     </div>
     <div>
       <span>颜色选择器：</span>
       <input type="color"></input>
-      <ztcdt-color></ztcdt-color>
+      <zt-color></ztcdt-color>
     </div>
     <div>
       <span>单选：</span>
-      <ztcdt-radio
+      <zt-radio
         radio='[{ "value": "1", "label": "A" },{ "value": "2", "label": "B" }]'
       ></ztcdt-radio>
     </div>
@@ -63,9 +63,15 @@
       <span>图片上传：</span>
       <zt-picture></zt-picture>
     </div>
+    
     <div>
       <span>代码编辑器：</span>
       <zt-code-editor></zt-code-editor>
+    </div>
+
+    <div>
+      <span>滑动输入：</span>
+      <zt-slider></zt-slider>
     </div>
 
     <script>

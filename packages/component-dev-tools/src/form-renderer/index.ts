@@ -74,6 +74,14 @@ export namespace FieldType {
           value="${hex}"
           @input="${nativeChangeHandler}"
         ></zt-select>`;
+      case FieldType.Slider:
+        console.log("slider:", code, fieldCode);
+
+        return html`<zt-slider
+          type="color"
+          value="${config[code][fieldCode]}"
+          @change="${changeHandler}"
+        ></zt-slider>`;
       default:
         return null;
     }

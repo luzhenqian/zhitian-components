@@ -12,10 +12,10 @@ export default class ZTComponent extends LitElement {
       throw new Error("styles config is not found!");
     }
     if (!("data" in this)) {
-      throw new Error("data config is not found!");
+      throw new Error("data default is not found!");
     }
     if (!("styles" in this)) {
-      throw new Error("style config is not found!");
+      throw new Error("styles default is not found!");
     }
   }
 }
