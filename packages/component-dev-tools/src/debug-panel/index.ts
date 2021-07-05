@@ -6,13 +6,22 @@ import {
   query,
 } from "../../../../node_modules/lit/decorators";
 
-@customElement("ztcdt-debug-panel")
+@customElement("zt-debug-panel")
 export default class DebugPanel extends LitElement {
   @query("input", true) _input!: HTMLInputElement;
 
   render() {
-    return html`<div @change="${this._change}"></div>
-      <slot></slot>`;
+    console.log("render");
+
+    return html`<div @change="${this._change}">
+      <slot></slot>
+    </div> `;
+  }
+
+  firstUpdated() {
+    console.log("first updated");
+    
+    console.dir(this.children[0].constructor);
   }
 
   private _change(e: CustomEvent) {

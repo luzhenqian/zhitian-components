@@ -1,0 +1,83 @@
+export default [
+  {
+    name: 'barStyle',
+    nameCN: '柱子样式',
+    fieldset: [
+      {name: 'width', nameCN: '柱子宽度', type: 'Slider'},
+      {name: 'radius', nameCN: '柱子圆角度', type: 'Slider'},
+    ],
+  },
+  {
+    name: 'padding',
+    nameCN: '边距',
+    fieldset: [
+      {name: 'top', nameCN: '顶部', type: 'Integer'},
+      {name: 'bottom', nameCN: '底部', type: 'Integer'},
+      {name: 'left', nameCN: '左侧', type: 'Integer'},
+      {name: 'right', nameCN: '右侧', type: 'Integer'},
+    ],
+  },
+  {
+    name: 'xAxis',
+    nameCN: 'x 轴',
+    show: true,
+    fieldset: [
+      {
+        name: 'color',
+        nameCN: '坐标轴颜色',
+        type: 'Color',
+        show: true,
+      },
+      {
+        name: 'gridColor',
+        nameCN: '网格线颜色',
+        type: 'Color',
+        show: true,
+      },
+    ],
+  },
+  {
+    name: 'xAxisLabel',
+    nameCN: 'x 轴标签',
+    show: true,
+    fieldset: [
+      {
+        name: 'fontSize',
+        nameCN: '轴标签字号',
+        type: 'Integer',
+      },
+      {
+        name: 'fontColor',
+        nameCN: '轴标签颜色',
+        type: 'Color',
+      },
+      {
+        name: 'fontWeight',
+        nameCN: '字体粗细',
+        type: [
+          {
+            type: 'Select',
+            options: [
+              {label: 'Normal', value: '常规'},
+              {label: 'Bold', value: '加粗'},
+              {label: 'Bolder', value: '极粗'},
+              {label: 'Lighter', value: '极细'},
+            ],
+          },
+          {
+            type: 'Integer',
+            min: 100,
+            max: 1000,
+          },
+        ],
+      },
+      {
+        name: 'rotate',
+        nameCN: '角度',
+        type: 'Integer',
+        min: -90,
+        max: 90,
+      },
+    ],
+  },
+];

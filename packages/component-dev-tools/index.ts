@@ -31,6 +31,7 @@ import Loading from "./src/loading";
 import Modal from "./src/modal";
 // import CodeEditor from "./src/code-editor";
 import DebugPanel from "./src/debug-panel";
+import BarChart from "./dev/bar-chart/index";
 
 export default {
   Integer,
@@ -46,4 +47,5 @@ export default {
   Modal,
   // CodeEditor,
   DebugPanel,
+  BarChart,
 };

@@ -1,0 +1,32 @@
+<!-- ztcdt: zhitian component dev tools -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>知天组件体系</title>
+    <script type="module" src="../dist/temp/index.js"></script>
+    <style>
+      body {
+        background-color: #121212;
+        color: var(--ztcdt-hight-text-color);
+      }
+      :root {
+        --ztcdt-primary-color: #bb86fc;
+        --ztcdt-secondary-color: #03dac5;
+        --ztcdt-hight-text-color: #e3e3e5;
+        --ztcdt-middle-text-color: #a5a5a5;
+        --ztcdt-disable-text-color: #737373;
+        --ztcdt-black: #3c394a;
+        --ztcdt-radius: 4px;
+        --ztcdt-warn: #f54a4c;
+      }
+    </style>
+  </head>
+  <body>
+    <zt-debug-panel>
+      <bar-chart></bar-chart>
+    </zt-debug-panel>
+  </body>
+</html>
