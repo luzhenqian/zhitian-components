@@ -1,4 +1,5 @@
 import { css, html, LitElement } from "lit";
+import { createRef, ref } from "../../../../node_modules/lit/directives/ref";
 import {
   customElement,
   property,
@@ -12,6 +13,18 @@ export default class Decimal extends LitElement {
       position: relative;
       height: 4px;
       margin: 6px;
+    }
+    .container:hover {
+      cursor: pointer;
+    }
+    .container:hover .track {
+      background-color: var(--ztcdt-dark-primary-color);
+    }
+    .container:hover .rail {
+      background-color: var(--ztcdt-hight-text-color);
+    }
+    .container:hover .handle {
+      border-color: var(--ztcdt-dark-primary-color);
     }
     .rail {
       position: absolute;
@@ -57,6 +70,11 @@ export default class Decimal extends LitElement {
       top: -8px;
       left: calc(50% - 8px);
     }
+    .handle:focus {
+      border-color: var(--ztcdt-dark-primary-color);
+      box-shadow: rgb(170 102 255 / 52%) 0px 0px 0px 4px;
+      outline: none;
+    }
   `;
 
   @property({ type: Number }) width = 200;
@@ -64,19 +82,25 @@ export default class Decimal extends LitElement {
   @property({ type: Number }) max = 100;
   @property({ type: Number }) min = 1;
   @state() _tipVisible = false;
+  handleRef = createRef<HTMLDivElement>();
 
   render() {
     return html`<div
       class="container"
       style="width: ${this.width}px;"
-      @click=${this._changeValue}
+      @click=${this._clickHandler}
     >
       <div class="rail"></div>
       <div class="track" style="width: ${this.value}%;"></div>
       <div
-        @mousedown=${this.mousedownHandler}
+        ${ref(this.handleRef)}
+        tabindex="0"
+        @click=${this._handleClickHandler}
+        @focus=${this._handleFocusHandler}
+        @blur=${this._handleBlurHandler}
+        @mousedown=${this._mousedownHandler}
         class="handle"
-        style="left: ${Math.floor(this.value)}%;"
+        style="left: ${this.value}%;"
         @mouseenter=${() => (this._tipVisible = true)}
         @mouseleave=${() => (this._tipVisible = false)}
       >
@@ -90,7 +114,16 @@ export default class Decimal extends LitElement {
     </div>`;
   }
 
-  private _changeValue(e: any) {
+  private _clickHandler(e: any) {
+    const handleEl = this.handleRef.value;
+    handleEl?.focus();
+    if (e.target === handleEl) {
+      return;
+    }
+    this._changeValue(e);
+  }
+
+  private _changeValue(e: { offsetX: number }) {
     let value = e.offsetX / (this.width / this.max);
     if (value > this.max) value = this.max;
     if (value < this.min) value = this.min;
@@ -107,7 +140,7 @@ export default class Decimal extends LitElement {
   }
 
   // FIXME: mouse and value is not sync
-  mousedownHandler(e: DragEvent) {
+  private _mousedownHandler(e: DragEvent) {
     e.preventDefault();
     const moveHandler = (moveE: any) => {
       e.preventDefault();
@@ -122,5 +155,35 @@ export default class Decimal extends LitElement {
     document.addEventListener("mouseup", upHandler);
   }
 
-  // TODO: adjust value when the left and right keys are pressed
+  private _handleClickHandler(e: any) {
+    e.stopPropagation();
+    e.target?.focus();
+    return;
+  }
+
+  private _leftAndRightHandler(e: KeyboardEvent) {
+    if (e.key === "ArrowLeft") {
+      this._changeValue({
+        offsetX: (this.value - 1) * (this.width / this.max),
+      });
+    }
+    if (e.key === "ArrowRight") {
+      this._changeValue({
+        offsetX: (this.value + 1) * (this.width / this.max),
+      });
+    }
+  }
+
+  private _handleFocusHandler() {
+    this.handleRef.value?.addEventListener(
+      "keydown",
+      this._leftAndRightHandler.bind(this)
+    );
+  }
+  private _handleBlurHandler() {
+    this.handleRef.value?.removeEventListener(
+      "keydown",
+      this._leftAndRightHandler
+    );
+  }
 }
