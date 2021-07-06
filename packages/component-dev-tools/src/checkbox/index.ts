@@ -16,6 +16,7 @@ export default class Radio extends LitElement {
     .zt-checkbox-group {
       display: flex;
       flex-wrap: wrap;
+      outline: none;
     }
     .zt-checkbox-item {
       position: relative;
@@ -49,7 +50,7 @@ export default class Radio extends LitElement {
   @state() checkedList: CheckItem[] = [];
 
   render() {
-    return html`<div class="zt-checkbox-group">
+    return html`<div tabindex="0" class="zt-checkbox-group">
       ${this.checkOption.map(
         (item) =>
           html`<div

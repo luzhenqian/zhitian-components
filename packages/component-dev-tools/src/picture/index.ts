@@ -32,6 +32,7 @@ export default class Picture extends LitElement {
       border: 2px dashed var(--ztcdt-hight-text-color);
       cursor: pointer;
       position: relative;
+      outline: none;
     }
     .container:hover {
       border-color: var(--ztcdt-primary-color);
@@ -111,7 +112,7 @@ export default class Picture extends LitElement {
   inputRef = createRef<HTMLInputElement>();
 
   render() {
-    return html`<div class="container">
+    return html`<div tabindex="0" class="container">
       ${
         this.stat === Stat.Init
           ? html`

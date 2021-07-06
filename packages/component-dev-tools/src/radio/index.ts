@@ -10,12 +10,13 @@ interface RadioItem {
   label: string;
 }
 
-@customElement("ztcdt-radio")
+@customElement("zt-radio")
 export default class Radio extends LitElement {
   static styles = css`
     .zt-radio-group {
       display: flex;
       flex-wrap: wrap;
+      outline: none;
     }
     .zt-radio-item {
       position: relative;
@@ -51,7 +52,7 @@ export default class Radio extends LitElement {
   @state() checkedItem: RadioItem | null = null;
 
   render() {
-    return html`<div class="zt-radio-group">
+    return html`<div tabindex="0" class="zt-radio-group">
       ${this.radio.map(
         (item) =>
           html`<div

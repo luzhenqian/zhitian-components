@@ -88,6 +88,7 @@ export default class Select extends LitElement {
 
   render() {
     return html`<div
+      tabindex="0"
       class="zt-select-wrap"
       ${ref(this.inputRef)}
       @click=${this._clickHandler}
