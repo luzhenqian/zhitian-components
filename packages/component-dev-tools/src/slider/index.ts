@@ -85,13 +85,14 @@ export default class Decimal extends LitElement {
   handleRef = createRef<HTMLDivElement>();
 
   render() {
+    const width = `${(this.value / this.max) * 100}%`;
     return html`<div
       class="container"
       style="width: ${this.width}px;"
       @click=${this._clickHandler}
     >
       <div class="rail"></div>
-      <div class="track" style="width: ${this.value}%;"></div>
+      <div class="track" style="width: ${width}"></div>
       <div
         ${ref(this.handleRef)}
         tabindex="0"
@@ -100,7 +101,7 @@ export default class Decimal extends LitElement {
         @blur=${this._handleBlurHandler}
         @mousedown=${this._mousedownHandler}
         class="handle"
-        style="left: ${this.value}%;"
+        style="left: ${width}"
         @mouseenter=${() => (this._tipVisible = true)}
         @mouseleave=${() => (this._tipVisible = false)}
       >
@@ -108,7 +109,7 @@ export default class Decimal extends LitElement {
           class="tip"
           style="display: ${this._tipVisible ? "inline-block" : "none"}"
         >
-          ${this.value}
+          ${Math.round(this.value)}
         </div>
       </div>
     </div>`;

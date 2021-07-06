@@ -47,6 +47,7 @@ export default class Radio extends LitElement {
   `;
 
   @property({ type: Array }) checkOption: CheckItem[] = [];
+  @property({ type: Array }) defaultCheckedList: any[] = [];
   @state() checkedList: CheckItem[] = [];
 
   render() {

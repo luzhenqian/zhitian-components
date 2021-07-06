@@ -3,9 +3,25 @@ export default [
     code: "bar",
     name: "柱子样式",
     fieldset: [
-      { code: "width", name: "柱子宽度", type: "Slider" },
+      {
+        code: "width",
+        name: "柱子宽度",
+        type: "Slider",
+        options: {
+          max: 30,
+          min: 1,
+        },
+      },
       { code: "color", name: "柱子颜色", type: "Color" },
-      { code: "radius", name: "柱子圆角度", type: "Slider" },
+      {
+        code: "radius",
+        name: "柱子圆角度",
+        type: "Slider",
+        options: {
+          max: 30,
+          min: 1,
+        },
+      },
     ],
   },
   {

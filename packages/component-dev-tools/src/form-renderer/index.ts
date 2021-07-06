@@ -24,6 +24,7 @@ export enum FieldType {
 export namespace FieldType {
   export function getComponent(
     type: FieldType | FieldType[],
+    options: any,
     config: any,
     code: any,
     fieldCode: any,
@@ -37,8 +38,6 @@ export namespace FieldType {
     const nativeChangeHandler = (e: any) => {
       const rgb = tinycolor(e?.target?.value).toRgbString();
       config[code][fieldCode] = rgb;
-      console.log(e?.target?.value, rgb);
-
       changeStyles(config);
     };
 
@@ -75,13 +74,14 @@ export namespace FieldType {
           @input="${nativeChangeHandler}"
         ></zt-select>`;
       case FieldType.Slider:
-        console.log("slider:", code, fieldCode);
-
-        return html`<zt-slider
-          type="color"
-          value="${config[code][fieldCode]}"
-          @change="${changeHandler}"
-        ></zt-slider>`;
+        const slider: any = document.createElement("zt-slider");
+        slider.value = config[code][fieldCode];
+        slider.addEventListener("change", (e: any) => changeHandler(e));
+        if (options) {
+          console.log(slider);
+          slider.max = options.max;
+        }
+        return slider;
       default:
         return null;
     }
