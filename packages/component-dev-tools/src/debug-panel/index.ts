@@ -66,10 +66,14 @@ export default class DebugPanel extends LitElement {
       font-weight: 600;
       color: var(--title-text-color);
     }
-    .title-wrap:first {
+    /* .title-wrap:first-child {
       border-top-right-radius: 8px;
       border-top-left-radius: 8px;
     }
+    .sub-title-wrap:last-child {
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    } */
     .sub-title-wrap {
       padding: 4px 8px;
       background-color: var(--sub-title-bg-color);
@@ -175,15 +179,28 @@ function renderForm(
   stylesDefault: any,
   changeStyles: any
 ) {
-  const a = () => {
-    changeStyles();
+  const changeHandler = (e: CustomEvent, code: any) => {
+    console.log(e.detail.value);
+    const hasIdx = (
+      e.detail.value as { value: string; label: string }[]
+    ).findIndex((item) => item.value === "show");
+    if (hasIdx !== -1) {
+      console.log(stylesDefault, stylesDefault[code]);
+      stylesDefault[code].show = true;
+      changeStyles(stylesDefault);
+      return
+    }
+    stylesDefault[code].show = false;
+    changeStyles(stylesDefault);
   };
 
   return stylesConfig.map(
-    ({ code, name, fieldset, show }) => html`<div>
+    ({ code, name, fieldset, show }, idx) => html`<div>
       <div class="title-wrap">
         <span class="title">${name}</span>${show !== undefined
           ? html`<zt-checkbox
+              @change=${(e: CustomEvent) =>
+                changeHandler.call(null, e, code)}
               checkOption="${JSON.stringify([
                 { value: "show", label: "是否显示" },
               ])}"

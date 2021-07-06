@@ -82,6 +82,7 @@ export default class Decimal extends LitElement {
   @property({ type: Number }) max = 100;
   @property({ type: Number }) min = 1;
   @state() _tipVisible = false;
+  @state() _focus = false;// FIXME: focus lost after update
   handleRef = createRef<HTMLDivElement>();
 
   render() {
@@ -118,6 +119,7 @@ export default class Decimal extends LitElement {
   private _clickHandler(e: any) {
     const handleEl = this.handleRef.value;
     handleEl?.focus();
+    this._focus = true;
     if (e.target === handleEl) {
       return;
     }

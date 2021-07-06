@@ -47,7 +47,7 @@ export default class Radio extends LitElement {
   `;
 
   @property({ type: Array }) checkOption: CheckItem[] = [];
-  @property({ type: Array }) defaultCheckedList: any[] = [];
+  @property({ type: Array }) defaultCheckedList: CheckItem[] = [];
   @state() checkedList: CheckItem[] = [];
 
   render() {
@@ -55,7 +55,9 @@ export default class Radio extends LitElement {
       ${this.checkOption.map(
         (item) =>
           html`<div
-            class="zt-checkbox-item ${this.checkedList.includes(item)
+            class="zt-checkbox-item ${this.checkedList.findIndex(
+              (checked) => checked.value === item.value
+            ) !== -1
               ? "checked"
               : ""}"
             @click=${() => this.clickHandler(item)}
@@ -66,13 +68,28 @@ export default class Radio extends LitElement {
     </div>`;
   }
 
+  firstUpdated() {
+    this.checkedList = [...this.defaultCheckedList];
+  }
+
   clickHandler(item: CheckItem) {
-    const idx = this.checkedList.findIndex((i) => i === item);
-    if (idx > -1) {
-      this.checkedList.splice(idx, 1);
-      this.checkedList = [...this.checkedList];
-      return;
+    try {
+      const idx = this.checkedList.findIndex((i) => i.value === item.value);
+      if (idx > -1) {
+        this.checkedList.splice(idx, 1);
+        this.checkedList = [...this.checkedList];
+        return;
+      }
+      this.checkedList = [...this.checkedList, item];
+    } finally {
+      const detail = { value: this.checkedList };
+      const event = new CustomEvent("change", {
+        detail,
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+      });
+      this.dispatchEvent(event);
     }
-    this.checkedList = [...this.checkedList, item];
   }
 }

@@ -78,7 +78,6 @@ export namespace FieldType {
         slider.value = config[code][fieldCode];
         slider.addEventListener("change", (e: any) => changeHandler(e));
         if (options) {
-          console.log(slider);
           slider.max = options.max;
         }
         return slider;
