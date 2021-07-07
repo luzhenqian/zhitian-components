@@ -26,13 +26,14 @@ module.exports = {
   ],
   plugins: [
     resolve.default(),
+    typescript(),
     commonjs(),
     alias({
       entries: [{ find: "@", replacement: path.resolve(__dirname, "../../") }],
     }),
     terser(),
-    typescript(),
     del({ targets: "dist/*" }),
     visualizer(),
   ],
+  preserveEntrySignatures: "strict",
 };

@@ -8,7 +8,7 @@ import {
   Ref,
   ref,
 } from "../../../../node_modules/lit/directives/ref";
-import * as monaco from "monaco-editor";
+// import * as monaco from "monaco-editor";
 // import CodeMirror from "codemirror";
 // import "codemirror/mode/javascript/javascript";
 
@@ -31,14 +31,14 @@ export default class CodeEditor extends LitElement {
     //   mode: "javascript",
     // });
 
-    monaco.editor.create(container as HTMLElement, {
-      theme: "vs-dark",
-      value: `function a(){
-        console.log('hello, world')
-      }`,
-      language: "javascript",
-      cursorBlinking: "blink",
-    });
+    // monaco.editor.create(container as HTMLElement, {
+    //   theme: "vs-dark",
+    //   value: `function a(){
+    //     console.log('hello, world')
+    //   }`,
+    //   language: "javascript",
+    //   cursorBlinking: "blink",
+    // });
     // return html`<div
     //   ${ref(this.containerRef)}
     //   style="height: ${this.height}px; width: ${this.width}px;"

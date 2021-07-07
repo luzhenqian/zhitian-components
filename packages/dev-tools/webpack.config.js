@@ -1,5 +1,5 @@
 const path = require("path");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+// const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
@@ -41,7 +41,7 @@ module.exports = {
     },
     extensions: [".js", ".ts"],
   },
-  plugins: [new MonacoWebpackPlugin()],
+  // plugins: [new MonacoWebpackPlugin()],
   /** @type {import('webpack-dev-server').Configuration} */
   devServer: {
     contentBase: path.resolve(__dirname, "."),
