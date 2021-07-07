@@ -32,6 +32,7 @@ import Modal from "./src/modal";
 import Slider from "./src/slider";
 // import CodeEditor from "./src/code-editor";
 import DebugPanel from "./src/debug-panel";
+import "./src/styles/default-variabales";
 
 export default {
   Integer,
@@ -47,5 +48,5 @@ export default {
   Modal,
   Slider,
   // CodeEditor,
-  DebugPanel
+  DebugPanel,
 };
