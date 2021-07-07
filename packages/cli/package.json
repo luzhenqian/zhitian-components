@@ -1,6 +1,6 @@
 {
   "name": "@ztc/cli",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
@@ -20,8 +20,8 @@
     "@babel/preset-env": "^7.14.7",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "@vue/compiler-sfc": "^3.1.2",
-    "@ztc/vue-loader": "^0.0.31",
-    "@ztc/ztc-loader": "^0.0.31",
+    "@ztc/vue-loader": "^0.0.32",
+    "@ztc/ztc-loader": "^0.0.32",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.1",
     "commander": "^7.2.0",
@@ -30,11 +30,11 @@
     "inquirer": "^8.1.1",
     "log-symbols": "4.1.0",
     "style-loader": "^2.0.0",
+    "ts-loader": "^9.2.3",
     "vue-loader": "^16.2.0",
     "webpack": "^5.40.0",
     "webpack-cli": "3",
-    "webpack-dev-server": "^3.11.2",
-    "ts-loader": "^9.2.3"
+    "webpack-dev-server": "^3.11.2"
   },
   "gitHead": "f8d043f767473ac79a540166473c9053e083e572"
 }
