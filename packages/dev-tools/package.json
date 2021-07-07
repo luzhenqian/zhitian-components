@@ -1,6 +1,6 @@
 {
   "name": "@ztc/dev-tools",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "",
   "main": "dist/dev-tools.cjs.js",
   "module": "dist/dev-tools.esm.js",
