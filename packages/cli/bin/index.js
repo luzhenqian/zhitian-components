@@ -27,43 +27,16 @@ program
     create(componentName);
   });
 
-const framework = {
-  vanilla: {
-    name: "vanilla",
-    color: chalk.bold,
-  },
-  vue: {
-    name: "vue",
-    color: chalk.green,
-  },
-  react: {
-    name: "react",
-    color: chalk.blue,
-  },
-};
-
 program
-  .command("dev [framework]")
+  .command("dev")
   .description(
-    "serve a .ztc, .jsx or .vue file in development mode with zero config"
+    "start a development mode  server with zero config"
   )
-  .action((frameworkName = framework.vanilla.name) => {
-    if (!(frameworkName in framework)) {
-      console.log(
-        logSymbols.error,
-        chalk.red(
-          `unsupported framework, currently only supports ${Object.keys(
-            framework
-          ).join(", ")}`
-        )
-      );
-      return;
-    }
+  .action(() => {
     console.log(
-      chalk.bold("🚀  run framework: "),
-      framework[frameworkName].color(frameworkName)
+      chalk.bold("🚀  run ")
     );
-    dev(frameworkName);
+    dev();
   });
 
 program.parse(process.argv);

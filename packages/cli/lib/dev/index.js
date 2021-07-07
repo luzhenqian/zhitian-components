@@ -2,19 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 const webpackDevServer = require("webpack-dev-server");
 
-module.exports = function (framework) {
+module.exports = function () {
   let webpackConfigPath;
-  if (framework === "vanilla") {
-    webpackConfigPath = path.resolve(
-      __dirname,
-      "./config/webpack.config.ztc.js"
-    );
-  } else if (framework === "vue") {
-    webpackConfigPath = path.resolve(
-      __dirname,
-      "./config/webpack.config.vue.js"
-    );
-  }
+
+  webpackConfigPath = path.resolve(__dirname, "./config/webpack.config.js");
 
   const config = require(webpackConfigPath);
 
