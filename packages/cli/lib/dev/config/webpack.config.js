@@ -3,7 +3,7 @@ const path = require("path");
 /** @type {import('webpack').Configuration} */
 module.exports = (() => {
   return {
-    entry: path.resolve(process.cwd(), "./main.ts"),
+    entry: path.resolve(process.cwd(), "./main.js"),
     module: {
       rules: [
         {
@@ -13,7 +13,7 @@ module.exports = (() => {
             {
               loader: path.resolve(
                 __dirname,
-                "../../../../../node_modules/ts-loader/index.js"
+                "../../../node_modules/ts-loader/index.js"
               ),
             },
           ],
