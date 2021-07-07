@@ -11,7 +11,7 @@ interface CheckItem {
 }
 
 @customElement("zt-checkbox")
-export default class Radio extends LitElement {
+export default class Checkbox extends LitElement {
   static styles = css`
     .zt-checkbox-group {
       display: flex;
