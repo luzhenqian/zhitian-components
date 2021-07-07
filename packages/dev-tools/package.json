@@ -1,10 +1,10 @@
 {
-  "name": "@ztc/component-dev-tools",
+  "name": "@ztc/dev-tools",
   "version": "0.0.23",
   "description": "",
-  "main": "dist/component-dev-tools.cjs.js",
-  "module": "dist/component-dev-tools.esm.js",
-  "browser": "dist/component-dev-tools.umd.js",
+  "main": "dist/dev-tools.cjs.js",
+  "module": "dist/dev-tools.esm.js",
+  "browser": "dist/dev-tools.umd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
