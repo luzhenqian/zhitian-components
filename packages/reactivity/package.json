@@ -1,6 +1,6 @@
 {
   "name": "@ztc/reactivity",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "",
   "main": "dist/reactivity.cjs.js",
   "module": "dist/reactivity.esm.js",
