@@ -2,17 +2,28 @@ import { css } from "lit";
 
 export const inputStyles = css`
   input {
-    padding: 4px 6px;
-    margin: 10px;
+    border-color: transparent;
+    background-color: rgb(79, 85, 102);
+    color: var(--ztcdt-text-color);
     outline: none;
-    color: var(--ztcdt-middle-text-color);
-    background: transparent;
-    border-radius: var(--ztcdt-radius);
-    border: 2px solid var(--ztcdt-middle-text-color);
+    margin: 4px;
+    width: 80px;
+    border-radius: 2px;
+    border-width: 2px;
+    padding: 2px 4px;
   }
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    appearance: none;
+  }
+
   input:hover,
   input:focus {
-    border: 2px solid var(--ztcdt-primary-color);
+    border-color: var(--ztcdt-primary-color);
+  }
+
+  input:focus {
+    box-shadow: 0 0 6px 0 var(--ztcdt-primary-color);
   }
 `;
 

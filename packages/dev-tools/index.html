@@ -24,6 +24,10 @@
         --ztcdt-radius: 4px;
         --ztcdt-warn: #f54a4c;
       }
+
+      zt-integer:host(input){
+        color:red;
+      }
     </style>
   </head>
   <body>
@@ -31,7 +35,7 @@
 
     <bar-chart></bar-chart>
 
-    <div><span>整数：</span><zt-integer></zt-integer></div>
+    <div><span>整数：</span><zt-integer customStyle="color: red;"></zt-integer></div>
     <div><span>浮点数：</span><zt-decimal></zt-decimal></div>
     <div><span>文本：</span><zt-text></zt-text></div>
     <div><span>文本域：</span><zt-text-area></zt-text-area></div>

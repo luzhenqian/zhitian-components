@@ -14,12 +14,14 @@ export default class Decimal extends LitElement {
   @property({ type: Number }) max = 999999999;
   @property({ type: String }) placeholder = "";
   @property({ type: Number }) fixed = 5;
+  @property({ type: String }) customStyle = "";
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
   render() {
     return html`<input
       ${ref(this.inputRef)}
+      style=${this.customStyle}
       value=${this.value}
       placeholder=${this.placeholder}
       @input=${this._input}

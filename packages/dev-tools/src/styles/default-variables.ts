@@ -1,4 +1,4 @@
-document.documentElement.style.setProperty("--ztcdt-primary-color", "#bb86fc");
+document.documentElement.style.setProperty("--ztcdt-primary-color", "#ba01ff");
 document.documentElement.style.setProperty(
   "--ztcdt-dark-primary-color",
   "#aa66ff"
@@ -14,6 +14,10 @@ document.documentElement.style.setProperty(
 document.documentElement.style.setProperty(
   "--ztcdt-middle-text-color",
   "#a5a5a5"
+);
+document.documentElement.style.setProperty(
+  "--ztcdt-text-color",
+  "#e9e9e9"
 );
 document.documentElement.style.setProperty(
   "--ztcdt-disable-text-color",

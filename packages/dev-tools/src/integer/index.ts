@@ -21,12 +21,14 @@ export default class Integer extends LitElement {
   @property({ type: Number }) max = 999999999;
   @property({ type: String }) placeholder = "";
   @property({ type: String }) styles = "";
+  @property({ type: String }) customStyle = "";
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
-  render() {
+  render() {    
     return html`<input
       ${ref(this.inputRef)}
+      style=${this.customStyle}
       value=${this.value}
       placeholder=${this.placeholder}
       @input=${this._input}
