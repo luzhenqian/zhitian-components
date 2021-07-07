@@ -32,6 +32,7 @@ import Modal from "./src/modal";
 import Slider from "./src/slider";
 // import CodeEditor from "./src/code-editor";
 import DebugPanel from "./src/debug-panel";
+import ZTComponent from "./src/zt-component";
 import "./src/styles/default-variables";
 
 export default {
@@ -49,4 +50,5 @@ export default {
   Slider,
   // CodeEditor,
   DebugPanel,
+  ZTComponent,
 };
