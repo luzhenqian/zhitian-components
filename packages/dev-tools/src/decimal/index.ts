@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "../../../../node_modules/lit/decorators";
-import { createRef, Ref, ref } from "../../../../node_modules/lit/directives/ref";
+import { customElement, property } from "lit/decorators.js";
+import { createRef, Ref, ref } from "lit/directives/ref.js";
 import { inputStyles } from "../styles/input";
 
 @customElement("zt-decimal")

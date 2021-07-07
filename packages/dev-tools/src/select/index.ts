@@ -3,12 +3,12 @@ import {
   customElement,
   property,
   state,
-} from "../../../../node_modules/lit/decorators";
+} from "lit/decorators.js";
 import {
   createRef,
   Ref,
   ref,
-} from "../../../../node_modules/lit/directives/ref";
+} from "lit/directives/ref.js";
 import { iconStyles } from "../styles/input";
 
 interface Option {

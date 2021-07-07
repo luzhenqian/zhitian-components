@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { customElement } from "../../../../node_modules/lit/decorators";
+import { customElement } from "lit/decorators.js";
 
 @customElement("zt-loading")
 export default class Loading extends LitElement {

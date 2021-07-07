@@ -2,12 +2,12 @@ import { css, html, LitElement } from "lit";
 import {
   customElement,
   property,
-} from "../../../../node_modules/lit/decorators";
+} from "lit/decorators.js";
 import {
   createRef,
   Ref,
   ref,
-} from "../../../../node_modules/lit/directives/ref";
+} from "lit/directives/ref.js";
 // import * as monaco from "monaco-editor";
 // import CodeMirror from "codemirror";
 // import "codemirror/mode/javascript/javascript";

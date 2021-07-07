@@ -3,7 +3,7 @@ import { LitElement, html, css } from "lit";
 import {
   customElement,
   property,
-} from "../../../../node_modules/lit/decorators";
+} from "lit/decorators.js";
 import DataConfig from "./data.config";
 import StylesConfig from "./styles.config";
 import DataDefault from "./data.default";

@@ -2,7 +2,7 @@ import { css, html, LitElement } from "lit";
 import {
   customElement,
   property,
-} from "../../../../node_modules/lit/decorators";
+} from "lit/decorators.js";
 
 @customElement("zt-modal")
 export default class Modal extends LitElement {

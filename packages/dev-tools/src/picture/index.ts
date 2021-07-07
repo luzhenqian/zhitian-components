@@ -1,10 +1,10 @@
 import { css, html, LitElement } from "lit";
-import { createRef, ref } from "../../../../node_modules/lit/directives/ref";
+import { createRef, ref } from "lit/directives/ref.js";
 import {
   customElement,
   property,
   state,
-} from "../../../../node_modules/lit/decorators";
+} from "lit/decorators.js";
 
 enum Stat {
   Init,

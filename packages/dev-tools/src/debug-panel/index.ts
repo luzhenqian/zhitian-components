@@ -3,7 +3,7 @@ import {
   customElement,
   property,
   state,
-} from "../../../../node_modules/lit/decorators";
+} from "lit/decorators.js";
 import { FieldType } from "../form-renderer";
 
 enum PanelType {

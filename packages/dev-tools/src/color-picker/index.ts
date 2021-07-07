@@ -4,9 +4,7 @@ import {
   property,
   query,
   state,
-} from "../../../../node_modules/lit/decorators";
-import { styleMap } from "../../../../node_modules/lit/directives/style-map";
-import { inputStyles } from "../styles/input";
+} from "lit/decorators.js";
 
 @customElement("ztcdt-color")
 export default class Color extends LitElement {
