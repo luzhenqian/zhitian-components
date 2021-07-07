@@ -1,6 +1,6 @@
 {
   "name": "@ztc/dev-tools",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "",
   "main": "dist/dev-tools.cjs.js",
   "module": "dist/dev-tools.esm.js",
@@ -38,9 +38,9 @@
     "typescript": "^4.3.4"
   },
   "peerDependencies": {
-    "lit": "^2.0.0-rc.2",
-    "tinycolor2": "^1.4.2",
     "codemirror": "^5.62.0",
-    "monaco-editor": "^0.25.2"
+    "lit": "^2.0.0-rc.2",
+    "monaco-editor": "^0.25.2",
+    "tinycolor2": "^1.4.2"
   }
 }

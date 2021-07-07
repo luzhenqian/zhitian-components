@@ -1,6 +1,6 @@
 {
   "name": "@ztc/vue-loader",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "",
   "main": "dist/vue-loader.cjs.js",
   "module": "dist/vue-loader.esm.js",
