@@ -3,7 +3,8 @@ const { program } = require("commander");
 const path = require("path");
 const init = require("../lib/init");
 const create = require("../lib/create");
-const dev = require("../lib/dev/index");
+const dev = require("../lib/dev");
+const build = require("../lib/build");
 const chalk = require("chalk");
 const logSymbols = require("log-symbols");
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
@@ -29,14 +30,18 @@ program
 
 program
   .command("dev")
-  .description(
-    "start a development mode  server with zero config"
-  )
+  .description("start a development mode  server with zero config")
   .action(() => {
-    console.log(
-      chalk.bold("🚀  run ")
-    );
+    console.log(chalk.bold("🚀  run "));
     dev();
+  });
+
+program
+  .command("build")
+  .description("build your component library")
+  .action(() => {
+    console.log(chalk.bold("🚀  build "));
+    build();
   });
 
 program.parse(process.argv);
