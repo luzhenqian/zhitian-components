@@ -17,7 +17,7 @@ enum FieldType {
   Slider, // 滑动输入
   Code, // 代码
 }
-
+import {tagNameMap} from "./src/tag-name-map"
 import Integer from "./src/integer";
 import Decimal from "./src/decimal";
 import Text from "./src/text";
@@ -34,7 +34,7 @@ import Slider from "./src/slider";
 import DebugPanel from "./src/debug-panel";
 import ZTComponent from "./src/zt-component";
 import "./src/styles/default-variables";
-
+(window as any)['tagNameMap']= tagNameMap
 export default {
   Integer,
   Decimal,
@@ -50,5 +50,5 @@ export default {
   Slider,
   // CodeEditor,
   DebugPanel,
-  ZTComponent,
+  ZTComponent,tagNameMap
 };
