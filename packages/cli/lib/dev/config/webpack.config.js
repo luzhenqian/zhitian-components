@@ -36,7 +36,7 @@ module.exports = (() => {
       contentBase: path.resolve(process.cwd(), "./"),
       port: 9000,
       inline: true,
-      hot: true,
+      hot: true
     },
   };
 })();

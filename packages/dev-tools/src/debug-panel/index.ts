@@ -1,10 +1,7 @@
 import { html, css, LitElement } from "lit";
-import {
-  customElement,
-  property,
-  state,
-} from "lit/decorators.js";
+import { customElement, state } from "lit/decorators.js";
 import { FieldType } from "../form-renderer";
+import { icon as publishIcon } from "./publish-icon";
 
 enum PanelType {
   Styles = "Styles",
@@ -97,6 +94,23 @@ export default class DebugPanel extends LitElement {
       right: 0;
       bottom: 0;
     }
+    .icon {
+      width: 40px;
+      height: 40px;
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      background: var(--ztcdt-dark-primary-color);
+      border-radius: 50%;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .icon > svg {
+      fill: var(--ztcdt-primary-color);
+    }
   `;
 
   @state() _children: any = null;
@@ -107,6 +121,7 @@ export default class DebugPanel extends LitElement {
   render() {
     return html`<div class="container"">
       <slot></slot>
+      <i class="icon">${publishIcon}</i>
       <div class="panel">
         <div class="panel-tabs">
           <div class="panel-tab ${
@@ -180,15 +195,13 @@ function renderForm(
   changeStyles: any
 ) {
   const changeHandler = (e: CustomEvent, code: any) => {
-    console.log(e.detail.value);
     const hasIdx = (
       e.detail.value as { value: string; label: string }[]
     ).findIndex((item) => item.value === "show");
     if (hasIdx !== -1) {
-      console.log(stylesDefault, stylesDefault[code]);
       stylesDefault[code].show = true;
       changeStyles(stylesDefault);
-      return
+      return;
     }
     stylesDefault[code].show = false;
     changeStyles(stylesDefault);
@@ -199,8 +212,7 @@ function renderForm(
       <div class="title-wrap">
         <span class="title">${name}</span>${show !== undefined
           ? html`<zt-checkbox
-              @change=${(e: CustomEvent) =>
-                changeHandler.call(null, e, code)}
+              @change=${(e: CustomEvent) => changeHandler.call(null, e, code)}
               checkOption="${JSON.stringify([
                 { value: "show", label: "是否显示" },
               ])}"

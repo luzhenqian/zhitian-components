@@ -1,14 +1,11 @@
 import ZTComponent from "../../src/zt-component";
-import { LitElement, html, css } from "lit";
-import {
-  customElement,
-  property,
-} from "lit/decorators.js";
+import { html, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import DataConfig from "./data.config";
 import StylesConfig from "./styles.config";
 import DataDefault from "./data.default";
 import StylesDefault from "./styles.default";
-import * as echarts from "echarts";
+import { init } from "echarts";
 
 @customElement("bar-chart")
 export default class BarChart extends ZTComponent {
@@ -32,6 +29,8 @@ export default class BarChart extends ZTComponent {
 
   @property({ type: Array })
   data = DataDefault;
+
+  chart: any;
 
   updated() {
     let styles = this.styles;
@@ -113,15 +112,21 @@ export default class BarChart extends ZTComponent {
       },
     };
 
-    let myChart;
-    const container = this.renderRoot.querySelector("#container");
-    if (container) {
-      myChart = echarts.init(container as HTMLElement);
-      myChart.setOption(option);
-    }
+    this.renderChart(option);
   }
 
   render() {
     return html` <div id="container"></div> `;
+  }
+
+  renderChart(option: any) {
+    const container = this.renderRoot.querySelector("#container");
+    this.chart;
+    if (!this.chart && container) {
+      this.chart = init(container as HTMLElement);
+      this.chart.setOption(option);
+    } else {
+      this.chart.setOption(option);
+    }
   }
 }
