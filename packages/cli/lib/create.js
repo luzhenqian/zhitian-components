@@ -8,7 +8,7 @@ const toLowerLine = require("./helper").toLowerLine;
 
 module.exports = (componentName) => {
   const destDir = process.cwd();
-  const targetDir = path.join(destDir, "./packages/", componentName);
+  const targetDir = path.join(destDir, componentName);
   if (fs.existsSync(targetDir)) {
     console.log(
       logSymbols.error,

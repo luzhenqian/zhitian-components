@@ -7,6 +7,7 @@ const dev = require("../lib/dev");
 const build = require("../lib/build");
 const chalk = require("chalk");
 const logSymbols = require("log-symbols");
+const publish = require("../lib/publish");
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
 const version = pkgConfig.version;
 
@@ -42,6 +43,14 @@ program
   .action(() => {
     console.log(chalk.bold("🚀  build "));
     build();
+  });
+
+program
+  .command("publish")
+  .description("publish your component library")
+  .action(() => {
+    console.log('publish start');
+    publish();
   });
 
 program.parse(process.argv);

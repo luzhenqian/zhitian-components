@@ -29,31 +29,27 @@ const plugins = [
   visualizer(),
 ];
 
-module.exports = () => {
-  fs.readdirSync(path.resolve(cmdPath, "./packages")).forEach(
-    async (pkgPath) => {
-      const inputOption = {
-        input: path.join(cmdPath, "packages", pkgPath, "./src/index.ts"),
-        plugins,
-      };
+module.exports = async () => {
+  // fs.readdirSync(cmdPath).forEach(async (pkgPath) => {
+  const inputOption = {
+    input: path.join(cmdPath, "./index.ts"),
+    plugins,
+  };
 
-      const pkg = require(path.resolve(
-        cmdPath,
-        "packages",
-        pkgPath,
-        "package.json"
-      ));
-      const outputOption = {
-        exports: "auto",
-        file: path.resolve(cmdPath, "packages", pkgPath, pkg.module),
-        format: "esm",
-      };
+  const outputOption = {
+    exports: "auto",
+    file: path.resolve(cmdPath, "./dist/index.esm.js"),
+    format: "esm",
+  };
 
-      const spinner = ora(`Building ${chalk.blue(pkgPath)}`).start();
-      const bundle = await rollup(inputOption);
-      await bundle.write(outputOption);
-      await bundle.close();
-      spinner.succeed(`Building ${chalk.blue(pkgPath)} done`);
-    }
-  );
+  const spinner = ora(
+    `Building ${chalk.blue(inputOption.input)} -> ${chalk.blue(
+      outputOption.file
+    )}`
+  ).start();
+  const bundle = await rollup(inputOption);
+  await bundle.write(outputOption);
+  await bundle.close();
+  spinner.succeed(`Building ${chalk.blue(inputOption.input)} done`);
+  // });
 };
