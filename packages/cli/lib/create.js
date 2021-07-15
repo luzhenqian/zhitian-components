@@ -33,6 +33,12 @@ module.exports = (componentName) => {
   copyFileWithHBS(tmplDir, targetDir, {
     pkgName: genPkgName(componentLibName, componentName),
     componentName: genComponentName(componentLibName, componentName),
+    componentName: toLowerLine(
+      genComponentName(componentLibName, componentName)
+    ),
+    componentNameBigHump: toBigHump(
+      genComponentName(componentLibName, componentName)
+    ),
   });
 
   console.log(

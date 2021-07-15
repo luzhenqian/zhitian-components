@@ -1,0 +1,25 @@
+import DevTools from "@ztc/dev-tools";
+import { html, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import DataConfig from "./data.config";
+import StylesConfig from "./styles.config";
+import DataDefault from "./data.default";
+import StylesDefault from "./styles.default";
+
+@customElement("{{componentName}}")
+export default class {{componentNameBigHump}} extends DevTools.ZTComponent {
+  static dataConfig = DataConfig;
+  static stylesConfig = StylesConfig;
+
+  static styles = css``;
+
+  @property({ type: Object })
+  styles: any = StylesDefault;
+
+  @property({ type: Object })
+  data = DataDefault;
+
+  render() {
+    return html` <div></div> `;
+  }
+}

@@ -36,6 +36,7 @@
     "@ztc/vue-loader": "~0.0.4",
     "@ztc/ztc-loader": "~0.0.3",
     "babel-loader": "^8.2.2",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
     "cheerio": "^1.0.0-rc.10",
     "css-loader": "^5.2.6",
     "echarts": "^5.1.2",

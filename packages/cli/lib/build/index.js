@@ -7,7 +7,7 @@ const copyFileWithHBS = require("../helper").copyFileWithHBS;
 const { spawn } = require("child_process");
 const ora = require("ora");
 const { rollup } = require("rollup");
-
+const babel = require("@rollup/plugin-babel");
 const commonjs = require("rollup-plugin-commonjs");
 const { terser } = require("rollup-plugin-terser");
 const alias = require("@rollup/plugin-alias");
@@ -18,6 +18,9 @@ const { visualizer } = require("rollup-plugin-visualizer");
 
 const cmdPath = process.cwd();
 const plugins = [
+  babel.default({
+    configFile: path.resolve(__dirname, "./config/.babelrc.json"),
+  }),
   resolve.default(),
   typescript(),
   commonjs(),
@@ -30,7 +33,6 @@ const plugins = [
 ];
 
 module.exports = async () => {
-  // fs.readdirSync(cmdPath).forEach(async (pkgPath) => {
   const inputOption = {
     input: path.join(cmdPath, "./index.ts"),
     plugins,
@@ -51,5 +53,4 @@ module.exports = async () => {
   await bundle.write(outputOption);
   await bundle.close();
   spinner.succeed(`Building ${chalk.blue(inputOption.input)} done`);
-  // });
 };
