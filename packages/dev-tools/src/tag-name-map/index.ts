@@ -7,7 +7,6 @@ CustomElementRegistry.prototype.define = function (
   constructor: CustomElementConstructor,
   options: any
 ) {
-  tagNameMap.set(name, constructor);
-  if (tagNameMap.has(name)) return;
+  if (!tagNameMap.has(name)) tagNameMap.set(name, constructor);
   return originalDefine.call(this, name, constructor, options);
 };
