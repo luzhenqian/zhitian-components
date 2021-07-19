@@ -31,7 +31,7 @@ program
 
 program
   .command("dev")
-  .description("start a development mode  server with zero config")
+  .description("start a development mode server with zero config")
   .action(() => {
     console.log(chalk.bold("🚀  run "));
     dev();
