@@ -14,12 +14,12 @@ module.exports = {
   input: path.resolve(__dirname, "./index.ts"),
   output: [
     {
-      exports: "auto",
+      exports: "named",
       file: path.resolve(__dirname, pkg.main),
       format: "cjs",
     },
     {
-      exports: "auto",
+      exports: "named",
       file: path.resolve(__dirname, pkg.module),
       format: "esm",
     },

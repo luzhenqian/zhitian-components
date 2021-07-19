@@ -2,8 +2,6 @@ import { LitElement } from "lit";
 import { tagNameMap } from "../tag-name-map";
 
 export default class ZTComponent extends LitElement {
-  stylesConfig: {} = {};
-
   constructor() {
     super();
 

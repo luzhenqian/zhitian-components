@@ -42,7 +42,7 @@ module.exports = async () => {
   };
 
   const spinner = ora(
-    `Building ${chalk.blue(inputOption.input)} -> ${chalk.blue(
+    `Building ${chalk.blue(inputOption.input)} → ${chalk.blue(
       outputOption.file
     )}`
   ).start();
