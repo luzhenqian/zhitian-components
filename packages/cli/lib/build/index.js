@@ -7,7 +7,6 @@ const copyFileWithHBS = require("../helper").copyFileWithHBS;
 const { spawn } = require("child_process");
 const ora = require("ora");
 const { rollup } = require("rollup");
-const babel = require("@rollup/plugin-babel");
 const commonjs = require("rollup-plugin-commonjs");
 const { terser } = require("rollup-plugin-terser");
 const alias = require("@rollup/plugin-alias");
@@ -17,10 +16,8 @@ const del = require("rollup-plugin-delete");
 const { visualizer } = require("rollup-plugin-visualizer");
 
 const cmdPath = process.cwd();
+const pkg = require(path.resolve(cmdPath, "./package.json"));
 const plugins = [
-  babel.default({
-    configFile: path.resolve(__dirname, "./config/.babelrc.json"),
-  }),
   resolve.default(),
   typescript(),
   commonjs(),
@@ -34,13 +31,13 @@ const plugins = [
 
 module.exports = async () => {
   const inputOption = {
-    input: path.join(cmdPath, "./index.ts"),
+    input: path.resolve(cmdPath, "./index.ts"),
     plugins,
   };
 
   const outputOption = {
     exports: "auto",
-    file: path.resolve(cmdPath, "./dist/index.esm.js"),
+    file: path.resolve(cmdPath, pkg.module),
     format: "esm",
   };
 
