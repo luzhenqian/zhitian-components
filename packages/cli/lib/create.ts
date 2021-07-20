@@ -1,7 +1,5 @@
 import fs from "fs";
 import path from "path";
-import chalk from "chalk";
-import logSymbols from "log-symbols";
 import { copyFileWithHBS, toBigHump, toLowerLine } from "./helpers";
 import log from "./log";
 

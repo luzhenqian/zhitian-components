@@ -6,7 +6,7 @@ import init from "./lib/init";
 import create from "./lib/create";
 // import dev from "./lib/dev";
 // import build from "./lib/build";
-// import publish from "./lib/publish";
+import publish from "./lib/publish";
 
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
 const version = pkgConfig.version;
@@ -48,12 +48,11 @@ program
 //     build();
 //   });
 
-// program
-//   .command("publish")
-//   .description("publish your component library")
-//   .action(() => {
-//     console.log("publish start");
-//     publish();
-//   });
+program
+  .command("publish")
+  .description("publish your component library")
+  .action(() => {
+    publish();
+  });
 
 program.parse(process.argv);
