@@ -2,7 +2,7 @@
   "name": "@{{ companyName }}/{{ componentLibName }}",
   "version": "0.0.0",
   "description": "{{ description }}",
-  "main": "index.js",
+  "module": "./dist/index.esm.js",
   "scripts": {
     "test": "ztc test",
     "create": "ztc create",
@@ -15,10 +15,10 @@
   "author": "{{ author }}",
   "license": "ISC",
   "dependencies": {
-    "@ztc/runtime": "^{{ version }}",
-    "echarts": "^5.1.2"
+    "echarts": "^5.1.2",
+    "lit": "^2.0.0-rc.2"
   },
   "devDependencies": {
-    "@ztc/cli": "^{{ version }}"
+    "typescript": "^4.3.5"
   }
 }
