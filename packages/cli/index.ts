@@ -5,7 +5,7 @@ import chalk from "chalk";
 import init from "./lib/init";
 import create from "./lib/create";
 import dev from "./lib/dev";
-// import build from "./lib/build";
+import build from "./lib/build";
 import publish from "./lib/publish";
 
 const pkgConfig = require(path.resolve(__dirname, "../package.json"));
@@ -38,13 +38,12 @@ program
     dev();
   });
 
-// program
-//   .command("build")
-//   .description("build your component library")
-//   .action(() => {
-//     console.log(chalk.bold("🚀  build "));
-//     build();
-//   });
+program
+  .command("build")
+  .description("build your component library")
+  .action(() => {
+    build();
+  });
 
 program
   .command("publish")

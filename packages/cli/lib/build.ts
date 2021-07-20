@@ -1,17 +1,11 @@
-const fs = require("fs");
 const path = require("path");
-const inquirer = require("inquirer");
 const chalk = require("chalk");
-const logSymbols = require("log-symbols");
-const copyFileWithHBS = require("../helper").copyFileWithHBS;
-const { spawn } = require("child_process");
 const ora = require("ora");
 const { rollup } = require("rollup");
-const commonjs = require("rollup-plugin-commonjs");
-const { terser } = require("rollup-plugin-terser");
-const alias = require("@rollup/plugin-alias");
 const resolve = require("@rollup/plugin-node-resolve");
 const typescript = require("rollup-plugin-typescript");
+const commonjs = require("rollup-plugin-commonjs");
+const { terser } = require("rollup-plugin-terser");
 const del = require("rollup-plugin-delete");
 const { visualizer } = require("rollup-plugin-visualizer");
 
@@ -21,15 +15,12 @@ const plugins = [
   resolve.default(),
   typescript(),
   commonjs(),
-  alias({
-    entries: [{ find: "@", replacement: path.resolve(__dirname, "../../") }],
-  }),
   terser(),
   del({ targets: "dist/*" }),
   visualizer(),
 ];
 
-module.exports = async () => {
+export default async () => {
   const inputOption = {
     input: path.resolve(cmdPath, "./index.ts"),
     plugins,
