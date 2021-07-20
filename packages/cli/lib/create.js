@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
 const logSymbols = require("log-symbols");
-const copyFileWithHBS = require("./helper").copyFileWithHBS;
-const toBigHump = require("./helper").toBigHump;
-const toLowerLine = require("./helper").toLowerLine;
+const copyFileWithHBS = require("./helpers").copyFileWithHBS;
+const toBigHump = require("./helpers").toBigHump;
+const toLowerLine = require("./helpers").toLowerLine;
 
 module.exports = (componentName) => {
   const destDir = process.cwd();

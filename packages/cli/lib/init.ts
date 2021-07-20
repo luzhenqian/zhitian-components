@@ -1,12 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const inquirer = require("inquirer");
-const chalk = require("chalk");
-const logSymbols = require("log-symbols");
-const copyFileWithHBS = require("./helper").copyFileWithHBS;
-const { spawn } = require("child_process");
+import fs from "fs";
+import path from "path";
+const inquirer = require("inquirer");// this module does not support esm.
+import chalk from "chalk";
+import logSymbols from "log-symbols";
+import { copyFileWithHBS } from "./helpers";
+// const { spawn } = require("child_process");
 
-module.exports = (componentLibName) => {
+export default (componentLibName: string) => {
+  console.log(componentLibName);
+
   const destDir = process.cwd();
   const targetDir = path.join(destDir, "./", componentLibName);
   if (fs.existsSync(targetDir)) {
@@ -20,7 +22,6 @@ module.exports = (componentLibName) => {
   const pkgConfig = require(path.resolve(__dirname, "../package.json"));
   const version = pkgConfig.version;
   console.log(chalk.blue(`ZTC CLI ${version}`));
-
   inquirer
     .prompt([
       {
@@ -44,8 +45,8 @@ module.exports = (componentLibName) => {
         message: "author name?",
       },
     ])
-    .then((anwsers) => {
-      anwsers.version = version
+    .then((anwsers: any) => {
+      anwsers.version = version;
       console.log(`✨  Creating component lib in ${targetDir}`);
 
       fs.mkdirSync(targetDir);

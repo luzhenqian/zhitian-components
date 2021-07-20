@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const hbs = require("handlebars");
+import fs from "fs";
+import path from "path";
+import hbs from "handlebars";
 
 function copyFileWithHBS(tmplDir, targetDir, data) {
   fs.readdir(tmplDir, (err, files) => {
@@ -51,4 +51,4 @@ function toBigHump(str) {
   return fristUpperCase(temp);
 }
 
-module.exports = { copyFileWithHBS, fristUpperCase, toLowerLine, toBigHump };
+export { copyFileWithHBS, fristUpperCase, toLowerLine, toBigHump };
