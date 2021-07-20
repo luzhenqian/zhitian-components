@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import init from "./lib/init";
 import create from "./lib/create";
-// import dev from "./lib/dev";
+import dev from "./lib/dev";
 // import build from "./lib/build";
 import publish from "./lib/publish";
 
@@ -28,17 +28,15 @@ program
   .command("create <component-name>")
   .description("create a new component")
   .action((componentName) => {
-    console.log("componentName:", componentName);
     create(componentName);
   });
 
-// program
-//   .command("dev")
-//   .description("start a development mode server with zero config")
-//   .action(() => {
-//     console.log(chalk.bold("🚀  run "));
-//     dev();
-//   });
+program
+  .command("dev")
+  .description("start a development mode server with zero config")
+  .action(() => {
+    dev();
+  });
 
 // program
 //   .command("build")

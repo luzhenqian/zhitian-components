@@ -13,7 +13,7 @@ module.exports = (() => {
             {
               loader: path.resolve(
                 __dirname,
-                "../../../node_modules/ts-loader/index.js"
+                "../../node_modules/ts-loader/index.js"
               ),
             },
           ],

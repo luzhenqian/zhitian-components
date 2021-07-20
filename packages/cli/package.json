@@ -20,10 +20,6 @@
     "@rollup/plugin-alias": "^3.1.4",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^13.0.2",
-    "@vue/babel-plugin-jsx": "^1.0.6",
-    "@vue/compiler-sfc": "^3.1.2",
-    "@ztc/vue-loader": "^0.0.32",
-    "@ztc/ztc-loader": "^0.0.32",
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-builtin-classes": "^0.6.1",
     "chalk": "^4.1.1",
@@ -47,5 +43,10 @@
     "webpack-cli": "3",
     "webpack-dev-server": "^3.11.2"
   },
-  "gitHead": "f8d043f767473ac79a540166473c9053e083e572"
+  "gitHead": "f8d043f767473ac79a540166473c9053e083e572",
+  "devDependencies": {
+    "@types/log-symbols": "^3.0.0",
+    "@types/webpack-dev-server": "^3.11.5",
+    "rollup-plugin-copy": "^3.4.0"
+  }
 }
