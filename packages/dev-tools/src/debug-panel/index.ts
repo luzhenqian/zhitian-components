@@ -1,6 +1,6 @@
 import { html, css, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { FieldType } from "../form-renderer";
+import { FormRenderer } from "../form-renderer";
 import { icon as publishIcon } from "./publish-icon";
 
 enum PanelType {
@@ -189,7 +189,7 @@ function renderForm(
     fieldset: {
       code: string;
       name: string;
-      type: FieldType | FieldType[];
+      type: FormRenderer.FieldType | FormRenderer.FieldType[];
       options: any;
     }[];
   }[],
@@ -227,7 +227,7 @@ function renderForm(
       ${fieldset.map(
         ({ name, type, options, code: fieldCode }) =>
           html`<div class="sub-title-wrap">
-            <span class="sub-title">${name}</span>${FieldType.getComponent(
+            <span class="sub-title">${name}</span>${FormRenderer.getComponent(
               type,
               options,
               stylesDefault,
