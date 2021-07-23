@@ -113,7 +113,7 @@ export default class DebugPanel extends LitElement {
     }
   `;
 
-  @state() _children: any = null;
+  @state() _component: any = null;
   @state() _stylesConfig: any = [];
   @state() _styles: any = {};
   @state() _currentPanelType: PanelType = PanelType.Styles;
@@ -162,19 +162,18 @@ export default class DebugPanel extends LitElement {
   }
 
   firstUpdated() {
-    this._children = this.querySelector("#component");
-
-    this._stylesConfig = (this._children.constructor as any).stylesConfig;
-    this._styles = (this._children as any).styles;
+    this._component = this.querySelector("#component");
+    this._stylesConfig = (this._component.constructor as any).stylesConfig;
+    this._styles = (this._component as any).styles;
   }
 
   updated() {
-    this._styles = (this._children as any).styles;
+    this._styles = (this._component as any)?.styles;
   }
 
   private _changeStyles(styles: any) {
     this._styles = JSON.parse(JSON.stringify(styles));
-    this._children.styles = this._styles;
+    this._component.styles = this._styles;
   }
 
   private _changeTab(type: PanelType) {
@@ -210,7 +209,7 @@ function renderForm(
     changeStyles(stylesDefault);
   };
 
-  return stylesConfig.map(
+  return (stylesConfig || []).map(
     ({ code, name, fieldset, show }, idx) => html`<div>
       <div class="title-wrap">
         <span class="title">${name}</span>${show !== undefined

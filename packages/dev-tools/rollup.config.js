@@ -1,7 +1,6 @@
 const path = require("path");
 const commonjs = require("rollup-plugin-commonjs");
 const { terser } = require("rollup-plugin-terser");
-const alias = require("@rollup/plugin-alias");
 const resolve = require("@rollup/plugin-node-resolve");
 const typescript = require("rollup-plugin-typescript");
 const del = require("rollup-plugin-delete");
@@ -28,9 +27,6 @@ module.exports = {
     resolve.default(),
     typescript(),
     commonjs(),
-    alias({
-      entries: [{ find: "@", replacement: path.resolve(__dirname, "../../") }],
-    }),
     terser(),
     del({ targets: "dist/*" }),
     visualizer(),
