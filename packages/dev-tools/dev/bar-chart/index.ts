@@ -1,13 +1,15 @@
-import ZTComponent from "../../src/zt-component";
-import { html, css } from "lit";
-import { customElement, property } from "lit/decorators.js";
+// import DevTools from "@ztc/dev-tools";
+import { html, css, LitElement } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import DataConfig from "./data.config";
 import StylesConfig from "./styles.config";
 import DataDefault from "./data.default";
 import StylesDefault from "./styles.default";
 import { init } from "echarts";
+import ZTComponent from "../zt-component";
+// import { ZTComponent } from "@ztc/dev-tools";
 
-@customElement("bar-chart")
+@customElement("zhitian-components-bar-chart")
 export default class BarChart extends ZTComponent {
   static dataConfig = DataConfig;
   static stylesConfig = StylesConfig;
@@ -16,11 +18,6 @@ export default class BarChart extends ZTComponent {
     :host {
       width: 100%;
       height: 100%;
-    }
-
-    #container {
-      width: 300px;
-      height: 300px;
     }
   `;
 
@@ -31,6 +28,13 @@ export default class BarChart extends ZTComponent {
   data = DataDefault;
 
   chart: any;
+
+  @state()
+  width = 0;
+  @state()
+  height = 0;
+  observer: ResizeObserver | null = null;
+  parent: HTMLElement | null = null;
 
   updated() {
     let styles = this.styles;
@@ -112,11 +116,35 @@ export default class BarChart extends ZTComponent {
       },
     };
 
+    this.updateSize();
+
     this.renderChart(option);
   }
 
+  updateSize() {
+    const parent = this.parentElement as HTMLElement;
+    const { width, height } = parent.getBoundingClientRect();
+    this.width = width;
+    this.height = height;
+    console.log("width, height:", width, height);
+  }
+
   render() {
-    return html` <div id="container"></div> `;
+    return html`
+      <div
+        id="container"
+        style="width:${this.width}px; height:${this.height}px;"
+      ></div>
+    `;
+  }
+
+  firstUpdated() {
+    this.parent = this.parentElement as HTMLElement;
+    this.observer = new ResizeObserver((entries) => {
+      this.updateSize();
+      setTimeout(this.chart.resize, 0);
+    });
+    this.observer.observe(this.parent);
   }
 
   renderChart(option: any) {
@@ -127,6 +155,12 @@ export default class BarChart extends ZTComponent {
       this.chart.setOption(option);
     } else {
       this.chart.setOption(option);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.observer && this.parent) {
+      this.observer.disconnect();
     }
   }
 }

@@ -20,7 +20,7 @@ export default class DebugPanel extends LitElement {
       --title-text-color: rgb(224, 224, 226);
       --sub-title-bg-color: rgb(28, 28, 30);
     }
-    ::slotted(*) {
+    .slot-container {
       width: 75%;
       background: var(--ztcdt-hight-text-color);
       display: flex;
@@ -120,7 +120,9 @@ export default class DebugPanel extends LitElement {
 
   render() {
     return html`<div class="container"">
-      <slot></slot>
+      <span class="slot-container">
+        <slot></slot>
+      </span>
       <i class="icon">${publishIcon}</i>
       <div class="panel">
         <div class="panel-tabs">
@@ -160,13 +162,14 @@ export default class DebugPanel extends LitElement {
   }
 
   firstUpdated() {
-    this._children = this.children[0];
-    this._stylesConfig = (this.children[0].constructor as any).stylesConfig;
-    this._styles = (this.children[0] as any).styles;
+    this._children = this.querySelector("#component");
+
+    this._stylesConfig = (this._children.constructor as any).stylesConfig;
+    this._styles = (this._children as any).styles;
   }
 
   updated() {
-    this._styles = (this.children[0] as any).styles;
+    this._styles = (this._children as any).styles;
   }
 
   private _changeStyles(styles: any) {

@@ -26,19 +26,35 @@ export default async () => {
     plugins,
   };
 
-  const outputOption = {
+  const esmOutputOption = {
     exports: "auto",
     file: path.resolve(cmdPath, pkg.module),
     format: "esm",
   };
 
-  const spinner = ora(
+  const esOutputOption = {
+    exports: "auto",
+    file: path.resolve(cmdPath, pkg.main),
+    format: "es",
+  };
+
+  const bundle = await rollup(inputOption);
+
+  const esmSpinner = ora(
     `Building ${chalk.blue(inputOption.input)} → ${chalk.blue(
-      outputOption.file
+      esmOutputOption.file
     )}`
   ).start();
-  const bundle = await rollup(inputOption);
-  await bundle.write(outputOption);
+  await bundle.write(esmOutputOption);
+  esmSpinner.succeed(`Build ${chalk.blue(esmOutputOption.file)} done`);
+
+  const esSpinner = ora(
+    `Building ${chalk.blue(inputOption.input)} → ${chalk.blue(
+      esOutputOption.file
+    )}`
+  ).start();
+  await bundle.write(esOutputOption);
+  esSpinner.succeed(`Build ${chalk.blue(esOutputOption.file)} done`);
+
   await bundle.close();
-  spinner.succeed(`Building ${chalk.blue(inputOption.input)} done`);
 };

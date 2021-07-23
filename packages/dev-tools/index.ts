@@ -17,6 +17,7 @@ enum FieldType {
   Slider, // 滑动输入
   Code, // 代码
 }
+
 import { tagNameMap } from "./src/tag-name-map";
 import Integer from "./src/integer";
 import Decimal from "./src/decimal";
