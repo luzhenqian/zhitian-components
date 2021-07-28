@@ -8,9 +8,6 @@
   "description": "zhitian component system",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "create": "npx plop",
-    "dev": "npx webpack-dev-server --config ./webpack.config.ztc.js",
-    "dev:vue": "npx webpack-dev-server --config ./webpack.config.vue.js",
     "lerna": "lerna publish",
     "build": "rollup -c",
     "clean": "lerna clean"

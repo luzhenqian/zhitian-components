@@ -1,17 +1,19 @@
 import { css, html, LitElement } from "lit";
-import {
-  customElement,
-  property,
-} from "lit/decorators.js";
-import {
-  createRef,
-  Ref,
-  ref,
-} from "lit/directives/ref.js";
+import { customElement, property } from "lit/decorators.js";
+import { createRef, Ref, ref } from "lit/directives/ref.js";
 import { inputStyles } from "../styles/input";
 
+export interface IntegerProps {
+  value?: number;
+  min?: number;
+  max?: number;
+  placeholder?: string;
+  styles?: string;
+  customStyle?: string;
+}
+
 @customElement("zt-integer")
-export default class Integer extends LitElement {
+export default class Integer<IntegerProps> extends LitElement {
   static styles = css`
     ${inputStyles}
   `;
@@ -25,7 +27,7 @@ export default class Integer extends LitElement {
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
-  render() {    
+  render() {
     return html`<input
       ${ref(this.inputRef)}
       style=${this.customStyle}

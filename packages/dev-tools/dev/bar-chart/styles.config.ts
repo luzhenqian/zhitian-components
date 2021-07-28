@@ -71,22 +71,24 @@ export default [
       {
         code: "fontWeight",
         name: "字体粗细",
-        type: [
-          {
-            type: "Select",
-            options: [
-              { label: "Normal", value: "常规" },
-              { label: "Bold", value: "加粗" },
-              { label: "Bolder", value: "极粗" },
-              { label: "Lighter", value: "极细" },
-            ],
-          },
-          {
-            type: "Integer",
-            min: 100,
-            max: 1000,
-          },
-        ],
+        // type: [
+        //   {
+        type: "Select",
+        options: {
+          options: [
+            { key: "Normal", value: "常规" },
+            { key: "Bold", value: "加粗" },
+            { key: "Bolder", value: "极粗" },
+            { key: "Lighter", value: "极细" },
+          ],
+        },
+        // },
+        // {
+        //   type: "Integer",
+        //   min: 100,
+        //   max: 1000,
+        // },
+        // ],
       },
       {
         code: "rotate",

@@ -3,8 +3,17 @@ import { customElement, property } from "lit/decorators.js";
 import { createRef, Ref, ref } from "lit/directives/ref.js";
 import { inputStyles } from "../styles/input";
 
+export interface DecimalProps {
+  value?: number;
+  min?: number;
+  max?: number;
+  placeholder?: string;
+  fixed?: number;
+  customStyle?: string;
+}
+
 @customElement("zt-decimal")
-export default class Decimal extends LitElement {
+export default class Decimal<DecimalProps> extends LitElement {
   static styles = css`
     ${inputStyles}
   `;

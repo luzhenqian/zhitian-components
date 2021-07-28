@@ -1,5 +1,8 @@
 import { html } from "lit";
 import tinycolor from "tinycolor2";
+import { DecimalProps } from "../decimal";
+import { IntegerProps } from "../integer";
+import { SelectProps } from "../select";
 
 export namespace FormRenderer {
   export enum FieldType {
@@ -46,21 +49,32 @@ export namespace FormRenderer {
     fieldset
       .set(
         FieldType.Integer,
-        () => html`<zt-integer
+        (options?: IntegerProps) => html`<zt-integer
           value="${config[code][fieldCode]}"
           @change="${changeHandler}"
+          ${options && "min" in options ? 'min="${options.min}"' : ""}
+          ${options && "max" in options ? 'max="${options.max}"' : ""}
+          ${options && "placeholder" in options
+            ? 'placeholder="${options.placeholder}"'
+            : ""}
         ></zt-integer>`
       )
       .set(
         FieldType.Decimal,
-        () => html`<zt-decimal
+        (options?: DecimalProps) => html`<zt-decimal
           value="${config[code][fieldCode]}"
           @change="${changeHandler}"
+          ${options && "min" in options ? 'min="${options.min}"' : ""}
+          ${options && "max" in options ? 'max="${options.max}"' : ""}
+          ${options && "fixed" in options ? 'fixed="${options.fixed}"' : ""}
+          ${options && "placeholder" in options
+            ? 'placeholder="${options.placeholder}"'
+            : ""}
         ></zt-decimal>`
       )
       .set(
         FieldType.Text,
-        () => html`<zt-text
+        (options?: DecimalProps) => html`<zt-text
           value="${config[code][fieldCode]}"
           @change="${changeHandler}"
         ></zt-text>`
@@ -74,9 +88,15 @@ export namespace FormRenderer {
       )
       .set(
         FieldType.Select,
-        () => html`<zt-select
+        (options?: SelectProps) => html`<zt-select
           value="${config[code][fieldCode]}"
           @change="${changeHandler}"
+          options="${options && "options" in options
+            ? JSON.stringify(options.options)
+            : ""}"
+          ${options && "placeholder" in options
+            ? 'placeholder="${options.placeholder}"'
+            : ""}
         ></zt-select>`
       )
       .set(FieldType.Color, () => {
@@ -96,7 +116,7 @@ export namespace FormRenderer {
         return slider;
       });
 
-    if (fieldset.has(type)) return fieldset.get(type)();
+    if (fieldset.has(type)) return fieldset.get(type)(options);
     return null;
   }
 }

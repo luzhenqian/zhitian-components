@@ -1,14 +1,6 @@
 import { css, html, LitElement } from "lit";
-import {
-  customElement,
-  property,
-  state,
-} from "lit/decorators.js";
-import {
-  createRef,
-  Ref,
-  ref,
-} from "lit/directives/ref.js";
+import { customElement, property, state } from "lit/decorators.js";
+import { createRef, Ref, ref } from "lit/directives/ref.js";
 import { iconStyles } from "../styles/input";
 
 interface Option {
@@ -16,8 +8,13 @@ interface Option {
   value: string;
 }
 
+export interface SelectProps {
+  placeholder?: string;
+  options?: Option[];
+}
+
 @customElement("zt-select")
-export default class Select extends LitElement {
+export default class Select<SelectProps> extends LitElement {
   static styles = css`
     ${iconStyles}
     .zt-select-wrap {
@@ -76,17 +73,16 @@ export default class Select extends LitElement {
     }
   `;
 
-  @property({ type: Number }) value = 0;
-  @property({ type: Number }) min = 0;
-  @property({ type: Number }) max = 999999999;
   @property({ type: String }) placeholder = "";
-  @property({ type: Array }) options: any[] = [];
+  @property({ type: Array }) options: Option[] = [];
   @state() open = false;
   @state() selectOption: null | Option = null;
 
   inputRef: Ref<HTMLInputElement> = createRef();
 
   render() {
+    console.log("options:", this.options);
+
     return html`<div
       tabindex="0"
       class="zt-select-wrap"
