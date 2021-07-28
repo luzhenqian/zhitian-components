@@ -35,7 +35,8 @@ export default async () => {
   const esOutputOption = {
     exports: "auto",
     file: path.resolve(cmdPath, pkg.main),
-    format: "es",
+    name: pkg.name,
+    format: "umd",
   };
 
   const bundle = await rollup(inputOption);
