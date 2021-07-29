@@ -28,6 +28,7 @@ export namespace FormRenderer {
   }
 
   const fieldset = new Map();
+  const cache = new Map();
 
   export function init(
     stylesConfig: StylesConfig,
@@ -190,7 +191,15 @@ export namespace FormRenderer {
     code: any,
     fieldCode: any
   ) {
-    if (fieldset.has(type)) return fieldset.get(type)(options, code, fieldCode);
+    const key = type + code + fieldCode;
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    if (fieldset.has(type)) {
+      const fieldComponent = fieldset.get(type)(options, code, fieldCode);
+      cache.set(key, fieldComponent);
+      return fieldComponent;
+    }
     return null;
   }
 }
