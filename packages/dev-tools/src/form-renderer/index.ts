@@ -1,5 +1,7 @@
 import { html } from "lit";
 import tinycolor from "tinycolor2";
+import { CheckboxProps } from "../checkbox";
+import { StylesConfig } from "../debug-panel";
 import { DecimalProps } from "../decimal";
 import { IntegerProps } from "../integer";
 import { SelectProps } from "../select";
@@ -25,98 +27,170 @@ export namespace FormRenderer {
     Code = "Code", // 代码
   }
 
+  const fieldset = new Map();
+
+  export function init(
+    stylesConfig: StylesConfig,
+    stylesDefault: any,
+    changeStyles: any
+  ) {
+    (stylesConfig || []).map(({ fieldset: fs }) =>
+      fs.map(() => {
+        const genHandlerFn = (code: string, fieldCode: string) => {
+          const changeHandler = (e: CustomEvent) => {
+            stylesDefault[code][fieldCode] = e.detail.value;
+            changeStyles(stylesDefault);
+          };
+
+          const nativeChangeHandler = (e: any) => {
+            const rgb = tinycolor(e?.target?.value).toRgbString();
+            stylesDefault[code][fieldCode] = rgb;
+            changeStyles(stylesDefault);
+          };
+          return {
+            changeHandler,
+            nativeChangeHandler,
+          };
+        };
+
+        fieldset
+          .set(
+            FieldType.Integer,
+            (options: IntegerProps, code: string, fieldCode: string) => {
+              const integer: any = document.createElement("zt-integer");
+              integer.value = stylesDefault[code][fieldCode];
+              integer.addEventListener(
+                "change",
+                genHandlerFn(code, fieldCode).changeHandler
+              );
+              if (options) {
+                if (options.hasOwnProperty("min")) {
+                  integer.min = options.min;
+                }
+                if (options.hasOwnProperty("max")) {
+                  integer.max = options.max;
+                }
+                if (options.hasOwnProperty("placeholder")) {
+                  integer.placeholder = options.placeholder;
+                }
+              }
+              return integer;
+            }
+          )
+          .set(
+            FieldType.Decimal,
+            (
+              options: DecimalProps,
+              code: string,
+              fieldCode: string
+            ) => html`<zt-decimal
+              value="${stylesDefault[code][fieldCode]}"
+              @change="${genHandlerFn(code, fieldCode).changeHandler}"
+              ${options && "min" in options ? 'min="${options.min}"' : ""}
+              ${options && "max" in options ? 'max="${options.max}"' : ""}
+              ${options && "fixed" in options ? 'fixed="${options.fixed}"' : ""}
+              ${options && "placeholder" in options
+                ? 'placeholder="${options.placeholder}"'
+                : ""}
+            ></zt-decimal>`
+          )
+          .set(
+            FieldType.Text,
+            (
+              options: DecimalProps,
+              code: string,
+              fieldCode: string
+            ) => html`<zt-text
+              value="${stylesDefault[code][fieldCode]}"
+              @change="${genHandlerFn(code, fieldCode).changeHandler}"
+            ></zt-text>`
+          )
+          .set(
+            FieldType.TextArea,
+            (
+              options: any,
+              code: string,
+              fieldCode: string
+            ) => html`<zt-text-area
+              value="${stylesDefault[code][fieldCode]}"
+              @change="${genHandlerFn(code, fieldCode).changeHandler}"
+            ></zt-text-area>`
+          )
+          .set(
+            FieldType.Select,
+            (
+              options: SelectProps,
+              code: string,
+              fieldCode: string
+            ) => html`<zt-select
+              value="${stylesDefault[code][fieldCode]}"
+              @change="${genHandlerFn(code, fieldCode).changeHandler}"
+              options="${options && "options" in options
+                ? JSON.stringify(options.options)
+                : ""}"
+              ${options && "placeholder" in options
+                ? 'placeholder="${options.placeholder}"'
+                : ""}
+            ></zt-select>`
+          )
+          .set(
+            FieldType.Color,
+            (options: any, code: string, fieldCode: string) => {
+              const hex = `#${tinycolor(
+                stylesDefault[code][fieldCode]
+              ).toHex()}`;
+              return html`<input type="color"
+          value="${hex}"
+          @input="${genHandlerFn(code, fieldCode).nativeChangeHandler}"
+        ></zt-select>`;
+            }
+          )
+          .set(
+            FieldType.Slider,
+            (options: any, code: string, fieldCode: string) => {
+              const slider: any = document.createElement("zt-slider");
+              slider.value = stylesDefault[code][fieldCode];
+              slider.addEventListener("change", (e: any) =>
+                genHandlerFn(code, fieldCode).changeHandler(e)
+              );
+              if (options) {
+                slider.max = options.max;
+              }
+              return slider;
+            }
+          )
+          .set(
+            FieldType.Checkbox,
+            (options: CheckboxProps, code: string, fieldCode: string) => {
+              const checkbox: any = document.createElement("zt-checkbox");
+              checkbox.value = stylesDefault[code][fieldCode];
+              checkbox.addEventListener(
+                "change",
+                genHandlerFn(code, fieldCode).changeHandler
+              );
+              if (options) {
+                if (options.hasOwnProperty("checkOption")) {
+                  checkbox.checkOption = options.checkOption;
+                }
+                if (options.hasOwnProperty("defaultCheckedList")) {
+                  checkbox.defaultCheckedList = options.defaultCheckedList;
+                }
+              }
+              return checkbox;
+            }
+          );
+      })
+    );
+  }
+
   export function getComponent(
     type: FieldType | FieldType[],
     options: any,
     config: any,
     code: any,
-    fieldCode: any,
-    changeStyles: any
+    fieldCode: any
   ) {
-    const changeHandler = (e: CustomEvent) => {
-      config[code][fieldCode] = e.detail.value;
-      changeStyles(config);
-    };
-
-    const nativeChangeHandler = (e: any) => {
-      const rgb = tinycolor(e?.target?.value).toRgbString();
-      config[code][fieldCode] = rgb;
-      changeStyles(config);
-    };
-
-    const fieldset = new Map();
-
-    fieldset
-      .set(
-        FieldType.Integer,
-        (options?: IntegerProps) => html`<zt-integer
-          value="${config[code][fieldCode]}"
-          @change="${changeHandler}"
-          ${options && "min" in options ? 'min="${options.min}"' : ""}
-          ${options && "max" in options ? 'max="${options.max}"' : ""}
-          ${options && "placeholder" in options
-            ? 'placeholder="${options.placeholder}"'
-            : ""}
-        ></zt-integer>`
-      )
-      .set(
-        FieldType.Decimal,
-        (options?: DecimalProps) => html`<zt-decimal
-          value="${config[code][fieldCode]}"
-          @change="${changeHandler}"
-          ${options && "min" in options ? 'min="${options.min}"' : ""}
-          ${options && "max" in options ? 'max="${options.max}"' : ""}
-          ${options && "fixed" in options ? 'fixed="${options.fixed}"' : ""}
-          ${options && "placeholder" in options
-            ? 'placeholder="${options.placeholder}"'
-            : ""}
-        ></zt-decimal>`
-      )
-      .set(
-        FieldType.Text,
-        (options?: DecimalProps) => html`<zt-text
-          value="${config[code][fieldCode]}"
-          @change="${changeHandler}"
-        ></zt-text>`
-      )
-      .set(
-        FieldType.TextArea,
-        () => html`<zt-text-area
-          value="${config[code][fieldCode]}"
-          @change="${changeHandler}"
-        ></zt-text-area>`
-      )
-      .set(
-        FieldType.Select,
-        (options?: SelectProps) => html`<zt-select
-          value="${config[code][fieldCode]}"
-          @change="${changeHandler}"
-          options="${options && "options" in options
-            ? JSON.stringify(options.options)
-            : ""}"
-          ${options && "placeholder" in options
-            ? 'placeholder="${options.placeholder}"'
-            : ""}
-        ></zt-select>`
-      )
-      .set(FieldType.Color, () => {
-        const hex = `#${tinycolor(config[code][fieldCode]).toHex()}`;
-        return html`<input type="color"
-          value="${hex}"
-          @input="${nativeChangeHandler}"
-        ></zt-select>`;
-      })
-      .set(FieldType.Slider, () => {
-        const slider: any = document.createElement("zt-slider");
-        slider.value = config[code][fieldCode];
-        slider.addEventListener("change", (e: any) => changeHandler(e));
-        if (options) {
-          slider.max = options.max;
-        }
-        return slider;
-      });
-
-    if (fieldset.has(type)) return fieldset.get(type)(options);
+    if (fieldset.has(type)) return fieldset.get(type)(options, code, fieldCode);
     return null;
   }
 }

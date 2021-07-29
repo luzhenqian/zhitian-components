@@ -181,21 +181,25 @@ export default class DebugPanel extends LitElement {
   }
 }
 
-function renderForm(
-  stylesConfig: {
+export type StylesConfig = {
+  code: string;
+  name: string;
+  show?: boolean;
+  fieldset: {
     code: string;
     name: string;
-    show?: boolean;
-    fieldset: {
-      code: string;
-      name: string;
-      type: FormRenderer.FieldType | FormRenderer.FieldType[];
-      options: any;
-    }[];
-  }[],
+    type: FormRenderer.FieldType | FormRenderer.FieldType[];
+    options: any;
+  }[];
+}[];
+
+function renderForm(
+  stylesConfig: StylesConfig,
   stylesDefault: any,
   changeStyles: any
 ) {
+  FormRenderer.init(stylesConfig, stylesDefault, changeStyles);
+
   const changeHandler = (e: CustomEvent, code: any) => {
     const hasIdx = (
       e.detail.value as { value: string; label: string }[]
@@ -232,8 +236,7 @@ function renderForm(
               options,
               stylesDefault,
               code,
-              fieldCode,
-              changeStyles
+              fieldCode
             )}
           </div>`
       )}

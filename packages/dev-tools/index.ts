@@ -34,7 +34,7 @@ import Slider from "./src/slider";
 // import CodeEditor from "./src/code-editor";
 import DebugPanel from "./src/debug-panel";
 import ZTComponent from "./src/zt-component";
-// import BarChart from "./dev/bar-chart"; // Dev
+import BarChart from "./dev/bar-chart"; // Dev
 import "./src/styles/default-variables";
 
 export { ZTComponent };
@@ -56,5 +56,5 @@ export default {
   DebugPanel,
   ZTComponent,
   tagNameMap,
-  // BarChart, // Dev
+  BarChart, // Dev
 };

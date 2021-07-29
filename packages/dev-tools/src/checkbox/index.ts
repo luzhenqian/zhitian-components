@@ -1,13 +1,14 @@
 import { css, html, LitElement } from "lit";
-import {
-  customElement,
-  property,
-  state,
-} from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 
 interface CheckItem {
   value: string;
   label: string;
+}
+
+export interface CheckboxProps {
+  checkOption?: CheckItem[];
+  defaultCheckedList?: CheckItem[];
 }
 
 @customElement("zt-checkbox")
