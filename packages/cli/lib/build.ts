@@ -56,6 +56,7 @@ export default async () => {
   ).start();
   await bundle.write(esOutputOption);
   esSpinner.succeed(`Build ${chalk.blue(esOutputOption.file)} done`);
-
+  // TODO: record time
+  // created packages\cli\dist\cli.cjs.js in 7.6s
   await bundle.close();
 };
