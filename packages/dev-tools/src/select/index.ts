@@ -81,8 +81,6 @@ export default class Select<SelectProps> extends LitElement {
   inputRef: Ref<HTMLInputElement> = createRef();
 
   render() {
-    console.log("options:", this.options);
-
     return html`<div
       tabindex="0"
       class="zt-select-wrap"
@@ -117,7 +115,18 @@ export default class Select<SelectProps> extends LitElement {
   }
 
   private _optionClickHandler(e: Event, option: any) {
-    this.selectOption = option;
+    try {
+      this.selectOption = option;
+    } finally {
+      const detail = { value: this.selectOption?.key };
+      const event = new CustomEvent("change", {
+        detail,
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+      });
+      this.dispatchEvent(event);
+    }
   }
 }
 
