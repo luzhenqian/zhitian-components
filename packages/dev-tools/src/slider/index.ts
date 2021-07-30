@@ -1,10 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { createRef, ref } from "lit/directives/ref.js";
-import {
-  customElement,
-  property,
-  state,
-} from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 
 @customElement("zt-slider")
 export default class Decimal extends LitElement {
@@ -82,12 +78,14 @@ export default class Decimal extends LitElement {
   @property({ type: Number }) max = 100;
   @property({ type: Number }) min = 1;
   @state() _tipVisible = false;
-  @state() _focus = false;// FIXME: focus lost after update
+  @state() _focus = false; // FIXME: focus lost after update
+  containerRef = createRef<HTMLDivElement>();
   handleRef = createRef<HTMLDivElement>();
 
   render() {
     const width = `${(this.value / this.max) * 100}%`;
     return html`<div
+      ${ref(this.containerRef)}
       class="container"
       style="width: ${this.width}px;"
       @click=${this._clickHandler}
@@ -118,7 +116,10 @@ export default class Decimal extends LitElement {
 
   private _clickHandler(e: any) {
     const handleEl = this.handleRef.value;
-    handleEl?.focus();
+    if (!handleEl) {
+      return;
+    }
+    handleEl.focus();
     this._focus = true;
     if (e.target === handleEl) {
       return;
@@ -127,7 +128,10 @@ export default class Decimal extends LitElement {
   }
 
   private _changeValue(e: { offsetX: number }) {
+    console.log("offset", e.offsetX);
+
     let value = e.offsetX / (this.width / this.max);
+
     if (value > this.max) value = this.max;
     if (value < this.min) value = this.min;
     this.value = value;
@@ -147,7 +151,12 @@ export default class Decimal extends LitElement {
     e.preventDefault();
     const moveHandler = (moveE: any) => {
       e.preventDefault();
-      this._changeValue(moveE);
+
+      if (this.containerRef.value) {
+        const left = this.containerRef.value.getBoundingClientRect().left;
+        moveE.offsetX = moveE.offsetX - left;
+        this._changeValue(moveE);
+      }
     };
     document.addEventListener("mousemove", moveHandler);
     const upHandler = () => {

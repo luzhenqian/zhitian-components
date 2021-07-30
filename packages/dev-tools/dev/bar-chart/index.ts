@@ -126,7 +126,6 @@ export default class BarChart extends ZTComponent {
     const { width, height } = parent.getBoundingClientRect();
     this.width = width;
     this.height = height;
-    console.log("width, height:", width, height);
   }
 
   render() {
